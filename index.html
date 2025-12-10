@@ -8,24 +8,24 @@
 
   <style>
     :root {
-      --bg: #f3f4f6;
-      --bg-soft: #e5edf6;
-      --bg-card: #ffffff;
-      --border-soft: #e2e8f0;
-      --border-strong: #cbd5e1;
-      --primary: #0357a6;
-      --primary-soft: #0b75d1;
-      --primary-light: #e0efff;
+      --bg: #f3f6fb;
+      --bg-soft: #e7f0ff;
+      --card-bg: #ffffff;
+      --card-soft: #f8fafc;
+      --border-soft: #dde4f0;
+      --border-strong: #c3d0e6;
+      --primary: #0059a8;
+      --primary-soft: #0c7cd5;
+      --primary-light: #e3f0ff;
       --accent-soft: #eff6ff;
       --success: #16a34a;
       --danger: #e11d48;
-      --warning: #eab308;
       --text-main: #0f172a;
       --text-soft: #64748b;
       --text-muted: #94a3b8;
-      --radius-lg: 18px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.15);
       --radius-xl: 22px;
-      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.14);
+      --radius-lg: 16px;
       --transition-fast: 0.16s ease-out;
     }
 
@@ -40,14 +40,14 @@
     body {
       min-height: 100vh;
       background:
-        radial-gradient(circle at 0 0, #e0f2fe 0, transparent 55%),
-        radial-gradient(circle at 100% 100%, #e0f2fe 0, transparent 55%),
+        radial-gradient(circle at 0 0, #e0f2fe 0, transparent 50%),
+        radial-gradient(circle at 100% 100%, #e0f2fe 0, transparent 50%),
         var(--bg);
       color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 14px;
+      padding: 12px;
       font-size: 15px;
     }
 
@@ -57,54 +57,51 @@
       }
     }
 
-    /* خلفيات متحركة خفيفة */
-    .animated-orbit {
+    .orbit-bg {
       position: fixed;
       inset: 0;
       pointer-events: none;
       z-index: -1;
     }
 
-    .animated-orbit span {
+    .orbit-bg span {
       position: absolute;
+      width: 240px;
+      height: 240px;
       border-radius: 999px;
-      background: radial-gradient(circle, rgba(14, 116, 144, 0.16), transparent 60%);
-      width: 260px;
-      height: 260px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 60%);
       filter: blur(1px);
+      opacity: .45;
       animation: float 20s infinite alternate ease-in-out;
     }
 
-    .animated-orbit span:nth-child(1) {
-      top: -90px;
-      right: -50px;
+    .orbit-bg span:nth-child(1) {
+      top: -80px;
+      right: -40px;
     }
 
-    .animated-orbit span:nth-child(2) {
-      bottom: -100px;
+    .orbit-bg span:nth-child(2) {
+      bottom: -90px;
       left: -40px;
-      animation-delay: 4s;
+      animation-delay: 5s;
     }
 
-    .animated-orbit span:nth-child(3) {
-      top: 35%;
-      left: 5%;
-      animation-delay: 8s;
+    .orbit-bg span:nth-child(3) {
+      top: 40%;
+      left: 8%;
+      animation-delay: 9s;
     }
 
     @keyframes float {
-      0% { transform: translate3d(0,0,0) scale(1); opacity: .32; }
-      100% { transform: translate3d(42px,-26px,0) scale(1.18); opacity: .7; }
+      0% { transform: translate3d(0,0,0) scale(1); }
+      100% { transform: translate3d(36px,-24px,0) scale(1.1); }
     }
 
-    /* إطار التطبيق */
     .app-shell {
       width: 100%;
-      max-width: 1180px;
-      height: 100%;
-      max-height: 780px;
+      max-width: 980px;
       background: rgba(255, 255, 255, 0.98);
-      border-radius: 26px;
+      border-radius: 28px;
       border: 1px solid rgba(148, 163, 184, 0.4);
       box-shadow: var(--shadow-soft);
       overflow: hidden;
@@ -113,14 +110,7 @@
       position: relative;
     }
 
-    @media (max-width: 768px) {
-      .app-shell {
-        max-height: none;
-        height: auto;
-      }
-    }
-
-    /* شريط علوي */
+    /* الشريط العلوي */
     .top-bar {
       display: flex;
       align-items: center;
@@ -134,31 +124,31 @@
       .top-bar {
         flex-direction: column;
         align-items: flex-start;
-        gap: 10px;
+        gap: 8px;
       }
     }
 
-    .top-bar-left {
+    .brand {
       display: flex;
       align-items: center;
       gap: 10px;
     }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 16px;
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
       background:
-        radial-gradient(circle at 18% 12%, #e0f2fe, transparent 58%),
+        radial-gradient(circle at 20% 15%, #e0f2fe, transparent 60%),
         linear-gradient(135deg, var(--primary), var(--primary-soft));
       display: flex;
       align-items: center;
       justify-content: center;
       color: #ffffff;
       font-weight: 800;
-      letter-spacing: 0.1em;
+      letter-spacing: 0.09em;
       font-size: 16px;
-      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.3);
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.35);
       border: 1px solid rgba(15, 23, 42, 0.12);
     }
 
@@ -169,7 +159,7 @@
     }
 
     .brand-title {
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
@@ -181,7 +171,7 @@
       color: var(--text-soft);
     }
 
-    .top-bar-right {
+    .top-right {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -189,7 +179,7 @@
     }
 
     .tag {
-      padding: 5px 11px;
+      padding: 5px 10px;
       border-radius: 999px;
       font-size: 12px;
       border: 1px solid var(--border-soft);
@@ -205,13 +195,13 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34,197,94,0.5);
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.6);
       animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-      100% { box-shadow: 0 0 0 11px rgba(34,197,94,0); }
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      100% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
     }
 
     .user-indicator {
@@ -224,207 +214,27 @@
       color: var(--primary);
     }
 
-    /* تخطيط داخلي: قائمة جانبية + محتوى */
-    .layout {
-      flex: 1;
-      display: grid;
-      grid-template-columns: 260px minmax(0, 1fr);
+    /* المحتوى */
+    .content {
+      padding: 12px 14px 14px;
       background: linear-gradient(180deg, #f8fafc, #ffffff);
     }
 
-    @media (max-width: 900px) {
-      .layout {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    /* القائمة الجانبية */
-    .side-nav {
-      border-inline-end: 1px solid var(--border-soft);
-      background: linear-gradient(180deg, #f9fafb, #f1f5f9);
-      padding: 12px 10px 14px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    @media (max-width: 900px) {
-      .side-nav {
-        display: none;
-      }
-    }
-
-    .side-profile {
-      border-radius: var(--radius-lg);
-      border: 1px solid var(--border-soft);
-      background: #ffffff;
-      padding: 10px 10px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .side-profile-main {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: #e2e8f0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      flex-shrink: 0;
-    }
-
-    .avatar-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      background: linear-gradient(135deg,#0b75d1,#38bdf8);
-      color: #ffffff;
-    }
-
-    .profile-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .profile-role {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .profile-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 6px;
-      font-size: 12px;
-      color: var(--text-soft);
-      flex-wrap: wrap;
-    }
-
-    .profile-meta-row span strong {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .tiny-pill {
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: #f8fafc;
-    }
-
-    .mini-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--success);
-    }
-
-    .side-nav-title {
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--text-soft);
-      margin-top: 4px;
-      margin-bottom: 4px;
-      padding-inline: 4px;
-    }
-
-    .nav-btn {
-      width: 100%;
-      border-radius: 999px;
-      border: none;
-      padding: 7px 10px;
-      font-size: 13px;
-      font-weight: 500;
-      cursor: pointer;
-      text-align: right;
-      color: var(--text-soft);
-      background: transparent;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 8px;
-      transition: background var(--transition-fast),
-        color var(--transition-fast), transform var(--transition-fast),
-        box-shadow var(--transition-fast);
-    }
-
-    .nav-btn span.label {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .nav-btn span.bullet {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--border-soft);
-    }
-
-    .nav-btn.active {
-      background: #ffffff;
-      color: var(--primary);
-      box-shadow: 0 8px 18px rgba(148, 163, 184, 0.6);
-      transform: translateY(-1px);
-    }
-
-    .nav-btn.active span.bullet {
-      background: var(--primary-soft);
-    }
-
-    .nav-btn:not(.active):hover {
-      background: #e5edf6;
-      color: var(--text-main);
-    }
-
-    .side-footer {
-      margin-top: auto;
-      font-size: 11px;
-      color: var(--text-muted);
-      padding-inline: 6px;
-    }
-
-    /* منطقة المحتوى الرئيسية */
-    .content-area {
-      padding: 12px 14px 14px;
-      overflow: auto;
-    }
-
-    .content-grid {
+    .grid-main {
       display: grid;
-      grid-template-columns: minmax(0, 1.75fr) minmax(260px, 1.1fr);
-      gap: 12px;
+      grid-template-columns: minmax(0, 2fr) minmax(260px, 1.1fr);
+      gap: 10px;
     }
 
-    @media (max-width: 900px) {
-      .content-grid {
+    @media (max-width: 860px) {
+      .grid-main {
         grid-template-columns: minmax(0,1fr);
       }
     }
 
     .card {
-      background: var(--bg-card);
-      border-radius: var(--radius-lg);
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
       border: 1px solid var(--border-soft);
       padding: 12px 12px 10px;
       position: relative;
@@ -435,7 +245,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 0 0, rgba(14, 165, 233, 0.12), transparent 60%);
+      background: radial-gradient(circle at 0 0, rgba(14,165,233,0.14), transparent 60%);
       opacity: 0;
       transition: opacity var(--transition-fast);
       pointer-events: none;
@@ -450,31 +260,35 @@
       justify-content: space-between;
       align-items: center;
       margin-bottom: 8px;
-      gap: 10px;
+      gap: 8px;
     }
 
-    @media (max-width: 640px) {
-      .card-header {
-        flex-direction: column;
-        align-items: flex-start;
-      }
+    .card-title-block {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .card-title {
       font-size: 15px;
       font-weight: 600;
+      color: var(--text-main);
       display: flex;
       align-items: center;
       gap: 6px;
     }
 
-    .card-title-accent {
-      padding: 3px 8px;
+    .card-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .pill-soft {
+      font-size: 11px;
+      padding: 2px 7px;
       border-radius: 999px;
       background: var(--accent-soft);
       border: 1px solid var(--border-soft);
-      font-size: 11px;
-      font-weight: 600;
       color: var(--primary-soft);
     }
 
@@ -484,90 +298,48 @@
       gap: 10px;
     }
 
-    .section-heading {
-      font-size: 16px;
-      font-weight: 600;
-      color: var(--primary);
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .section-heading span {
-      font-size: 11px;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: var(--accent-soft);
-      color: var(--primary-soft);
-    }
-
-    .muted-caption {
-      font-size: 13px;
-      color: var(--text-muted);
-      margin-top: 2px;
-    }
-
-    .tabs-inline {
-      display: flex;
-      gap: 6px;
-      flex-wrap: wrap;
-      justify-content: flex-start;
-    }
-
-    .pill-tab {
-      border-radius: 999px;
-      padding: 4px 9px;
-      font-size: 12px;
-      border: none;
-      background: #e5edf6;
-      color: var(--text-soft);
-      cursor: pointer;
-      transition: background var(--transition-fast), color var(--transition-fast),
-        transform var(--transition-fast), box-shadow var(--transition-fast);
-      white-space: nowrap;
-    }
-
-    .pill-tab.active {
-      background: #ffffff;
-      color: var(--primary);
-      box-shadow: 0 8px 16px rgba(148, 163, 184, 0.6);
-      transform: translateY(-1px);
-    }
-
-    .pill-tab:not(.active):hover {
-      background: #d1e0f5;
-      color: var(--text-main);
-    }
-
-    .metrics-row {
+    /* بطاقات الأرصدة */
+    .balance-row {
       display: grid;
       grid-template-columns: 1.2fr 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
+      margin-top: 4px;
     }
 
-    @media (max-width: 840px) {
-      .metrics-row {
+    @media (max-width: 860px) {
+      .balance-row {
         grid-template-columns: 1fr;
       }
     }
 
-    .metric {
-      border-radius: 16px;
-      background: #ffffff;
+    .balance-card {
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
-      padding: 10px 12px 8px;
+      background: #ffffff;
+      padding: 10px 11px 8px;
+      position: relative;
+      overflow: hidden;
       display: flex;
       flex-direction: column;
       gap: 6px;
-      position: relative;
     }
 
-    .metric small {
+    .balance-label {
       font-size: 12px;
       color: var(--text-soft);
+      display: flex;
+      align-items: center;
+      gap: 5px;
     }
 
-    .metric-main-value {
+    .balance-main {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 6px;
+    }
+
+    .balance-amount {
       font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.04em;
@@ -577,10 +349,10 @@
     .currency {
       font-size: 13px;
       color: var(--text-soft);
-      margin-right: 4px;
+      margin-right: 2px;
     }
 
-    .metric-sub {
+    .balance-extra {
       font-size: 12px;
       color: var(--text-muted);
       display: flex;
@@ -590,12 +362,8 @@
       flex-wrap: wrap;
     }
 
-    .metric-sub strong {
-      color: var(--text-main);
-    }
-
-    .metric-tag {
-      padding: 2px 8px;
+    .chip {
+      padding: 2px 7px;
       border-radius: 999px;
       border: 1px solid var(--border-soft);
       font-size: 11px;
@@ -603,83 +371,90 @@
       color: var(--text-soft);
     }
 
-    .metric-badge {
+    .badge-corner {
       position: absolute;
       inset-inline-end: 8px;
       inset-block-end: 8px;
-      font-size: 10px;
       padding: 3px 7px;
       border-radius: 999px;
+      font-size: 10px;
       background: #ecfdf5;
       border: 1px solid #bbf7d0;
       color: var(--success);
     }
 
-    .metric-icon {
+    .icon-bg {
       position: absolute;
-      inset-inline-start: -8px;
+      inset-inline-start: -6px;
       inset-block-end: -4px;
-      width: 54px;
-      height: 54px;
-      opacity: 0.15;
+      width: 50px;
+      height: 50px;
+      opacity: 0.18;
       color: var(--primary-soft);
     }
 
-    .metric-icon svg {
+    .icon-bg svg {
       width: 100%;
       height: 100%;
     }
 
-    .metric--az {
-      background: linear-gradient(135deg, #eff6ff, #ffffff);
+    .balance-card--az {
+      background: linear-gradient(135deg, #eef3ff, #ffffff);
     }
 
-    .metric--reem {
-      background: linear-gradient(135deg, #ecfeff, #ffffff);
+    .balance-card--reem {
+      background: linear-gradient(135deg, #e6fcff, #ffffff);
     }
 
-    /* نماذج */
-    .forms-grid {
+    /* النماذج البسيطة */
+    .forms-row {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-      gap: 10px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr);
+      gap: 8px;
+      margin-top: 6px;
     }
 
-    @media (max-width: 840px) {
-      .forms-grid {
+    @media (max-width: 860px) {
+      .forms-row {
         grid-template-columns: minmax(0,1fr);
       }
     }
 
-    .form-card {
-      background: #f8fafc;
-      border-radius: 14px;
+    .mini-card {
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
-      padding: 10px 12px;
+      background: var(--card-soft);
+      padding: 9px 10px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
+      gap: 6px;
     }
 
-    .form-title {
+    .mini-title {
       font-size: 14px;
       font-weight: 600;
       color: var(--text-main);
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 6px;
     }
 
-    .form-title span {
-      font-size: 12px;
-      color: var(--text-soft);
-      font-weight: 400;
+    .mini-title span.icon {
+      width: 22px;
+      height: 22px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: var(--primary-soft);
     }
 
     label {
       font-size: 12px;
       color: var(--text-soft);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
       display: block;
     }
 
@@ -688,7 +463,7 @@
     input[type="text"],
     select {
       width: 100%;
-      padding: 8px 9px;
+      padding: 7px 9px;
       border-radius: 9px;
       border: 1px solid var(--border-strong);
       background: #ffffff;
@@ -714,7 +489,7 @@
     .btn {
       border-radius: 999px;
       border: none;
-      padding: 8px 11px;
+      padding: 7px 11px;
       font-size: 13px;
       font-weight: 600;
       cursor: pointer;
@@ -732,12 +507,12 @@
     .btn-primary {
       background: linear-gradient(135deg,var(--primary-soft),var(--primary));
       color: #ffffff;
-      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.26);
+      box-shadow: 0 9px 20px rgba(15, 23, 42, 0.25);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.32);
+      box-shadow: 0 13px 28px rgba(15, 23, 42, 0.3);
     }
 
     .btn-ghost {
@@ -756,7 +531,7 @@
     }
 
     .btn-sm {
-      padding: 4px 7px;
+      padding: 4px 8px;
       font-size: 12px;
     }
 
@@ -768,7 +543,6 @@
     .hint {
       font-size: 12px;
       color: var(--text-muted);
-      margin-top: 2px;
     }
 
     .success-message {
@@ -782,10 +556,32 @@
       display: none;
     }
 
-    /* قوائم وطلبات وسجل */
+    /* العمود الجانبي: طلبات + آخر الحركات */
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .section-title span.icon {
+      width: 20px;
+      height: 20px;
+      border-radius: 999px;
+      background: var(--primary-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 13px;
+      color: var(--primary-soft);
+    }
+
     .list {
-      margin-top: 8px;
-      max-height: 260px;
+      margin-top: 6px;
+      max-height: 210px;
       overflow: auto;
       padding-right: 4px;
       display: flex;
@@ -803,12 +599,12 @@
     }
 
     .request-item {
-      border-radius: 12px;
+      border-radius: 13px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
-      padding: 7px 9px;
+      padding: 7px 8px;
       display: grid;
-      grid-template-columns: minmax(0,1.3fr) minmax(0,1.1fr);
+      grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.9fr);
       gap: 6px;
       font-size: 12px;
     }
@@ -819,21 +615,26 @@
       }
     }
 
-    .request-main-line {
+    .request-main {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .req-top {
       display: flex;
       justify-content: space-between;
       align-items: center;
       gap: 6px;
     }
 
-    .request-amount {
+    .req-amount {
       font-weight: 600;
-      font-size: 13px;
       color: var(--primary);
     }
 
     .status-pill {
-      padding: 2px 8px;
+      padding: 2px 7px;
       border-radius: 999px;
       font-size: 11px;
       border: 1px solid var(--border-soft);
@@ -846,25 +647,23 @@
       background: #fefce8;
       color: #92400e;
     }
-
     .status-pill.approved {
       border-color: #bbf7d0;
       background: #ecfdf5;
       color: #166534;
     }
-
     .status-pill.rejected {
       border-color: #fecaca;
       background: #fef2f2;
       color: #991b1b;
     }
 
-    .request-meta {
+    .req-meta {
       color: var(--text-muted);
+      font-size: 11px;
       display: flex;
       flex-wrap: wrap;
       gap: 6px;
-      font-size: 11px;
     }
 
     .no-data {
@@ -878,8 +677,8 @@
       border-radius: 14px;
       border: 1px solid var(--border-soft);
       background: #ffffff;
-      padding: 7px 9px;
-      max-height: 260px;
+      padding: 7px 8px;
+      max-height: 190px;
       overflow: auto;
       display: flex;
       flex-direction: column;
@@ -891,7 +690,7 @@
       justify-content: space-between;
       gap: 8px;
       font-size: 12px;
-      padding: 4px 0;
+      padding: 3px 0;
       border-bottom: 1px dashed #e2e8f0;
     }
 
@@ -908,70 +707,14 @@
       text-align: left;
       direction: ltr;
       font-size: 11px;
-    }
-
-    /* صفحات المستخدم */
-    .user-summary {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
-      gap: 10px;
-    }
-
-    @media (max-width: 720px) {
-      .user-summary {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    .user-table-wrapper {
-      border-radius: 14px;
-      border: 1px solid var(--border-soft);
-      background: #ffffff;
-      padding: 8px 9px;
-      max-height: 260px;
-      overflow: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 12px;
-    }
-
-    th, td {
-      text-align: left;
-      padding: 6px 4px;
-      border-bottom: 1px solid #e2e8f0;
-    }
-
-    th {
-      background: #f8fafc;
-      color: var(--text-soft);
-      font-weight: 600;
-      font-size: 12px;
-    }
-
-    td {
-      color: var(--text-main);
-    }
-
-    .nowrap {
-      white-space: nowrap;
-    }
-
-    .view-section {
-      display: none;
-    }
-
-    .view-section.active {
-      display: block;
+      min-width: 120px;
     }
 
     /* شاشة الدخول */
     .login-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.12), transparent 60%),
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.16), transparent 60%),
                   linear-gradient(135deg,#e0f2fe,#f8fafc);
       display: flex;
       align-items: center;
@@ -979,83 +722,47 @@
       z-index: 20;
     }
 
-    .login-shell {
+    .login-card {
       width: 100%;
-      max-width: 760px;
+      max-width: 420px;
       background: rgba(255, 255, 255, 0.98);
       border-radius: 24px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.35);
-      display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.4);
+      padding: 18px 18px 14px;
+      animation: pop-in 0.34s ease-out;
+      position: relative;
       overflow: hidden;
-      animation: pop-in 0.35s ease-out;
     }
 
-    @media (max-width: 768px) {
-      .login-shell {
-        grid-template-columns: minmax(0,1fr);
-      }
-    }
-
-    .login-side {
-      background:
-        radial-gradient(circle at 0 0, rgba(191, 219, 254, 0.7), transparent 60%),
-        linear-gradient(135deg, #0f172a, #0b75d1);
-      color: #e5f0ff;
-      padding: 18px 18px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .login-side-title {
-      font-size: 18px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .login-side-big {
-      margin-top: 4px;
-      font-size: 16px;
-      font-weight: 600;
-    }
-
-    .login-side-text {
-      font-size: 13px;
-      color: #dbeafe;
-    }
-
-    .login-side-foot {
-      margin-top: auto;
-      font-size: 12px;
-      color: #bfdbfe;
-    }
-
-    .login-form-wrapper {
-      padding: 18px 18px 16px;
-      background: #f9fafb;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
+    .login-card::before {
+      content: "";
+      position: absolute;
+      inset-inline: -25%;
+      inset-block-end: -45%;
+      height: 120px;
+      background: radial-gradient(circle, rgba(59,130,246,0.18), transparent 70%);
+      pointer-events: none;
     }
 
     .login-title {
-      font-size: 16px;
+      font-size: 17px;
       font-weight: 700;
-      margin-bottom: 4px;
       color: var(--primary);
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
     }
 
     .login-sub {
       font-size: 13px;
       color: var(--text-soft);
+      margin-bottom: 10px;
     }
 
     .login-form-group {
-      margin-top: 10px;
-      margin-bottom: 10px;
+      margin-bottom: 9px;
     }
 
     .login-footer {
@@ -1085,93 +792,85 @@
       border-radius: 10px;
       padding: 6px 8px;
       border: 1px solid #fecaca;
-      margin-top: 6px;
+      margin-bottom: 6px;
       display: none;
     }
 
     @keyframes pop-in {
-      0% { transform: translateY(20px) scale(.95); opacity: 0; }
+      0% { transform: translateY(18px) scale(.96); opacity: 0; }
       100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    @media (max-width: 420px) {
+      .login-card {
+        border-radius: 20px;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="animated-orbit">
+  <div class="orbit-bg">
     <span></span><span></span><span></span>
   </div>
 
   <div class="app-shell">
     <!-- شاشة الدخول -->
     <div class="login-overlay" id="loginOverlay">
-      <div class="login-shell">
-        <div class="login-side">
-          <div class="login-side-title">REZO.BANK</div>
-          <div class="login-side-big">بنك ادخاري مشترك بينكما</div>
-          <div class="login-side-text">
-            منصة بسيطة تشبه تطبيقات البنوك الحديثة، تحفظ إجمالي الإيداعات،
-            وتسمح بطلب السحب مع موافقة الطرف الآخر، وسجل واضح لكل حركة.
-          </div>
-          <div class="login-side-foot">
-            الدخول متاح لــ عبدالعزيز وريم فقط باستخدام رقم سري (PIN).
-          </div>
+      <div class="login-card">
+        <div class="login-title">
+          🔐 دخول إلى Rezo Bank
+        </div>
+        <div class="login-sub">
+          أدخل اسم المستخدم والرقم السري للوصول إلى حساب الادخار المشترك بين عبدالعزيز وريم.
         </div>
 
-        <div class="login-form-wrapper">
-          <div class="login-title">تسجيل الدخول إلى Rezo Bank</div>
-          <div class="login-sub">
-            اختر صاحب الحساب وأدخل الرقم السري للدخول إلى لوحة التحكم المشتركة.
-          </div>
+        <div id="loginError" class="error-message"></div>
 
-          <div id="loginError" class="error-message"></div>
+        <div class="login-form-group">
+          <label for="loginUser">اسم المستخدم</label>
+          <select id="loginUser">
+            <option value="abdulaziz">عبدالعزيز</option>
+            <option value="reem">ريم</option>
+          </select>
+        </div>
 
-          <div class="login-form-group">
-            <label for="loginUser">اسم المستخدم</label>
-            <select id="loginUser">
-              <option value="abdulaziz">عبدالعزيز</option>
-              <option value="reem">ريم</option>
-            </select>
-          </div>
+        <div class="login-form-group">
+          <label for="loginPin">الرقم السري (PIN)</label>
+          <input
+            type="password"
+            id="loginPin"
+            maxlength="6"
+            inputmode="numeric"
+            placeholder="أدخل الرقم السري من 4 أرقام"
+          />
+        </div>
 
-          <div class="login-form-group">
-            <label for="loginPin">الرقم السري (PIN)</label>
-            <input
-              type="password"
-              id="loginPin"
-              maxlength="6"
-              inputmode="numeric"
-              placeholder="أدخل الرقم السري المكوّن من 4 أرقام"
-            />
-          </div>
+        <button id="loginBtn" class="btn btn-primary btn-full">
+          دخول إلى لوحة Rezo Bank
+        </button>
 
-          <button id="loginBtn" class="btn btn-primary btn-full">
-            دخول إلى لوحة التحكم
-          </button>
-
-          <div class="login-footer">
-            <span>هذا النموذج تجريبي ويعمل داخل المتصفح فقط.</span>
-            <code>AZ: 1122 · Reem: 3344</code>
-          </div>
+        <div class="login-footer">
+          <span>البيانات محفوظة في هذا الجهاز فقط حاليًا.</span>
+          <code>AZ: 1122 · Reem: 3344</code>
         </div>
       </div>
     </div>
 
     <!-- الشريط العلوي -->
     <header class="top-bar">
-      <div class="top-bar-left">
-        <div class="brand-logo" title="Rezo Bank">
-          RB
-        </div>
+      <div class="brand">
+        <div class="brand-logo">RB</div>
         <div class="brand-text">
           <div class="brand-title">REZO.BANK</div>
           <div class="brand-subtitle">
-            بنك ادخاري مشترك بين عبدالعزيز وريم · موافقة مزدوجة
+            بنك ادخاري مشترك · موافقة مزدوجة
           </div>
         </div>
       </div>
-      <div class="top-bar-right">
+      <div class="top-right">
         <div class="tag">
           <span class="pulse-dot"></span>
-          حساب ادخار مشترك
+          حساب ادخار بين عبدالعزيز وريم
         </div>
         <div class="user-indicator">
           المستخدم الحالي:
@@ -1180,418 +879,235 @@
       </div>
     </header>
 
-    <!-- التخطيط الداخلي -->
-    <div class="layout">
-      <!-- القائمة الجانبية (ديسكتوب) -->
-      <aside class="side-nav">
-        <div class="side-profile">
-          <div class="side-profile-main">
-            <div class="avatar">
-              <div class="avatar-fallback" id="avatarFallback">A</div>
-            </div>
-            <div>
-              <div class="profile-name" id="profileName">—</div>
-              <div class="profile-role">
-                صاحب الحساب · Rezo Bank
-              </div>
-            </div>
-          </div>
-          <div class="profile-meta-row" style="margin-top:6px;">
-            <span>مجموع إيداعك:
-              <strong id="profileDeposits">0 ر.س</strong></span>
-            <span class="tiny-pill">
-              <span class="mini-dot"></span>
-              رصيدك الحالي:
-              <span id="profileShare">0 ر.س</span>
-            </span>
-          </div>
-        </div>
-
-        <div class="side-nav-title">الصفحات</div>
-
-        <button class="nav-btn active" data-view="summary">
-          <span class="label">
-            <span class="bullet"></span>
-            الملخص العام
-          </span>
-          <span>Dashboard</span>
-        </button>
-
-        <button class="nav-btn" data-view="user-az">
-          <span class="label">
-            <span class="bullet"></span>
-            صفحة عبدالعزيز
-          </span>
-          <span>Abdulaziz</span>
-        </button>
-
-        <button class="nav-btn" data-view="user-reem">
-          <span class="label">
-            <span class="bullet"></span>
-            صفحة ريم
-          </span>
-          <span>Reem</span>
-        </button>
-
-        <button class="nav-btn" data-view="requests">
-          <span class="label">
-            <span class="bullet"></span>
-            طلبات السحب
-          </span>
-          <span>Requests</span>
-        </button>
-
-        <button class="nav-btn" data-view="history">
-          <span class="label">
-            <span class="bullet"></span>
-            السجل الكامل
-          </span>
-          <span>History</span>
-        </button>
-
-        <div class="side-footer">
-          البيانات محفوظة محليًا في هذا الجهاز.  
-          سنربط لاحقًا بـ Firebase لمزامنة كل الأجهزة.
-        </div>
-      </aside>
-
-      <!-- المحتوى الرئيسي -->
-      <main class="content-area">
-        <div class="content-grid">
-          <!-- العمود الأيسر: المحتوى المتغير -->
-          <section class="card">
-            <div class="card-header">
-              <div>
-                <div class="section-heading">
-                  لوحة التحكم
-                  <span>Rezo Bank</span>
-                </div>
-                <div class="muted-caption">
-                  إدارة الادخار والسحب بموافقة مزدوجة بين عبدالعزيز وريم.
-                </div>
-              </div>
-              <div class="tabs-inline" id="viewTabs">
-                <button class="pill-tab active" data-view="summary">
-                  الملخص
-                </button>
-                <button class="pill-tab" data-view="user-az">
-                  عبدالعزيز
-                </button>
-                <button class="pill-tab" data-view="user-reem">
-                  ريم
-                </button>
-                <button class="pill-tab" data-view="requests">
-                  طلبات السحب
-                </button>
-                <button class="pill-tab" data-view="history">
-                  السجل
-                </button>
-              </div>
-            </div>
-
-            <div class="card-body">
-              <!-- الملخص العام -->
-              <div id="summaryView" class="view-section active">
-                <div class="metrics-row">
-                  <!-- إجمالي الرصيد -->
-                  <div class="metric">
-                    <small>إجمالي الرصيد المشترك الحالي</small>
-                    <div class="metric-main-value">
-                      <span id="totalBalance">0</span>
-                      <span class="currency">ر.س</span>
-                    </div>
-                    <div class="metric-sub">
-                      <span>مجموع الإيداعات − السحوبات المعتمدة</span>
-                      <span class="metric-tag">
-                        آخر تحديث:
-                        <span id="lastUpdatedLabel">—</span>
-                      </span>
-                    </div>
-                    <div class="metric-badge">
-                      حساب نشط
-                    </div>
-                    <div class="metric-icon">
-                      <svg viewBox="0 0 64 64" fill="none">
-                        <path
-                          d="M8 24L32 8l24 16v4H8v-4Z"
-                          stroke="currentColor"
-                          stroke-width="2.2"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M14 28h36v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V28Z"
-                          stroke="currentColor"
-                          stroke-width="2.2"
-                          stroke-linejoin="round"
-                        />
-                        <path
-                          d="M24 36h16M24 42h10"
-                          stroke="currentColor"
-                          stroke-width="2.2"
-                          stroke-linecap="round"
-                        />
-                      </svg>
-                    </div>
-                  </div>
-
-                  <!-- عبدالعزيز -->
-                  <div class="metric metric--az">
-                    <small>إجمالي إيداع عبدالعزيز</small>
-                    <div class="metric-main-value">
-                      <span id="azDeposits">0</span>
-                      <span class="currency">ر.س</span>
-                    </div>
-                    <div class="metric-sub">
-                      <span>
-                        مساهمته من الرصيد:
-                        <strong id="azShare">0 ر.س</strong>
-                      </span>
-                      <span class="metric-tag">
-                        نسبة: <span id="azPercent">0%</span>
-                      </span>
-                    </div>
-                  </div>
-
-                  <!-- ريم -->
-                  <div class="metric metric--reem">
-                    <small>إجمالي إيداع ريم</small>
-                    <div class="metric-main-value">
-                      <span id="reemDeposits">0</span>
-                      <span class="currency">ر.س</span>
-                    </div>
-                    <div class="metric-sub">
-                      <span>
-                        مساهمتها من الرصيد:
-                        <strong id="reemShare">0 ر.س</strong>
-                      </span>
-                      <span class="metric-tag">
-                        نسبة: <span id="reemPercent">0%</span>
-                      </span>
-                    </div>
-                  </div>
-                </div>
-
-                <!-- نماذج الإيداع والسحب -->
-                <div class="forms-grid" style="margin-top:10px;">
-                  <!-- الإيداع -->
-                  <div class="form-card">
-                    <div class="form-title">
-                      إيداع جديد
-                      <span>يُسجّل باسم المستخدم الحالي</span>
-                    </div>
-                    <div>
-                      <label for="depositAmount">المبلغ المراد إيداعه</label>
-                      <input
-                        type="number"
-                        id="depositAmount"
-                        min="1"
-                        step="1"
-                        placeholder="مثال: 500"
-                      />
-                      <div class="hint">
-                        يتم إضافة الإيداع إلى إجمالي مساهمة صاحب الحساب الحالي.
-                      </div>
-                    </div>
-                    <button id="depositBtn" class="btn btn-primary btn-full" style="margin-top:4px;">
-                      💰 تأكيد الإيداع
-                    </button>
-                    <div id="depositSuccess" class="success-message">
-                      ✅ تم تسجيل الإيداع بنجاح.
-                    </div>
-                  </div>
-
-                  <!-- طلب السحب -->
-                  <div class="form-card">
-                    <div class="form-title">
-                      طلب سحب
-                      <span>يتطلّب موافقة الطرف الآخر</span>
-                    </div>
-                    <div>
-                      <label for="withdrawAmount">المبلغ المراد سحبه</label>
-                      <input
-                        type="number"
-                        id="withdrawAmount"
-                        min="1"
-                        step="1"
-                        placeholder="مثال: 300"
-                      />
-                    </div>
-                    <div>
-                      <label for="withdrawReason">سبب السحب (اختياري)</label>
-                      <input
-                        type="text"
-                        id="withdrawReason"
-                        placeholder="مثال: رحلة عائلية، تسديد فاتورة..."
-                      />
-                    </div>
-                    <button id="withdrawBtn" class="btn btn-ghost btn-full" style="margin-top:4px;">
-                      📤 إرسال طلب سحب للموافقة
-                    </button>
-                    <div class="hint">
-                      لن يُخصم المبلغ إلا بعد موافقة الطرف الآخر.
-                    </div>
-                    <div id="withdrawSuccess" class="success-message">
-                      ✅ تم إرسال طلب السحب للطرف الآخر.
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- صفحة عبدالعزيز -->
-              <div id="userAzView" class="view-section">
-                <div class="section-heading" style="margin-bottom:6px;">
-                  صفحة عبدالعزيز
-                  <span>Abdulaziz Account</span>
-                </div>
-                <div class="user-summary">
-                  <div class="metric metric--az">
-                    <small>مساهمة عبدالعزيز الحالية</small>
-                    <div class="metric-main-value">
-                      <span id="userAzShare">0</span>
-                      <span class="currency">ر.س</span>
-                    </div>
-                    <div class="metric-sub">
-                      <span>إجمالي إيداعه:
-                        <strong id="userAzDeposits">0 ر.س</strong>
-                      </span>
-                      <span class="metric-tag">
-                        نسبة من الرصيد: <span id="userAzPercent">0%</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="user-table-wrapper">
-                    <div class="hint" style="margin-bottom:4px;">
-                      Transactions history (Abdulaziz) – type &amp; date in English
-                    </div>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Type</th>
-                          <th>Amount (SAR)</th>
-                          <th class="nowrap">Date</th>
-                          <th>Details</th>
-                        </tr>
-                      </thead>
-                      <tbody id="userAzHistory"></tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <!-- صفحة ريم -->
-              <div id="userReemView" class="view-section">
-                <div class="section-heading" style="margin-bottom:6px;">
-                  صفحة ريم
-                  <span>Reem Account</span>
-                </div>
-                <div class="user-summary">
-                  <div class="metric metric--reem">
-                    <small>مساهمة ريم الحالية</small>
-                    <div class="metric-main-value">
-                      <span id="userReemShare">0</span>
-                      <span class="currency">ر.س</span>
-                    </div>
-                    <div class="metric-sub">
-                      <span>إجمالي إيداعها:
-                        <strong id="userReemDeposits">0 ر.س</strong>
-                      </span>
-                      <span class="metric-tag">
-                        نسبة من الرصيد: <span id="userReemPercent">0%</span>
-                      </span>
-                    </div>
-                  </div>
-                  <div class="user-table-wrapper">
-                    <div class="hint" style="margin-bottom:4px;">
-                      Transactions history (Reem) – type &amp; date in English
-                    </div>
-                    <table>
-                      <thead>
-                        <tr>
-                          <th>Type</th>
-                          <th>Amount (SAR)</th>
-                          <th class="nowrap">Date</th>
-                          <th>Details</th>
-                        </tr>
-                      </thead>
-                      <tbody id="userReemHistory"></tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-
-              <!-- طلبات السحب -->
-              <div id="requestsView" class="view-section">
-                <div class="section-heading" style="margin-bottom:4px;">
-                  طلبات السحب
-                  <span>Pending &amp; processed</span>
-                </div>
-                <div class="hint">
-                  تظهر هنا الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
-                </div>
-                <div class="list" id="requestsList"></div>
-              </div>
-
-              <!-- السجل الكامل -->
-              <div id="historyView" class="view-section">
-                <div class="section-heading" style="margin-bottom:4px;">
-                  السجل الكامل
-                  <span>All operations log</span>
-                </div>
-                <div class="history-list" id="historyList"></div>
-              </div>
-            </div>
-          </section>
-
-          <!-- العمود الأيمن: معلومات سريعة (للجوال تظهر تحت) -->
-          <aside class="card">
-            <div class="card-header">
+    <!-- المحتوى الرئيسي -->
+    <main class="content">
+      <div class="grid-main">
+        <!-- العمود الأيسر: الأرصدة + النماذج -->
+        <section class="card">
+          <div class="card-header">
+            <div class="card-title-block">
               <div class="card-title">
-                حالة الحساب
-                <span class="card-title-accent">Overview</span>
+                لوحة Rezo Bank
+                <span class="pill-soft">إشعارات فورية داخلية</span>
               </div>
-              <button class="btn btn-sm btn-ghost" id="switchUserBtn">
-                تبديل المستخدم
-              </button>
+              <div class="card-caption">
+                مؤشرات عامة فقط: إجمالي الرصيد، مساهمة عبدالعزيز، مساهمة ريم.
+              </div>
             </div>
-            <div class="card-body">
-              <div class="section-heading" style="font-size:15px;margin-bottom:4px;">
-                معلومات المستخدم الحالي
-              </div>
-              <div class="muted-caption">
-                يمكنك تبديل الدخول بين عبدالعزيز وريم. كل عملية تُربط بصاحبها.
-              </div>
-              <div style="margin-top:10px;">
-                <div class="profile-meta-row">
-                  <span>اسم المستخدم:
-                    <strong id="profileNameSide">—</strong></span>
-                  <span>مجموع الإيداعات:
-                    <strong id="profileDepositsSide">0 ر.س</strong></span>
+            <button class="btn btn-ghost btn-sm" id="switchUserBtn">
+              تبديل المستخدم
+            </button>
+          </div>
+
+          <div class="card-body">
+            <!-- بطاقات الرصيد -->
+            <div class="balance-row">
+              <!-- إجمالي الرصيد -->
+              <div class="balance-card">
+                <div class="balance-label">
+                  <span>إجمالي رصيد Rezo Bank</span>
                 </div>
-                <div class="profile-meta-row" style="margin-top:4px;">
-                  <span>رصيده من الإجمالي:
-                    <strong id="profileShareSide">0 ر.س</strong></span>
-                  <span class="tiny-pill">
-                    <span class="mini-dot"></span>
+                <div class="balance-main">
+                  <div>
+                    <span class="balance-amount" id="totalBalance">0</span>
+                    <span class="currency">ر.س</span>
+                  </div>
+                </div>
+                <div class="balance-extra">
+                  <span>مجموع الإيداعات − السحوبات الموافق عليها</span>
+                  <span class="chip">
                     آخر تحديث:
-                    <span id="lastUpdatedSmall">—</span>
+                    <span id="lastUpdatedLabel">—</span>
+                  </span>
+                </div>
+                <div class="badge-corner">حساب مشترك</div>
+                <div class="icon-bg">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <path
+                      d="M8 24L32 8l24 16v4H8v-4Z"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 28h36v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V28Z"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M24 36h16M24 42h10"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- عبدالعزيز -->
+              <div class="balance-card balance-card--az">
+                <div class="balance-label">
+                  <span>عبدالعزيز · إجمالي إيداعه</span>
+                </div>
+                <div class="balance-main">
+                  <div>
+                    <span class="balance-amount" id="azDeposits">0</span>
+                    <span class="currency">ر.س</span>
+                  </div>
+                </div>
+                <div class="balance-extra">
+                  <span>
+                    مساهمته من الرصيد:
+                    <strong id="azShare">0 ر.س</strong>
+                  </span>
+                  <span class="chip">
+                    نسبة:
+                    <span id="azPercent">0%</span>
                   </span>
                 </div>
               </div>
 
-              <div style="margin-top:12px;">
-                <div class="section-heading" style="font-size:14px;margin-bottom:2px;">
-                  ملاحظات الأمان
+              <!-- ريم -->
+              <div class="balance-card balance-card--reem">
+                <div class="balance-label">
+                  <span>ريم · إجمالي إيداعها</span>
                 </div>
-                <div class="hint">
-                  • البيانات محفوظة حاليًا داخل المتصفح لهذا الجهاز فقط (LocalStorage).  
-                  • في الخطوة القادمة يمكن ربط Rezo Bank بـ Firebase لحفظ ومزامنة الرصيد بين جميع أجهزتك.
+                <div class="balance-main">
+                  <div>
+                    <span class="balance-amount" id="reemDeposits">0</span>
+                    <span class="currency">ر.س</span>
+                  </div>
+                </div>
+                <div class="balance-extra">
+                  <span>
+                    مساهمتها من الرصيد:
+                    <strong id="reemShare">0 ر.س</strong>
+                  </span>
+                  <span class="chip">
+                    نسبة:
+                    <span id="reemPercent">0%</span>
+                  </span>
                 </div>
               </div>
             </div>
-          </aside>
-        </div>
-      </main>
-    </div>
+
+            <!-- النماذج المبسّطة -->
+            <div class="forms-row">
+              <!-- إيداع -->
+              <div class="mini-card">
+                <div class="mini-title">
+                  <span class="icon">💰</span>
+                  إيداع جديد
+                </div>
+                <div class="hint">
+                  سيتم تسجيل الإيداع على المستخدم الحالي:
+                  <strong id="activeUserNameLabel">—</strong>
+                </div>
+                <div>
+                  <label for="depositAmount">المبلغ</label>
+                  <input
+                    type="number"
+                    id="depositAmount"
+                    min="1"
+                    step="1"
+                    placeholder="مثال: 500"
+                  />
+                </div>
+                <button id="depositBtn" class="btn btn-primary btn-full">
+                  تأكيد الإيداع
+                </button>
+                <div id="depositSuccess" class="success-message">
+                  ✅ تم تسجيل الإيداع بنجاح.
+                </div>
+              </div>
+
+              <!-- طلب سحب -->
+              <div class="mini-card">
+                <div class="mini-title">
+                  <span class="icon">📤</span>
+                  طلب سحب
+                </div>
+                <div class="hint">
+                  لن يتم الخصم إلا بعد موافقة الطرف الآخر.
+                </div>
+                <div>
+                  <label for="withdrawAmount">المبلغ</label>
+                  <input
+                    type="number"
+                    id="withdrawAmount"
+                    min="1"
+                    step="1"
+                    placeholder="مثال: 300"
+                  />
+                </div>
+                <div>
+                  <label for="withdrawReason">سبب السحب (اختياري)</label>
+                  <input
+                    type="text"
+                    id="withdrawReason"
+                    placeholder="مثال: رحلة عائلية، تسديد فاتورة..."
+                  />
+                </div>
+                <button id="withdrawBtn" class="btn btn-ghost btn-full">
+                  إرسال طلب للموافقة
+                </button>
+                <div id="withdrawSuccess" class="success-message">
+                  ✅ تم إرسال طلب السحب للطرف الآخر.
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- العمود الأيمن: طلبات + آخر الحركات + بطاقة المستخدم -->
+        <aside class="card">
+          <div class="card-body">
+            <!-- بطاقة المستخدم -->
+            <div class="mini-card" style="background:#ffffff;margin-bottom:6px;">
+              <div class="mini-title">
+                <span class="icon">👤</span>
+                المستخدم الحالي
+              </div>
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-top:4px;font-size:13px;">
+                <span id="profileName">—</span>
+                <span class="chip">
+                  مجموع إيداعك:
+                  <span id="profileDeposits">0 ر.س</span>
+                </span>
+              </div>
+              <div style="margin-top:4px;font-size:12px;color:var(--text-muted);display:flex;justify-content:space-between;gap:6px;flex-wrap:wrap;">
+                <span>رصيدك من الإجمالي:
+                  <strong id="profileShare">0 ر.س</strong></span>
+                <span>آخر تحديث:
+                  <span id="lastUpdatedSmall">—</span></span>
+              </div>
+            </div>
+
+            <!-- طلبات السحب -->
+            <div>
+              <div class="section-title">
+                <span class="icon">🔔</span>
+                طلبات السحب
+              </div>
+              <div class="hint">
+                الطلبات التي تحتاج موافقتك أو طلباتك السابقة.
+              </div>
+              <div class="list" id="requestsList"></div>
+            </div>
+
+            <!-- آخر الحركات -->
+            <div style="margin-top:10px;">
+              <div class="section-title">
+                <span class="icon">📊</span>
+                آخر الحركات
+              </div>
+              <div class="history-list" id="historyList"></div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
   </div>
 
   <script>
@@ -1603,17 +1119,15 @@
         id: "abdulaziz",
         name: "عبدالعزيز",
         pin: "1122",
-        avatarFallback: "ع"
       },
       reem: {
         id: "reem",
         name: "ريم",
         pin: "3344",
-        avatarFallback: "ر"
-      }
+      },
     };
 
-    const STORAGE_KEY = "rezoBankData_v4_neo";
+    const STORAGE_KEY = "rezoBankData_v5_simple";
     const STORAGE_USER_KEY = "rezoBankLastUser_v1";
 
     let state = {
@@ -1621,15 +1135,15 @@
         azDeposits: 0,
         reemDeposits: 0,
         totalApprovedWithdrawals: 0,
-        lastUpdated: null
+        lastUpdated: null,
       },
       history: [],
-      requests: []
+      requests: [],
     };
 
     let currentUser = null;
 
-    // ====== التخزين المحلي ======
+    // ===== التخزين المحلي =====
     function loadStateLocal() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
@@ -1641,12 +1155,12 @@
                 azDeposits: 0,
                 reemDeposits: 0,
                 totalApprovedWithdrawals: 0,
-                lastUpdated: null
+                lastUpdated: null,
               },
               parsed.totals || {}
             ),
             history: parsed.history || [],
-            requests: parsed.requests || []
+            requests: parsed.requests || [],
           };
         }
       } catch (e) {
@@ -1683,16 +1197,10 @@
       return Promise.resolve();
     }
 
-    // ====== أدوات العرض ======
+    // ===== أدوات عرض =====
     function formatAmount(num) {
       return Number(num || 0).toLocaleString("ar-EG", {
-        maximumFractionDigits: 2
-      });
-    }
-
-    function formatAmountEn(num) {
-      return Number(num || 0).toLocaleString("en-US", {
-        maximumFractionDigits: 2
+        maximumFractionDigits: 2,
       });
     }
 
@@ -1701,7 +1209,7 @@
       const d = new Date(ts);
       return d.toLocaleString("ar-SA", {
         dateStyle: "short",
-        timeStyle: "short"
+        timeStyle: "short",
       });
     }
 
@@ -1710,7 +1218,7 @@
       const d = new Date(ts);
       return d.toLocaleString("en-GB", {
         dateStyle: "short",
-        timeStyle: "short"
+        timeStyle: "short",
       });
     }
 
@@ -1719,11 +1227,14 @@
         azDeposits,
         reemDeposits,
         totalApprovedWithdrawals,
-        lastUpdated
+        lastUpdated,
       } = state.totals;
 
       const totalDeposits = azDeposits + reemDeposits;
-      const totalBalance = Math.max(totalDeposits - totalApprovedWithdrawals, 0);
+      const totalBalance = Math.max(
+        totalDeposits - totalApprovedWithdrawals,
+        0
+      );
 
       const azPercent = totalDeposits ? (azDeposits / totalDeposits) * 100 : 0;
       const reemPercent = totalDeposits ? (reemDeposits / totalDeposits) * 100 : 0;
@@ -1731,14 +1242,8 @@
       const azShare = (azPercent / 100) * totalBalance;
       const reemShare = (reemPercent / 100) * totalBalance;
 
-      // الملخص العام
+      // إجمالي
       document.getElementById("totalBalance").textContent = formatAmount(totalBalance);
-      document.getElementById("azDeposits").textContent = formatAmount(azDeposits);
-      document.getElementById("reemDeposits").textContent = formatAmount(reemDeposits);
-      document.getElementById("azShare").textContent = formatAmount(azShare) + " ر.س";
-      document.getElementById("reemShare").textContent = formatAmount(reemShare) + " ر.س";
-      document.getElementById("azPercent").textContent = azPercent.toFixed(1) + "%";
-      document.getElementById("reemPercent").textContent = reemPercent.toFixed(1) + "%";
       document.getElementById("lastUpdatedLabel").textContent = lastUpdated
         ? formatDateTimeAr(lastUpdated)
         : "—";
@@ -1746,41 +1251,39 @@
         ? formatDateTimeAr(lastUpdated)
         : "—";
 
-      // بطاقات المستخدمين
-      renderUserSummary("abdulaziz", azShare, azPercent);
-      renderUserSummary("reem", reemShare, reemPercent);
+      // عبدالعزيز
+      document.getElementById("azDeposits").textContent = formatAmount(azDeposits);
+      document.getElementById("azShare").textContent = formatAmount(azShare) + " ر.س";
+      document.getElementById("azPercent").textContent =
+        azPercent.toFixed(1) + "%";
 
-      // البروفايل
-      updateProfileWidget(azShare, reemShare);
+      // ريم
+      document.getElementById("reemDeposits").textContent =
+        formatAmount(reemDeposits);
+      document.getElementById("reemShare").textContent =
+        formatAmount(reemShare) + " ر.س";
+      document.getElementById("reemPercent").textContent =
+        reemPercent.toFixed(1) + "%";
 
-      // الطلبات والسجل
+      // بطاقة المستخدم الحالي
+      updateProfileCard(azShare, reemShare);
+
+      // طلبات + سجّل
       renderRequestsList();
       renderHistoryList();
-
-      // جداول المستخدمين
-      renderUserHistory("abdulaziz");
-      renderUserHistory("reem");
     }
 
-    function updateProfileWidget(azShare, reemShare) {
+    function updateProfileCard(azShare, reemShare) {
       if (!currentUser) return;
 
-      const profileNameEl = document.getElementById("profileName");
-      const profileDepositsEl = document.getElementById("profileDeposits");
-      const profileShareEl = document.getElementById("profileShare");
-      const avatarFallback = document.getElementById("avatarFallback");
-
-      const profileNameSide = document.getElementById("profileNameSide");
-      const profileDepositsSide = document.getElementById("profileDepositsSide");
-      const profileShareSide = document.getElementById("profileShareSide");
-
-      document.getElementById("currentUserLabel").textContent = currentUser.name;
-
-      profileNameEl.textContent =
-        currentUser.name + (currentUser.id === "abdulaziz" ? " (صاحب الحساب)" : "");
+      const name = currentUser.name;
+      document.getElementById("currentUserLabel").textContent = name;
+      document.getElementById("activeUserNameLabel").textContent = name;
+      document.getElementById("profileName").textContent = name;
 
       let deposits = 0;
       let share = 0;
+
       if (currentUser.id === "abdulaziz") {
         deposits = state.totals.azDeposits;
         share = azShare;
@@ -1789,14 +1292,10 @@
         share = reemShare;
       }
 
-      profileDepositsEl.textContent = formatAmount(deposits) + " ر.س";
-      profileShareEl.textContent = formatAmount(share) + " ر.س";
-
-      profileNameSide.textContent = currentUser.name;
-      profileDepositsSide.textContent = formatAmount(deposits) + " ر.س";
-      profileShareSide.textContent = formatAmount(share) + " ر.س";
-
-      avatarFallback.textContent = currentUser.avatarFallback || currentUser.name[0];
+      document.getElementById("profileDeposits").textContent =
+        formatAmount(deposits) + " ر.س";
+      document.getElementById("profileShare").textContent =
+        formatAmount(share) + " ر.س";
     }
 
     function renderRequestsList() {
@@ -1814,11 +1313,15 @@
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
 
-      let hasAny = false;
+      let hasAnyForUser = false;
 
       sorted.forEach((req) => {
         const isMine = req.from === currentId;
         const isForMe = req.to === currentId;
+
+        if (!currentId || (!isMine && !isForMe)) {
+          // نظهر كل الطلبات لكن نميّز مرتبطة بالمستخدم الحالي
+        }
 
         const item = document.createElement("div");
         item.className = "request-item";
@@ -1832,27 +1335,19 @@
             : "تم الرفض";
 
         item.innerHTML = `
-          <div>
-            <div class="request-main-line">
-              <span>
-                ${isMine ? "طلبك للسحب" : "طلب سحب منك"}
-                ·
-                <span class="request-amount">${formatAmount(
-                  req.amount
-                )} ر.س</span>
-              </span>
-              <span class="status-pill ${statusClass}">
-                ${statusLabel}
-              </span>
+          <div class="request-main">
+            <div class="req-top">
+              <span class="req-amount">${formatAmount(req.amount)} ر.س</span>
+              <span class="status-pill ${statusClass}">${statusLabel}</span>
             </div>
-            <div class="request-meta">
+            <div class="req-meta">
               <span>من: ${
                 req.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
               }</span>
               <span>إلى: ${
                 req.to === "abdulaziz" ? "عبدالعزيز" : "ريم"
               }</span>
-              <span>بتاريخ: ${formatDateTimeAr(req.createdAt)}</span>
+              <span>${formatDateTimeAr(req.createdAt)}</span>
             </div>
             ${
               req.reason
@@ -1862,13 +1357,13 @@
           </div>
           <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:6px;">
             ${
-              req.status === "pending" && isForMe
+              req.status === "pending" && currentId && req.to === currentId
                 ? `
               <button class="btn btn-sm btn-primary" data-action="approve" data-id="${req.id}">
-                ✅ موافقة
+                موافقة
               </button>
               <button class="btn btn-sm btn-danger" data-action="reject" data-id="${req.id}">
-                ❌ رفض
+                رفض
               </button>
               `
                 : ""
@@ -1877,13 +1372,26 @@
         `;
 
         list.appendChild(item);
-        hasAny = true;
+        if (currentId && (isMine || isForMe)) {
+          hasAnyForUser = true;
+        }
       });
 
-      if (!hasAny) {
-        list.innerHTML =
-          '<div class="no-data">لا توجد طلبات مرتبطة بالمستخدم الحالي.</div>';
+      if (!hasAnyForUser && currentUser) {
+        const hint = document.createElement("div");
+        hint.className = "no-data";
+        hint.textContent = "لا توجد طلبات مرتبطة بالمستخدم الحالي.";
+        list.appendChild(hint);
       }
+
+      // استماع لأزرار الموافقة / الرفض
+      list.addEventListener("click", (e) => {
+        const btn = e.target.closest("button[data-action]");
+        if (!btn) return;
+        const id = btn.getAttribute("data-id");
+        const action = btn.getAttribute("data-action");
+        handleRequestAction(id, action);
+      }, { once: true });
     }
 
     function renderHistoryList() {
@@ -1892,137 +1400,50 @@
 
       if (!state.history.length) {
         list.innerHTML =
-          '<div class="no-data">لم يتم تسجيل أي حركات حتى الآن.</div>';
+          '<div class="no-data">لا توجد حركات بعد، ابدأ بإيداع أو طلب سحب.</div>';
         return;
       }
 
-      const sorted = [...state.history].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
+      const sorted = [...state.history]
+        .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+        .slice(0, 6); // آخر ٦ فقط
 
       sorted.forEach((ev) => {
         const item = document.createElement("div");
         item.className = "history-item";
 
-        let mainLabel = "";
+        let main = "";
         let meta = "";
 
         if (ev.type === "deposit") {
-          mainLabel = `إيداع بواسطة ${
+          main = `إيداع · ${
             ev.userId === "abdulaziz" ? "عبدالعزيز" : "ريم"
           } · ${formatAmount(ev.amount)} ر.س`;
-          meta = `DEP · ${formatDateTimeAr(ev.createdAt)}`;
+          meta = `DEP · ${formatDateTimeEn(ev.createdAt)}`;
         } else if (ev.type === "withdraw-request") {
-          mainLabel = `طلب سحب من ${
+          main = `طلب سحب · ${
             ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
-          } إلى ${ev.to === "abdulaziz" ? "عبدالعزيز" : "ريم"} · ${formatAmount(
+          } → ${ev.to === "abdulaziz" ? "عبدالعزيز" : "ريم"} · ${formatAmount(
             ev.amount
           )} ر.س`;
-          meta = `REQ · ${formatDateTimeAr(ev.createdAt)}`;
+          meta = `REQ · ${formatDateTimeEn(ev.createdAt)}`;
         } else if (ev.type === "withdraw-approved") {
-          mainLabel = `سحب معتمد · ${formatAmount(ev.amount)} ر.س · طلب ${
-            ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
-          } وموافقة ${
-            ev.to === "abdulaziz" ? "عبدالعزيز" : "ريم"
-          }`;
-          meta = `OK · ${formatDateTimeAr(ev.resolvedAt || ev.createdAt)}`;
+          main = `سحب معتمد · ${formatAmount(ev.amount)} ر.س`;
+          meta = `OK · ${formatDateTimeEn(ev.resolvedAt || ev.createdAt)}`;
         } else if (ev.type === "withdraw-rejected") {
-          mainLabel = `رفض طلب سحب · ${formatAmount(ev.amount)} ر.س · طلب ${
-            ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
-          }`;
-          meta = `X · ${formatDateTimeAr(ev.resolvedAt || ev.createdAt)}`;
+          main = `رفض سحب · ${formatAmount(ev.amount)} ر.س`;
+          meta = `X · ${formatDateTimeEn(ev.resolvedAt || ev.createdAt)}`;
         }
 
         item.innerHTML = `
-          <div class="history-main">${mainLabel}</div>
+          <div class="history-main">${main}</div>
           <div class="history-meta">${meta}</div>
         `;
         list.appendChild(item);
       });
     }
 
-    function renderUserSummary(userId, share, percent) {
-      const isAz = userId === "abdulaziz";
-      const deposits = isAz ? state.totals.azDeposits : state.totals.reemDeposits;
-
-      if (isAz) {
-        document.getElementById("userAzShare").textContent = formatAmount(share);
-        document.getElementById("userAzDeposits").textContent = formatAmount(deposits) + " ر.س";
-        document.getElementById("userAzPercent").textContent = percent.toFixed(1) + "%";
-      } else {
-        document.getElementById("userReemShare").textContent = formatAmount(share);
-        document.getElementById("userReemDeposits").textContent = formatAmount(deposits) + " ر.س";
-        document.getElementById("userReemPercent").textContent = percent.toFixed(1) + "%";
-      }
-    }
-
-    function renderUserHistory(userId) {
-      const targetId = userId === "abdulaziz" ? "userAzHistory" : "userReemHistory";
-      const tbody = document.getElementById(targetId);
-      if (!tbody) return;
-
-      tbody.innerHTML = "";
-
-      const relevant = state.history.filter((ev) => {
-        if (ev.type === "deposit") {
-          return ev.userId === userId;
-        }
-        if (["withdraw-request", "withdraw-approved", "withdraw-rejected"].includes(ev.type)) {
-          return ev.from === userId || ev.to === userId;
-        }
-        return false;
-      });
-
-      if (!relevant.length) {
-        const tr = document.createElement("tr");
-        const td = document.createElement("td");
-        td.colSpan = 4;
-        td.textContent = "No transactions yet.";
-        td.style.color = "#94a3b8";
-        tr.appendChild(td);
-        tbody.appendChild(tr);
-        return;
-      }
-
-      const sorted = [...relevant].sort(
-        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-      );
-
-      sorted.forEach((ev) => {
-        const tr = document.createElement("tr");
-
-        let typeLabel = "";
-        let details = "";
-
-        if (ev.type === "deposit") {
-          typeLabel = "Deposit";
-          details = ev.userId === "abdulaziz" ? "By Abdulaziz" : "By Reem";
-        } else if (ev.type === "withdraw-request") {
-          typeLabel = "Withdraw Request";
-          details = `From ${ev.from === "abdulaziz" ? "Abdulaziz" : "Reem"} to ${
-            ev.to === "abdulaziz" ? "Abdulaziz" : "Reem"
-          }`;
-        } else if (ev.type === "withdraw-approved") {
-          typeLabel = "Approved";
-          details = `Approved by ${ev.to === "abdulaziz" ? "Abdulaziz" : "Reem"}`;
-        } else if (ev.type === "withdraw-rejected") {
-          typeLabel = "Rejected";
-          details = `Rejected by ${ev.to === "abdulaziz" ? "Abdulaziz" : "Reem"}`;
-        }
-
-        const dateStr = formatDateTimeEn(ev.resolvedAt || ev.createdAt);
-
-        tr.innerHTML = `
-          <td>${typeLabel}</td>
-          <td class="nowrap">${formatAmountEn(ev.amount || 0)}</td>
-          <td class="nowrap">${dateStr}</td>
-          <td>${details}</td>
-        `;
-        tbody.appendChild(tr);
-      });
-    }
-
-    // ====== المعاملات ======
+    // ===== المعاملات =====
     async function handleDeposit() {
       if (!currentUser) return;
       const input = document.getElementById("depositAmount");
@@ -2042,15 +1463,15 @@
         state.totals.reemDeposits += amount;
       }
 
-      state.totals.lastUpdated = new Date().toISOString();
+      const now = new Date().toISOString();
+      state.totals.lastUpdated = now;
 
       const event = {
         type: "deposit",
         userId: currentUser.id,
         amount,
-        createdAt: new Date().toISOString()
+        createdAt: now,
       };
-
       state.history.push(event);
 
       saveStateLocal();
@@ -2091,6 +1512,8 @@
 
       const to = currentUser.id === "abdulaziz" ? "reem" : "abdulaziz";
 
+      const now = new Date().toISOString();
+
       const req = {
         id: "req_" + Date.now() + "_" + Math.floor(Math.random() * 9999),
         from: currentUser.id,
@@ -2098,8 +1521,8 @@
         amount,
         reason: inputReason.value.trim(),
         status: "pending",
-        createdAt: new Date().toISOString(),
-        resolvedAt: null
+        createdAt: now,
+        resolvedAt: null,
       };
 
       state.requests.push(req);
@@ -2109,11 +1532,11 @@
         from: req.from,
         to: req.to,
         amount: req.amount,
-        createdAt: req.createdAt
+        createdAt: now,
       };
       state.history.push(historyEvent);
 
-      state.totals.lastUpdated = new Date().toISOString();
+      state.totals.lastUpdated = now;
 
       saveStateLocal();
       await syncStateToServer("withdraw-request", req);
@@ -2130,8 +1553,9 @@
       const req = state.requests.find((r) => r.id === id);
       if (!req || req.status !== "pending") return;
 
+      const now = new Date().toISOString();
       req.status = action === "approve" ? "approved" : "rejected";
-      req.resolvedAt = new Date().toISOString();
+      req.resolvedAt = now;
 
       if (req.status === "approved") {
         state.totals.totalApprovedWithdrawals += req.amount;
@@ -2142,7 +1566,7 @@
           to: req.to,
           amount: req.amount,
           createdAt: req.createdAt,
-          resolvedAt: req.resolvedAt
+          resolvedAt: now,
         };
         state.history.push(ev);
       } else {
@@ -2152,54 +1576,22 @@
           to: req.to,
           amount: req.amount,
           createdAt: req.createdAt,
-          resolvedAt: req.resolvedAt
+          resolvedAt: now,
         };
         state.history.push(ev);
       }
 
-      state.totals.lastUpdated = new Date().toISOString();
+      state.totals.lastUpdated = now;
 
       saveStateLocal();
       await syncStateToServer(req.status, req);
       updateDashboard();
     }
 
-    // ====== التحكم في الصفحات (Views) ======
-    function setActiveView(view) {
-      const views = {
-        summary: document.getElementById("summaryView"),
-        "user-az": document.getElementById("userAzView"),
-        "user-reem": document.getElementById("userReemView"),
-        requests: document.getElementById("requestsView"),
-        history: document.getElementById("historyView")
-      };
-
-      Object.keys(views).forEach((key) => {
-        if (!views[key]) return;
-        views[key].classList.toggle("active", key === view);
-      });
-
-      document
-        .querySelectorAll("#viewTabs .pill-tab")
-        .forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.view === view);
-        });
-
-      document
-        .querySelectorAll(".side-nav .nav-btn")
-        .forEach((btn) => {
-          btn.classList.toggle("active", btn.dataset.view === view);
-        });
-
-      if (view === "user-az") renderUserHistory("abdulaziz");
-      if (view === "user-reem") renderUserHistory("reem");
-    }
-
-    // ====== الدخول وتبديل المستخدم ======
+    // ===== الدخول =====
     function attemptLogin(selectedId, pin) {
       const user = USERS[selectedId];
       const errorBox = document.getElementById("loginError");
-
       errorBox.style.display = "none";
 
       if (!user) {
@@ -2237,6 +1629,7 @@
       loginPin.focus();
     }
 
+    // ===== تهيئة =====
     document.addEventListener("DOMContentLoaded", async () => {
       loadStateLocal();
 
@@ -2266,27 +1659,6 @@
       document.getElementById("depositBtn").addEventListener("click", handleDeposit);
       document.getElementById("withdrawBtn").addEventListener("click", handleWithdrawRequest);
 
-      document
-        .getElementById("requestsList")
-        .addEventListener("click", (e) => {
-          const button = e.target.closest("button[data-action]");
-          if (!button) return;
-          const id = button.getAttribute("data-id");
-          const action = button.getAttribute("data-action");
-          handleRequestAction(id, action);
-        });
-
-      // أزرار القائمة الجانبية
-      document.querySelectorAll(".side-nav .nav-btn").forEach((btn) => {
-        btn.addEventListener("click", () => setActiveView(btn.dataset.view));
-      });
-
-      // التبويبات العلوية
-      document.querySelectorAll("#viewTabs .pill-tab").forEach((btn) => {
-        btn.addEventListener("click", () => setActiveView(btn.dataset.view));
-      });
-
-      // زر تبديل المستخدم (في الكارت الأيمن)
       document.getElementById("switchUserBtn").addEventListener("click", () => {
         const nextUserId =
           currentUser && currentUser.id === "abdulaziz" ? "reem" : "abdulaziz";
