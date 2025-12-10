@@ -8,24 +8,25 @@
 
   <style>
     :root {
-      --bg: #f5f7fa;
+      --bg: #f3f4f6;
       --bg-soft: #e5edf6;
       --bg-card: #ffffff;
-      --bg-login: #ffffff;
       --border-soft: #e2e8f0;
       --border-strong: #cbd5e1;
-      --primary: #004a9f;
+      --primary: #0357a6;
       --primary-soft: #0b75d1;
       --primary-light: #e0efff;
       --accent-soft: #eff6ff;
-      --success: #1baa54;
+      --success: #16a34a;
       --danger: #e11d48;
+      --warning: #eab308;
       --text-main: #0f172a;
       --text-soft: #64748b;
       --text-muted: #94a3b8;
-      --radius-xl: 18px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
-      --transition-fast: 0.15s ease-out;
+      --radius-lg: 18px;
+      --radius-xl: 22px;
+      --shadow-soft: 0 20px 40px rgba(15, 23, 42, 0.14);
+      --transition-fast: 0.16s ease-out;
     }
 
     * {
@@ -46,16 +47,17 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 16px;
+      padding: 14px;
       font-size: 15px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 768px) {
       body {
-        padding: 10px;
+        padding: 8px;
       }
     }
 
+    /* خلفيات متحركة خفيفة */
     .animated-orbit {
       position: fixed;
       inset: 0;
@@ -67,67 +69,76 @@
       position: absolute;
       border-radius: 999px;
       background: radial-gradient(circle, rgba(14, 116, 144, 0.16), transparent 60%);
-      width: 220px;
-      height: 220px;
+      width: 260px;
+      height: 260px;
       filter: blur(1px);
-      animation: float 18s infinite alternate ease-in-out;
+      animation: float 20s infinite alternate ease-in-out;
     }
 
     .animated-orbit span:nth-child(1) {
-      top: -80px;
-      right: -40px;
+      top: -90px;
+      right: -50px;
     }
 
     .animated-orbit span:nth-child(2) {
-      bottom: -90px;
+      bottom: -100px;
       left: -40px;
       animation-delay: 4s;
     }
 
     .animated-orbit span:nth-child(3) {
-      top: 40%;
-      left: 10%;
+      top: 35%;
+      left: 5%;
       animation-delay: 8s;
     }
 
     @keyframes float {
-      0% { transform: translate3d(0,0,0) scale(1); opacity: .35; }
-      100% { transform: translate3d(40px,-24px,0) scale(1.15); opacity: .65; }
+      0% { transform: translate3d(0,0,0) scale(1); opacity: .32; }
+      100% { transform: translate3d(42px,-26px,0) scale(1.18); opacity: .7; }
     }
 
+    /* إطار التطبيق */
     .app-shell {
       width: 100%;
-      max-width: 1040px;
-      background: rgba(255, 255, 255, 0.97);
+      max-width: 1180px;
+      height: 100%;
+      max-height: 780px;
+      background: rgba(255, 255, 255, 0.98);
       border-radius: 26px;
-      border: 1px solid var(--border-soft);
+      border: 1px solid rgba(148, 163, 184, 0.4);
       box-shadow: var(--shadow-soft);
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
       position: relative;
     }
 
-    .app-header {
+    @media (max-width: 768px) {
+      .app-shell {
+        max-height: none;
+        height: auto;
+      }
+    }
+
+    /* شريط علوي */
+    .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 14px 18px;
+      padding: 10px 18px;
       border-bottom: 1px solid var(--border-soft);
-      background: linear-gradient(
-        90deg,
-        #f1f5f9,
-        #ffffff
-      );
+      background: linear-gradient(120deg, #f1f5f9, #ffffff);
     }
 
     @media (max-width: 640px) {
-      .app-header {
+      .top-bar {
         flex-direction: column;
         align-items: flex-start;
         gap: 10px;
       }
     }
 
-    .brand {
+    .top-bar-left {
       display: flex;
       align-items: center;
       gap: 10px;
@@ -136,18 +147,19 @@
     .brand-logo {
       width: 44px;
       height: 44px;
-      border-radius: 14px;
-      background: radial-gradient(circle at 20% 10%, #e0f2fe, transparent 55%),
-                  linear-gradient(135deg, var(--primary), var(--primary-soft));
+      border-radius: 16px;
+      background:
+        radial-gradient(circle at 18% 12%, #e0f2fe, transparent 58%),
+        linear-gradient(135deg, var(--primary), var(--primary-soft));
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 1px solid rgba(15, 23, 42, 0.12);
-      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.22);
       color: #ffffff;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
       font-size: 16px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.3);
+      border: 1px solid rgba(15, 23, 42, 0.12);
     }
 
     .brand-text {
@@ -169,15 +181,15 @@
       color: var(--text-soft);
     }
 
-    .header-right {
+    .top-bar-right {
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .tag {
-      padding: 5px 10px;
+      padding: 5px 11px;
       border-radius: 999px;
       font-size: 12px;
       border: 1px solid var(--border-soft);
@@ -193,13 +205,13 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34,197,94,0.45);
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.5);
       animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
       0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
-      100% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
+      100% { box-shadow: 0 0 0 11px rgba(34,197,94,0); }
     }
 
     .user-indicator {
@@ -212,26 +224,209 @@
       color: var(--primary);
     }
 
-    .main-layout {
+    /* تخطيط داخلي: قائمة جانبية + محتوى */
+    .layout {
+      flex: 1;
       display: grid;
-      grid-template-columns: minmax(0, 2.1fr) minmax(260px, 1.1fr);
-      gap: 16px;
-      padding: 14px 18px 16px;
+      grid-template-columns: 260px minmax(0, 1fr);
       background: linear-gradient(180deg, #f8fafc, #ffffff);
     }
 
-    @media (max-width: 880px) {
-      .main-layout {
+    @media (max-width: 900px) {
+      .layout {
         grid-template-columns: minmax(0,1fr);
-        padding: 12px;
+      }
+    }
+
+    /* القائمة الجانبية */
+    .side-nav {
+      border-inline-end: 1px solid var(--border-soft);
+      background: linear-gradient(180deg, #f9fafb, #f1f5f9);
+      padding: 12px 10px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .side-nav {
+        display: none;
+      }
+    }
+
+    .side-profile {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
+      padding: 10px 10px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .side-profile-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 14px;
+      border: 1px solid var(--border-soft);
+      background: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      background: linear-gradient(135deg,#0b75d1,#38bdf8);
+      color: #ffffff;
+    }
+
+    .profile-name {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+
+    .profile-role {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .profile-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      color: var(--text-soft);
+      flex-wrap: wrap;
+    }
+
+    .profile-meta-row span strong {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    .tiny-pill {
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid var(--border-soft);
+      font-size: 11px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #f8fafc;
+    }
+
+    .mini-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--success);
+    }
+
+    .side-nav-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-soft);
+      margin-top: 4px;
+      margin-bottom: 4px;
+      padding-inline: 4px;
+    }
+
+    .nav-btn {
+      width: 100%;
+      border-radius: 999px;
+      border: none;
+      padding: 7px 10px;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      text-align: right;
+      color: var(--text-soft);
+      background: transparent;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      transition: background var(--transition-fast),
+        color var(--transition-fast), transform var(--transition-fast),
+        box-shadow var(--transition-fast);
+    }
+
+    .nav-btn span.label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-btn span.bullet {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--border-soft);
+    }
+
+    .nav-btn.active {
+      background: #ffffff;
+      color: var(--primary);
+      box-shadow: 0 8px 18px rgba(148, 163, 184, 0.6);
+      transform: translateY(-1px);
+    }
+
+    .nav-btn.active span.bullet {
+      background: var(--primary-soft);
+    }
+
+    .nav-btn:not(.active):hover {
+      background: #e5edf6;
+      color: var(--text-main);
+    }
+
+    .side-footer {
+      margin-top: auto;
+      font-size: 11px;
+      color: var(--text-muted);
+      padding-inline: 6px;
+    }
+
+    /* منطقة المحتوى الرئيسية */
+    .content-area {
+      padding: 12px 14px 14px;
+      overflow: auto;
+    }
+
+    .content-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.75fr) minmax(260px, 1.1fr);
+      gap: 12px;
+    }
+
+    @media (max-width: 900px) {
+      .content-grid {
+        grid-template-columns: minmax(0,1fr);
       }
     }
 
     .card {
       background: var(--bg-card);
-      border-radius: var(--radius-xl);
+      border-radius: var(--radius-lg);
       border: 1px solid var(--border-soft);
-      padding: 14px 14px 10px;
+      padding: 12px 12px 10px;
       position: relative;
       overflow: hidden;
     }
@@ -289,16 +484,16 @@
       gap: 10px;
     }
 
-    .animated-title {
+    .section-heading {
       font-size: 16px;
       font-weight: 600;
-      display: inline-flex;
+      color: var(--primary);
+      display: flex;
       align-items: center;
       gap: 6px;
-      color: var(--primary);
     }
 
-    .animated-title span {
+    .section-heading span {
       font-size: 11px;
       padding: 2px 8px;
       border-radius: 999px;
@@ -312,50 +507,46 @@
       margin-top: 2px;
     }
 
-    .pill-tabs {
-      display: inline-flex;
-      padding: 3px;
-      border-radius: 999px;
-      background: #f8fafc;
-      border: 1px solid var(--border-soft);
-      gap: 3px;
-      overflow-x: auto;
+    .tabs-inline {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-start;
     }
 
     .pill-tab {
       border-radius: 999px;
-      padding: 5px 10px;
+      padding: 4px 9px;
       font-size: 12px;
       border: none;
-      background: transparent;
+      background: #e5edf6;
       color: var(--text-soft);
       cursor: pointer;
       transition: background var(--transition-fast), color var(--transition-fast),
-        transform var(--transition-fast);
+        transform var(--transition-fast), box-shadow var(--transition-fast);
       white-space: nowrap;
     }
 
     .pill-tab.active {
       background: #ffffff;
       color: var(--primary);
-      font-weight: 600;
-      box-shadow: 0 2px 6px rgba(148, 163, 184, 0.5);
-      transform: translateY(-0.5px);
+      box-shadow: 0 8px 16px rgba(148, 163, 184, 0.6);
+      transform: translateY(-1px);
     }
 
     .pill-tab:not(.active):hover {
-      background: #e2e8f0;
+      background: #d1e0f5;
       color: var(--text-main);
     }
 
-    .hero-balance {
+    .metrics-row {
       display: grid;
-      grid-template-columns: 1.4fr 1.4fr 1.2fr;
+      grid-template-columns: 1.2fr 1fr 1fr;
       gap: 10px;
     }
 
     @media (max-width: 840px) {
-      .hero-balance {
+      .metrics-row {
         grid-template-columns: 1fr;
       }
     }
@@ -377,7 +568,7 @@
     }
 
     .metric-main-value {
-      font-size: 21px;
+      font-size: 22px;
       font-weight: 700;
       letter-spacing: 0.04em;
       color: var(--primary);
@@ -439,7 +630,7 @@
       height: 100%;
     }
 
-    .metric--abdulaziz {
+    .metric--az {
       background: linear-gradient(135deg, #eff6ff, #ffffff);
     }
 
@@ -447,11 +638,11 @@
       background: linear-gradient(135deg, #ecfeff, #ffffff);
     }
 
+    /* نماذج */
     .forms-grid {
       display: grid;
-      grid-template-columns: minmax(0,1.05fr) minmax(0,1.05fr);
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
       gap: 10px;
-      margin-top: 10px;
     }
 
     @media (max-width: 840px) {
@@ -541,12 +732,12 @@
     .btn-primary {
       background: linear-gradient(135deg,var(--primary-soft),var(--primary));
       color: #ffffff;
-      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
+      box-shadow: 0 10px 22px rgba(15, 23, 42, 0.26);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.28);
+      box-shadow: 0 15px 30px rgba(15, 23, 42, 0.32);
     }
 
     .btn-ghost {
@@ -574,22 +765,27 @@
       justify-content: center;
     }
 
-    .inline-actions {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 4px;
-    }
-
     .hint {
       font-size: 12px;
       color: var(--text-muted);
       margin-top: 2px;
     }
 
+    .success-message {
+      font-size: 12px;
+      color: #166534;
+      background: #dcfce7;
+      border-radius: 10px;
+      padding: 5px 8px;
+      border: 1px solid #bbf7d0;
+      margin-top: 4px;
+      display: none;
+    }
+
+    /* قوائم وطلبات وسجل */
     .list {
       margin-top: 8px;
-      max-height: 230px;
+      max-height: 260px;
       overflow: auto;
       padding-right: 4px;
       display: flex;
@@ -617,7 +813,7 @@
       font-size: 12px;
     }
 
-    @media (max-width: 720px) {
+    @media (max-width: 640px) {
       .request-item {
         grid-template-columns: minmax(0,1fr);
       }
@@ -675,217 +871,7 @@
       font-size: 12px;
       color: var(--text-muted);
       text-align: center;
-      padding: 12px 4px 2px;
-    }
-
-    .login-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg,#e0f2fe,#f8fafc);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 20;
-    }
-
-    .login-card {
-      width: 100%;
-      max-width: 380px;
-      background: var(--bg-login);
-      border-radius: 22px;
-      border: 1px solid var(--border-soft);
-      padding: 18px 18px 16px;
-      box-shadow: var(--shadow-soft);
-      animation: pop-in 0.35s ease-out;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .login-card::before {
-      content: "";
-      position: absolute;
-      inset-inline: -20%;
-      inset-block-end: -40%;
-      height: 110px;
-      background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 70%);
-      pointer-events: none;
-    }
-
-    @keyframes pop-in {
-      0% { transform: translateY(16px) scale(.96); opacity: 0; }
-      100% { transform: translateY(0) scale(1); opacity: 1; }
-    }
-
-    .login-title {
-      font-size: 18px;
-      font-weight: 700;
-      margin-bottom: 4px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      color: var(--primary);
-    }
-
-    .login-sub {
-      font-size: 13px;
-      color: var(--text-soft);
-      margin-bottom: 10px;
-    }
-
-    .login-form-group {
-      margin-bottom: 10px;
-    }
-
-    .login-footer {
-      margin-top: 8px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      color: var(--text-muted);
-      flex-wrap: wrap;
-    }
-
-    .login-footer code {
-      font-size: 11px;
-      background: #f8fafc;
-      border-radius: 999px;
-      padding: 3px 7px;
-      border: 1px solid var(--border-soft);
-      direction: ltr;
-    }
-
-    .error-message {
-      font-size: 12px;
-      color: #b91c1c;
-      background: #fee2e2;
-      border-radius: 10px;
-      padding: 6px 8px;
-      border: 1px solid #fecaca;
-      margin-bottom: 6px;
-      display: none;
-    }
-
-    .profile-widget {
-      border-radius: 16px;
-      background: #ffffff;
-      border: 1px solid var(--border-soft);
-      padding: 12px 12px 10px;
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .profile-main {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-
-    .avatar {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      border: 1px solid var(--border-soft);
-      background: #e2e8f0;
-      flex-shrink: 0;
-      overflow: hidden;
-      position: relative;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .avatar-fallback {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: 700;
-      font-size: 18px;
-      background: linear-gradient(135deg,#0b75d1,#38bdf8);
-      color: #ffffff;
-    }
-
-    .profile-info-main {
-      flex: 1;
-    }
-
-    .profile-name {
-      font-size: 14px;
-      font-weight: 600;
-      color: var(--text-main);
-    }
-
-    .profile-role {
-      font-size: 12px;
-      color: var(--text-soft);
-    }
-
-    .profile-badges {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
-    .badge {
-      font-size: 11px;
-      padding: 3px 8px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      color: var(--text-soft);
-      background: #f8fafc;
-    }
-
-    .badge.accent {
-      border-color: #bfdbfe;
-      color: var(--primary-soft);
-      background: var(--accent-soft);
-    }
-
-    .profile-meta-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      font-size: 12px;
-      color: var(--text-soft);
-      flex-wrap: wrap;
-    }
-
-    .profile-meta-row span strong {
-      color: var(--primary);
-      font-weight: 600;
-    }
-
-    .tiny-pill {
-      padding: 2px 7px;
-      border-radius: 999px;
-      border: 1px solid var(--border-soft);
-      font-size: 11px;
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      background: #f8fafc;
-    }
-
-    .mini-dot {
-      width: 6px;
-      height: 6px;
-      border-radius: 999px;
-      background: var(--success);
-    }
-
-    .section-title {
-      font-size: 14px;
-      font-weight: 600;
-      margin-bottom: 6px;
-      color: var(--text-main);
+      padding: 14px 4px 4px;
     }
 
     .history-list {
@@ -893,7 +879,7 @@
       border: 1px solid var(--border-soft);
       background: #ffffff;
       padding: 7px 9px;
-      max-height: 230px;
+      max-height: 260px;
       overflow: auto;
       display: flex;
       flex-direction: column;
@@ -924,32 +910,11 @@
       font-size: 11px;
     }
 
-    .fade-in {
-      animation: fade-in 0.45s ease-out;
-    }
-
-    @keyframes fade-in {
-      0% { opacity: 0; transform: translateY(4px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
-
-    .success-message {
-      font-size: 12px;
-      color: #166534;
-      background: #dcfce7;
-      border-radius: 10px;
-      padding: 5px 8px;
-      border: 1px solid #bbf7d0;
-      margin-top: 4px;
-      display: none;
-    }
-
-    /* جداول السجل لكل مستخدم */
+    /* صفحات المستخدم */
     .user-summary {
       display: grid;
-      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.2fr);
       gap: 10px;
-      margin-bottom: 10px;
     }
 
     @media (max-width: 720px) {
@@ -993,6 +958,141 @@
     .nowrap {
       white-space: nowrap;
     }
+
+    .view-section {
+      display: none;
+    }
+
+    .view-section.active {
+      display: block;
+    }
+
+    /* شاشة الدخول */
+    .login-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top, rgba(15, 23, 42, 0.12), transparent 60%),
+                  linear-gradient(135deg,#e0f2fe,#f8fafc);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .login-shell {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255, 255, 255, 0.98);
+      border-radius: 24px;
+      border: 1px solid rgba(148, 163, 184, 0.5);
+      box-shadow: 0 22px 50px rgba(15, 23, 42, 0.35);
+      display: grid;
+      grid-template-columns: minmax(0, 1.2fr) minmax(0, 1.1fr);
+      overflow: hidden;
+      animation: pop-in 0.35s ease-out;
+    }
+
+    @media (max-width: 768px) {
+      .login-shell {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .login-side {
+      background:
+        radial-gradient(circle at 0 0, rgba(191, 219, 254, 0.7), transparent 60%),
+        linear-gradient(135deg, #0f172a, #0b75d1);
+      color: #e5f0ff;
+      padding: 18px 18px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .login-side-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .login-side-big {
+      margin-top: 4px;
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .login-side-text {
+      font-size: 13px;
+      color: #dbeafe;
+    }
+
+    .login-side-foot {
+      margin-top: auto;
+      font-size: 12px;
+      color: #bfdbfe;
+    }
+
+    .login-form-wrapper {
+      padding: 18px 18px 16px;
+      background: #f9fafb;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .login-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+
+    .login-sub {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .login-form-group {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+
+    .login-footer {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .login-footer code {
+      font-size: 11px;
+      background: #f8fafc;
+      border-radius: 999px;
+      padding: 3px 7px;
+      border: 1px solid var(--border-soft);
+      direction: ltr;
+    }
+
+    .error-message {
+      font-size: 12px;
+      color: #b91c1c;
+      background: #fee2e2;
+      border-radius: 10px;
+      padding: 6px 8px;
+      border: 1px solid #fecaca;
+      margin-top: 6px;
+      display: none;
+    }
+
+    @keyframes pop-in {
+      0% { transform: translateY(20px) scale(.95); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
   </style>
 </head>
 <body>
@@ -1003,48 +1103,61 @@
   <div class="app-shell">
     <!-- شاشة الدخول -->
     <div class="login-overlay" id="loginOverlay">
-      <div class="login-card">
-        <div class="login-title">
-          🔐 دخول آمن إلى Rezo Bank
-        </div>
-        <div class="login-sub">
-          أدخل اسم المستخدم والرقم السري للوصول إلى لوحة التحكم المشتركة.
-        </div>
-
-        <div id="loginError" class="error-message"></div>
-
-        <div class="login-form-group">
-          <label for="loginUser">اسم المستخدم</label>
-          <select id="loginUser">
-            <option value="abdulaziz">عبدالعزيز</option>
-            <option value="reem">ريم</option>
-          </select>
+      <div class="login-shell">
+        <div class="login-side">
+          <div class="login-side-title">REZO.BANK</div>
+          <div class="login-side-big">بنك ادخاري مشترك بينكما</div>
+          <div class="login-side-text">
+            منصة بسيطة تشبه تطبيقات البنوك الحديثة، تحفظ إجمالي الإيداعات،
+            وتسمح بطلب السحب مع موافقة الطرف الآخر، وسجل واضح لكل حركة.
+          </div>
+          <div class="login-side-foot">
+            الدخول متاح لــ عبدالعزيز وريم فقط باستخدام رقم سري (PIN).
+          </div>
         </div>
 
-        <div class="login-form-group">
-          <label for="loginPin">الرقم السري (PIN)</label>
-          <input
-            type="password"
-            id="loginPin"
-            maxlength="6"
-            inputmode="numeric"
-            placeholder="أدخل الرقم السري المكوّن من 4 أرقام"
-          />
-        </div>
+        <div class="login-form-wrapper">
+          <div class="login-title">تسجيل الدخول إلى Rezo Bank</div>
+          <div class="login-sub">
+            اختر صاحب الحساب وأدخل الرقم السري للدخول إلى لوحة التحكم المشتركة.
+          </div>
 
-        <button id="loginBtn" class="btn btn-primary btn-full">
-          دخول إلى ريزو بنك
-        </button>
+          <div id="loginError" class="error-message"></div>
 
-        <div class="login-footer">
-          <span>هذا النموذج تجريبي ويعمل داخل المتصفح.</span>
-          <code>AZ: 1122 · Reem: 3344</code>
+          <div class="login-form-group">
+            <label for="loginUser">اسم المستخدم</label>
+            <select id="loginUser">
+              <option value="abdulaziz">عبدالعزيز</option>
+              <option value="reem">ريم</option>
+            </select>
+          </div>
+
+          <div class="login-form-group">
+            <label for="loginPin">الرقم السري (PIN)</label>
+            <input
+              type="password"
+              id="loginPin"
+              maxlength="6"
+              inputmode="numeric"
+              placeholder="أدخل الرقم السري المكوّن من 4 أرقام"
+            />
+          </div>
+
+          <button id="loginBtn" class="btn btn-primary btn-full">
+            دخول إلى لوحة التحكم
+          </button>
+
+          <div class="login-footer">
+            <span>هذا النموذج تجريبي ويعمل داخل المتصفح فقط.</span>
+            <code>AZ: 1122 · Reem: 3344</code>
+          </div>
         </div>
       </div>
     </div>
 
-    <header class="app-header">
-      <div class="brand">
+    <!-- الشريط العلوي -->
+    <header class="top-bar">
+      <div class="top-bar-left">
         <div class="brand-logo" title="Rezo Bank">
           RB
         </div>
@@ -1055,8 +1168,7 @@
           </div>
         </div>
       </div>
-
-      <div class="header-right">
+      <div class="top-bar-right">
         <div class="tag">
           <span class="pulse-dot"></span>
           حساب ادخار مشترك
@@ -1068,353 +1180,418 @@
       </div>
     </header>
 
-    <main class="main-layout">
-      <!-- العمود الرئيسي -->
-      <section class="card fade-in">
-        <div class="card-header">
-          <div>
-            <div class="animated-title">
-              لوحة التحكم الرئيسية
-              <span>Rezo Bank</span>
+    <!-- التخطيط الداخلي -->
+    <div class="layout">
+      <!-- القائمة الجانبية (ديسكتوب) -->
+      <aside class="side-nav">
+        <div class="side-profile">
+          <div class="side-profile-main">
+            <div class="avatar">
+              <div class="avatar-fallback" id="avatarFallback">A</div>
             </div>
-            <div class="muted-caption">
-              ادخار مشترك، وسحوبات لا تتم إلا بموافقة الطرفين.
+            <div>
+              <div class="profile-name" id="profileName">—</div>
+              <div class="profile-role">
+                صاحب الحساب · Rezo Bank
+              </div>
             </div>
           </div>
-
-          <div>
-            <div class="pill-tabs" id="viewTabs">
-              <button class="pill-tab active" data-view="summary">
-                الملخص العام
-              </button>
-              <button class="pill-tab" data-view="user-az">
-                صفحة عبدالعزيز
-              </button>
-              <button class="pill-tab" data-view="user-reem">
-                صفحة ريم
-              </button>
-              <button class="pill-tab" data-view="requests">
-                طلبات السحب
-              </button>
-              <button class="pill-tab" data-view="history">
-                السجل الكامل
-              </button>
-            </div>
+          <div class="profile-meta-row" style="margin-top:6px;">
+            <span>مجموع إيداعك:
+              <strong id="profileDeposits">0 ر.س</strong></span>
+            <span class="tiny-pill">
+              <span class="mini-dot"></span>
+              رصيدك الحالي:
+              <span id="profileShare">0 ر.س</span>
+            </span>
           </div>
         </div>
 
-        <div class="card-body">
-          <!-- الملخص العام -->
-          <div id="summaryView">
-            <div class="hero-balance">
-              <!-- إجمالي الرصيد -->
-              <div class="metric">
-                <small>إجمالي الرصيد المشترك الحالي</small>
-                <div class="metric-main-value">
-                  <span id="totalBalance">0</span>
-                  <span class="currency">ر.س</span>
-                </div>
-                <div class="metric-sub">
-                  <span>مجموع الإيداعات − السحوبات المعتمدة</span>
-                  <span class="metric-tag">
-                    آخر تحديث:
-                    <span id="lastUpdatedLabel">—</span>
-                  </span>
-                </div>
-                <div class="metric-badge">
-                  حساب نشط
-                </div>
-                <div class="metric-icon">
-                  <svg viewBox="0 0 64 64" fill="none">
-                    <path
-                      d="M8 24L32 8l24 16v4H8v-4Z"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M14 28h36v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V28Z"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linejoin="round"
-                    />
-                    <path
-                      d="M24 36h16M24 42h10"
-                      stroke="currentColor"
-                      stroke-width="2.2"
-                      stroke-linecap="round"
-                    />
-                  </svg>
-                </div>
-              </div>
+        <div class="side-nav-title">الصفحات</div>
 
-              <!-- عبدالعزيز -->
-              <div class="metric metric--abdulaziz">
-                <small>إجمالي إيداع عبدالعزيز</small>
-                <div class="metric-main-value">
-                  <span id="azDeposits">0</span>
-                  <span class="currency">ر.س</span>
-                </div>
-                <div class="metric-sub">
-                  <span>
-                    مساهمته من الرصيد:
-                    <strong id="azShare">0 ر.س</strong>
-                  </span>
-                  <span class="metric-tag">
-                    نسبة: <span id="azPercent">0%</span>
-                  </span>
-                </div>
-              </div>
+        <button class="nav-btn active" data-view="summary">
+          <span class="label">
+            <span class="bullet"></span>
+            الملخص العام
+          </span>
+          <span>Dashboard</span>
+        </button>
 
-              <!-- ريم -->
-              <div class="metric metric--reem">
-                <small>إجمالي إيداع ريم</small>
-                <div class="metric-main-value">
-                  <span id="reemDeposits">0</span>
-                  <span class="currency">ر.س</span>
-                </div>
-                <div class="metric-sub">
-                  <span>
-                    مساهمتها من الرصيد:
-                    <strong id="reemShare">0 ر.س</strong>
-                  </span>
-                  <span class="metric-tag">
-                    نسبة: <span id="reemPercent">0%</span>
-                  </span>
-                </div>
-              </div>
-            </div>
+        <button class="nav-btn" data-view="user-az">
+          <span class="label">
+            <span class="bullet"></span>
+            صفحة عبدالعزيز
+          </span>
+          <span>Abdulaziz</span>
+        </button>
 
-            <!-- نماذج الإيداع والسحب -->
-            <div class="forms-grid">
-              <!-- الإيداع -->
-              <div class="form-card">
-                <div class="form-title">
-                  إيداع جديد
-                  <span>يُسجّل باسم المستخدم الحالي</span>
-                </div>
-                <div>
-                  <label for="depositAmount">المبلغ المراد إيداعه</label>
-                  <input
-                    type="number"
-                    id="depositAmount"
-                    min="1"
-                    step="1"
-                    placeholder="مثال: 500"
-                  />
-                  <div class="hint">
-                    يتم إضافة الإيداع إلى إجمالي مساهمة صاحب الحساب الحالي.
-                  </div>
-                </div>
-                <button id="depositBtn" class="btn btn-primary btn-full">
-                  💰 تأكيد الإيداع
-                </button>
-                <div id="depositSuccess" class="success-message">
-                  ✅ تم تسجيل الإيداع بنجاح.
-                </div>
-              </div>
+        <button class="nav-btn" data-view="user-reem">
+          <span class="label">
+            <span class="bullet"></span>
+            صفحة ريم
+          </span>
+          <span>Reem</span>
+        </button>
 
-              <!-- طلب السحب -->
-              <div class="form-card">
-                <div class="form-title">
-                  طلب سحب
-                  <span>يتطلّب موافقة الطرف الآخر</span>
-                </div>
-                <div>
-                  <label for="withdrawAmount">المبلغ المراد سحبه</label>
-                  <input
-                    type="number"
-                    id="withdrawAmount"
-                    min="1"
-                    step="1"
-                    placeholder="مثال: 300"
-                  />
-                </div>
-                <div>
-                  <label for="withdrawReason">سبب السحب (اختياري)</label>
-                  <input
-                    type="text"
-                    id="withdrawReason"
-                    placeholder="مثال: رحلة عائلية، تسديد فاتورة..."
-                  />
-                </div>
-                <button id="withdrawBtn" class="btn btn-ghost btn-full">
-                  📤 إرسال طلب سحب للموافقة
-                </button>
-                <div class="hint">
-                  لن يُخصم المبلغ إلا بعد موافقة الطرف الآخر.
-                </div>
-                <div id="withdrawSuccess" class="success-message">
-                  ✅ تم إرسال طلب السحب للطرف الآخر.
-                </div>
-              </div>
-            </div>
-          </div>
+        <button class="nav-btn" data-view="requests">
+          <span class="label">
+            <span class="bullet"></span>
+            طلبات السحب
+          </span>
+          <span>Requests</span>
+        </button>
 
-          <!-- صفحة عبدالعزيز -->
-          <div id="userAzView" style="display:none;">
-            <div class="section-title">صفحة عبدالعزيز</div>
-            <div class="user-summary">
-              <div class="metric metric--abdulaziz">
-                <small>مساهمة عبدالعزيز الحالية</small>
-                <div class="metric-main-value">
-                  <span id="userAzShare">0</span>
-                  <span class="currency">ر.س</span>
-                </div>
-                <div class="metric-sub">
-                  <span>إجمالي إيداعه:
-                    <strong id="userAzDeposits">0 ر.س</strong>
-                  </span>
-                  <span class="metric-tag">
-                    نسبة من الرصيد: <span id="userAzPercent">0%</span>
-                  </span>
-                </div>
-              </div>
-              <div class="user-table-wrapper">
-                <div class="hint" style="margin-bottom:4px;">
-                  Transactions history (Abdulaziz) – type &amp; date in English
-                </div>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Type</th>
-                      <th>Amount (SAR)</th>
-                      <th class="nowrap">Date</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>
-                  <tbody id="userAzHistory"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+        <button class="nav-btn" data-view="history">
+          <span class="label">
+            <span class="bullet"></span>
+            السجل الكامل
+          </span>
+          <span>History</span>
+        </button>
 
-          <!-- صفحة ريم -->
-          <div id="userReemView" style="display:none;">
-            <div class="section-title">صفحة ريم</div>
-            <div class="user-summary">
-              <div class="metric metric--reem">
-                <small>مساهمة ريم الحالية</small>
-                <div class="metric-main-value">
-                  <span id="userReemShare">0</span>
-                  <span class="currency">ر.س</span>
-                </div>
-                <div class="metric-sub">
-                  <span>إجمالي إيداعها:
-                    <strong id="userReemDeposits">0 ر.س</strong>
-                  </span>
-                  <span class="metric-tag">
-                    نسبة من الرصيد: <span id="userReemPercent">0%</span>
-                  </span>
-                </div>
-              </div>
-              <div class="user-table-wrapper">
-                <div class="hint" style="margin-bottom:4px;">
-                  Transactions history (Reem) – type &amp; date in English
-                </div>
-                <table>
-                  <thead>
-                    <tr>
-                      <th>Type</th>
-                      <th>Amount (SAR)</th>
-                      <th class="nowrap">Date</th>
-                      <th>Details</th>
-                    </tr>
-                  </thead>
-                  <tbody id="userReemHistory"></tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-
-          <!-- طلبات السحب -->
-          <div id="requestsView" style="display:none;">
-            <div class="section-title">طلبات السحب بانتظار المعالجة</div>
-            <div class="hint">
-              تظهر هنا الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
-            </div>
-            <div class="list" id="requestsList"></div>
-          </div>
-
-          <!-- السجل الكامل -->
-          <div id="historyView" style="display:none;">
-            <div class="section-title">السجل الكامل للإيداعات والسحوبات</div>
-            <div class="history-list" id="historyList"></div>
-          </div>
-        </div>
-      </section>
-
-      <!-- العمود الجانبي -->
-      <aside class="card fade-in" style="animation-delay:.05s;">
-        <div class="card-header">
-          <div class="card-title">
-            الملف الشخصي
-            <span class="card-title-accent">حسابات Rezo Bank</span>
-          </div>
-        </div>
-
-        <div class="card-body">
-          <div class="profile-widget" id="profileWidget">
-            <div class="profile-main">
-              <div class="avatar" id="avatar">
-                <div class="avatar-fallback" id="avatarFallback">A</div>
-              </div>
-
-              <div class="profile-info-main">
-                <div class="profile-name" id="profileName">—</div>
-                <div class="profile-role">
-                  صاحب الحساب · بنك ادخاري مشترك
-                </div>
-                <div class="profile-badges">
-                  <span class="badge accent">موافقة مزدوجة</span>
-                  <span class="badge">سجل واضح للطرفين</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="profile-meta-row">
-              <span>مجموع إيداعك:
-                <strong id="profileDeposits">0 ر.س</strong></span>
-              <span class="tiny-pill">
-                <span class="mini-dot"></span>
-                رصيدك الحالي:
-                <span id="profileShare">0 ر.س</span>
-              </span>
-            </div>
-          </div>
-
-          <div style="margin-top:12px;">
-            <div class="section-title">تبديل المستخدم</div>
-            <div class="inline-actions">
-              <button
-                class="btn btn-sm btn-ghost"
-                id="switchToAz"
-              >
-                حساب عبدالعزيز
-              </button>
-              <button
-                class="btn btn-sm btn-ghost"
-                id="switchToReem"
-              >
-                حساب ريم
-              </button>
-            </div>
-            <div class="hint">
-              عند التبديل ستحتاج لإدخال الرقم السري من جديد.  
-              ينصح باستخدام الموقع على أجهزة شخصية فقط.
-            </div>
-          </div>
-
-          <div style="margin-top:12px;">
-            <div class="section-title">ملاحظات الأمان والمزامنة</div>
-            <div class="hint">
-              • البيانات تُخزن حاليًا داخل المتصفح (LocalStorage) لهذا الجهاز فقط.  
-              • سنربطها لاحقًا بـ Firebase للمزامنة بين جميع أجهزتك بإذن الله.
-            </div>
-          </div>
+        <div class="side-footer">
+          البيانات محفوظة محليًا في هذا الجهاز.  
+          سنربط لاحقًا بـ Firebase لمزامنة كل الأجهزة.
         </div>
       </aside>
-    </main>
+
+      <!-- المحتوى الرئيسي -->
+      <main class="content-area">
+        <div class="content-grid">
+          <!-- العمود الأيسر: المحتوى المتغير -->
+          <section class="card">
+            <div class="card-header">
+              <div>
+                <div class="section-heading">
+                  لوحة التحكم
+                  <span>Rezo Bank</span>
+                </div>
+                <div class="muted-caption">
+                  إدارة الادخار والسحب بموافقة مزدوجة بين عبدالعزيز وريم.
+                </div>
+              </div>
+              <div class="tabs-inline" id="viewTabs">
+                <button class="pill-tab active" data-view="summary">
+                  الملخص
+                </button>
+                <button class="pill-tab" data-view="user-az">
+                  عبدالعزيز
+                </button>
+                <button class="pill-tab" data-view="user-reem">
+                  ريم
+                </button>
+                <button class="pill-tab" data-view="requests">
+                  طلبات السحب
+                </button>
+                <button class="pill-tab" data-view="history">
+                  السجل
+                </button>
+              </div>
+            </div>
+
+            <div class="card-body">
+              <!-- الملخص العام -->
+              <div id="summaryView" class="view-section active">
+                <div class="metrics-row">
+                  <!-- إجمالي الرصيد -->
+                  <div class="metric">
+                    <small>إجمالي الرصيد المشترك الحالي</small>
+                    <div class="metric-main-value">
+                      <span id="totalBalance">0</span>
+                      <span class="currency">ر.س</span>
+                    </div>
+                    <div class="metric-sub">
+                      <span>مجموع الإيداعات − السحوبات المعتمدة</span>
+                      <span class="metric-tag">
+                        آخر تحديث:
+                        <span id="lastUpdatedLabel">—</span>
+                      </span>
+                    </div>
+                    <div class="metric-badge">
+                      حساب نشط
+                    </div>
+                    <div class="metric-icon">
+                      <svg viewBox="0 0 64 64" fill="none">
+                        <path
+                          d="M8 24L32 8l24 16v4H8v-4Z"
+                          stroke="currentColor"
+                          stroke-width="2.2"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M14 28h36v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V28Z"
+                          stroke="currentColor"
+                          stroke-width="2.2"
+                          stroke-linejoin="round"
+                        />
+                        <path
+                          d="M24 36h16M24 42h10"
+                          stroke="currentColor"
+                          stroke-width="2.2"
+                          stroke-linecap="round"
+                        />
+                      </svg>
+                    </div>
+                  </div>
+
+                  <!-- عبدالعزيز -->
+                  <div class="metric metric--az">
+                    <small>إجمالي إيداع عبدالعزيز</small>
+                    <div class="metric-main-value">
+                      <span id="azDeposits">0</span>
+                      <span class="currency">ر.س</span>
+                    </div>
+                    <div class="metric-sub">
+                      <span>
+                        مساهمته من الرصيد:
+                        <strong id="azShare">0 ر.س</strong>
+                      </span>
+                      <span class="metric-tag">
+                        نسبة: <span id="azPercent">0%</span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <!-- ريم -->
+                  <div class="metric metric--reem">
+                    <small>إجمالي إيداع ريم</small>
+                    <div class="metric-main-value">
+                      <span id="reemDeposits">0</span>
+                      <span class="currency">ر.س</span>
+                    </div>
+                    <div class="metric-sub">
+                      <span>
+                        مساهمتها من الرصيد:
+                        <strong id="reemShare">0 ر.س</strong>
+                      </span>
+                      <span class="metric-tag">
+                        نسبة: <span id="reemPercent">0%</span>
+                      </span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- نماذج الإيداع والسحب -->
+                <div class="forms-grid" style="margin-top:10px;">
+                  <!-- الإيداع -->
+                  <div class="form-card">
+                    <div class="form-title">
+                      إيداع جديد
+                      <span>يُسجّل باسم المستخدم الحالي</span>
+                    </div>
+                    <div>
+                      <label for="depositAmount">المبلغ المراد إيداعه</label>
+                      <input
+                        type="number"
+                        id="depositAmount"
+                        min="1"
+                        step="1"
+                        placeholder="مثال: 500"
+                      />
+                      <div class="hint">
+                        يتم إضافة الإيداع إلى إجمالي مساهمة صاحب الحساب الحالي.
+                      </div>
+                    </div>
+                    <button id="depositBtn" class="btn btn-primary btn-full" style="margin-top:4px;">
+                      💰 تأكيد الإيداع
+                    </button>
+                    <div id="depositSuccess" class="success-message">
+                      ✅ تم تسجيل الإيداع بنجاح.
+                    </div>
+                  </div>
+
+                  <!-- طلب السحب -->
+                  <div class="form-card">
+                    <div class="form-title">
+                      طلب سحب
+                      <span>يتطلّب موافقة الطرف الآخر</span>
+                    </div>
+                    <div>
+                      <label for="withdrawAmount">المبلغ المراد سحبه</label>
+                      <input
+                        type="number"
+                        id="withdrawAmount"
+                        min="1"
+                        step="1"
+                        placeholder="مثال: 300"
+                      />
+                    </div>
+                    <div>
+                      <label for="withdrawReason">سبب السحب (اختياري)</label>
+                      <input
+                        type="text"
+                        id="withdrawReason"
+                        placeholder="مثال: رحلة عائلية، تسديد فاتورة..."
+                      />
+                    </div>
+                    <button id="withdrawBtn" class="btn btn-ghost btn-full" style="margin-top:4px;">
+                      📤 إرسال طلب سحب للموافقة
+                    </button>
+                    <div class="hint">
+                      لن يُخصم المبلغ إلا بعد موافقة الطرف الآخر.
+                    </div>
+                    <div id="withdrawSuccess" class="success-message">
+                      ✅ تم إرسال طلب السحب للطرف الآخر.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- صفحة عبدالعزيز -->
+              <div id="userAzView" class="view-section">
+                <div class="section-heading" style="margin-bottom:6px;">
+                  صفحة عبدالعزيز
+                  <span>Abdulaziz Account</span>
+                </div>
+                <div class="user-summary">
+                  <div class="metric metric--az">
+                    <small>مساهمة عبدالعزيز الحالية</small>
+                    <div class="metric-main-value">
+                      <span id="userAzShare">0</span>
+                      <span class="currency">ر.س</span>
+                    </div>
+                    <div class="metric-sub">
+                      <span>إجمالي إيداعه:
+                        <strong id="userAzDeposits">0 ر.س</strong>
+                      </span>
+                      <span class="metric-tag">
+                        نسبة من الرصيد: <span id="userAzPercent">0%</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="user-table-wrapper">
+                    <div class="hint" style="margin-bottom:4px;">
+                      Transactions history (Abdulaziz) – type &amp; date in English
+                    </div>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Type</th>
+                          <th>Amount (SAR)</th>
+                          <th class="nowrap">Date</th>
+                          <th>Details</th>
+                        </tr>
+                      </thead>
+                      <tbody id="userAzHistory"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- صفحة ريم -->
+              <div id="userReemView" class="view-section">
+                <div class="section-heading" style="margin-bottom:6px;">
+                  صفحة ريم
+                  <span>Reem Account</span>
+                </div>
+                <div class="user-summary">
+                  <div class="metric metric--reem">
+                    <small>مساهمة ريم الحالية</small>
+                    <div class="metric-main-value">
+                      <span id="userReemShare">0</span>
+                      <span class="currency">ر.س</span>
+                    </div>
+                    <div class="metric-sub">
+                      <span>إجمالي إيداعها:
+                        <strong id="userReemDeposits">0 ر.س</strong>
+                      </span>
+                      <span class="metric-tag">
+                        نسبة من الرصيد: <span id="userReemPercent">0%</span>
+                      </span>
+                    </div>
+                  </div>
+                  <div class="user-table-wrapper">
+                    <div class="hint" style="margin-bottom:4px;">
+                      Transactions history (Reem) – type &amp; date in English
+                    </div>
+                    <table>
+                      <thead>
+                        <tr>
+                          <th>Type</th>
+                          <th>Amount (SAR)</th>
+                          <th class="nowrap">Date</th>
+                          <th>Details</th>
+                        </tr>
+                      </thead>
+                      <tbody id="userReemHistory"></tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+              <!-- طلبات السحب -->
+              <div id="requestsView" class="view-section">
+                <div class="section-heading" style="margin-bottom:4px;">
+                  طلبات السحب
+                  <span>Pending &amp; processed</span>
+                </div>
+                <div class="hint">
+                  تظهر هنا الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
+                </div>
+                <div class="list" id="requestsList"></div>
+              </div>
+
+              <!-- السجل الكامل -->
+              <div id="historyView" class="view-section">
+                <div class="section-heading" style="margin-bottom:4px;">
+                  السجل الكامل
+                  <span>All operations log</span>
+                </div>
+                <div class="history-list" id="historyList"></div>
+              </div>
+            </div>
+          </section>
+
+          <!-- العمود الأيمن: معلومات سريعة (للجوال تظهر تحت) -->
+          <aside class="card">
+            <div class="card-header">
+              <div class="card-title">
+                حالة الحساب
+                <span class="card-title-accent">Overview</span>
+              </div>
+              <button class="btn btn-sm btn-ghost" id="switchUserBtn">
+                تبديل المستخدم
+              </button>
+            </div>
+            <div class="card-body">
+              <div class="section-heading" style="font-size:15px;margin-bottom:4px;">
+                معلومات المستخدم الحالي
+              </div>
+              <div class="muted-caption">
+                يمكنك تبديل الدخول بين عبدالعزيز وريم. كل عملية تُربط بصاحبها.
+              </div>
+              <div style="margin-top:10px;">
+                <div class="profile-meta-row">
+                  <span>اسم المستخدم:
+                    <strong id="profileNameSide">—</strong></span>
+                  <span>مجموع الإيداعات:
+                    <strong id="profileDepositsSide">0 ر.س</strong></span>
+                </div>
+                <div class="profile-meta-row" style="margin-top:4px;">
+                  <span>رصيده من الإجمالي:
+                    <strong id="profileShareSide">0 ر.س</strong></span>
+                  <span class="tiny-pill">
+                    <span class="mini-dot"></span>
+                    آخر تحديث:
+                    <span id="lastUpdatedSmall">—</span>
+                  </span>
+                </div>
+              </div>
+
+              <div style="margin-top:12px;">
+                <div class="section-heading" style="font-size:14px;margin-bottom:2px;">
+                  ملاحظات الأمان
+                </div>
+                <div class="hint">
+                  • البيانات محفوظة حاليًا داخل المتصفح لهذا الجهاز فقط (LocalStorage).  
+                  • في الخطوة القادمة يمكن ربط Rezo Bank بـ Firebase لحفظ ومزامنة الرصيد بين جميع أجهزتك.
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </main>
+    </div>
   </div>
 
   <script>
@@ -1436,7 +1613,7 @@
       }
     };
 
-    const STORAGE_KEY = "rezoBankData_v3_UI";
+    const STORAGE_KEY = "rezoBankData_v4_neo";
     const STORAGE_USER_KEY = "rezoBankLastUser_v1";
 
     let state = {
@@ -1497,14 +1674,11 @@
       return null;
     }
 
-    // ====== (مكان المزامنة مع Firebase لاحقًا) ======
+    // مكان ربط Firebase لاحقًا
     async function syncStateFromServer() {
-      // سنضيف لاحقًا اتصال Firebase هنا
       return Promise.resolve();
     }
-
     async function syncStateToServer(eventType, payload) {
-      // سنستخدمها لاحقًا مع Firebase / Backend
       console.log("Sync event:", eventType, payload);
       return Promise.resolve();
     }
@@ -1512,6 +1686,12 @@
     // ====== أدوات العرض ======
     function formatAmount(num) {
       return Number(num || 0).toLocaleString("ar-EG", {
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatAmountEn(num) {
+      return Number(num || 0).toLocaleString("en-US", {
         maximumFractionDigits: 2
       });
     }
@@ -1551,6 +1731,7 @@
       const azShare = (azPercent / 100) * totalBalance;
       const reemShare = (reemPercent / 100) * totalBalance;
 
+      // الملخص العام
       document.getElementById("totalBalance").textContent = formatAmount(totalBalance);
       document.getElementById("azDeposits").textContent = formatAmount(azDeposits);
       document.getElementById("reemDeposits").textContent = formatAmount(reemDeposits);
@@ -1561,12 +1742,22 @@
       document.getElementById("lastUpdatedLabel").textContent = lastUpdated
         ? formatDateTimeAr(lastUpdated)
         : "—";
+      document.getElementById("lastUpdatedSmall").textContent = lastUpdated
+        ? formatDateTimeAr(lastUpdated)
+        : "—";
 
-      updateProfileWidget(azShare, reemShare);
-      renderRequestsList();
-      renderHistoryList();
+      // بطاقات المستخدمين
       renderUserSummary("abdulaziz", azShare, azPercent);
       renderUserSummary("reem", reemShare, reemPercent);
+
+      // البروفايل
+      updateProfileWidget(azShare, reemShare);
+
+      // الطلبات والسجل
+      renderRequestsList();
+      renderHistoryList();
+
+      // جداول المستخدمين
       renderUserHistory("abdulaziz");
       renderUserHistory("reem");
     }
@@ -1578,6 +1769,10 @@
       const profileDepositsEl = document.getElementById("profileDeposits");
       const profileShareEl = document.getElementById("profileShare");
       const avatarFallback = document.getElementById("avatarFallback");
+
+      const profileNameSide = document.getElementById("profileNameSide");
+      const profileDepositsSide = document.getElementById("profileDepositsSide");
+      const profileShareSide = document.getElementById("profileShareSide");
 
       document.getElementById("currentUserLabel").textContent = currentUser.name;
 
@@ -1596,6 +1791,10 @@
 
       profileDepositsEl.textContent = formatAmount(deposits) + " ر.س";
       profileShareEl.textContent = formatAmount(share) + " ر.س";
+
+      profileNameSide.textContent = currentUser.name;
+      profileDepositsSide.textContent = formatAmount(deposits) + " ر.س";
+      profileShareSide.textContent = formatAmount(share) + " ر.س";
 
       avatarFallback.textContent = currentUser.avatarFallback || currentUser.name[0];
     }
@@ -1815,7 +2014,7 @@
 
         tr.innerHTML = `
           <td>${typeLabel}</td>
-          <td class="nowrap">${Number(ev.amount || 0).toLocaleString("en-US", {maximumFractionDigits:2})}</td>
+          <td class="nowrap">${formatAmountEn(ev.amount || 0)}</td>
           <td class="nowrap">${dateStr}</td>
           <td>${details}</td>
         `;
@@ -1861,7 +2060,7 @@
 
       input.value = "";
       success.style.display = "block";
-      setTimeout(() => (success.style.display = "none"), 2200);
+      setTimeout(() => (success.style.display = "none"), 2000);
     }
 
     async function handleWithdrawRequest() {
@@ -1924,7 +2123,7 @@
       inputAmount.value = "";
       inputReason.value = "";
       success.style.display = "block";
-      setTimeout(() => (success.style.display = "none"), 2200);
+      setTimeout(() => (success.style.display = "none"), 2000);
     }
 
     async function handleRequestAction(id, action) {
@@ -1965,21 +2164,29 @@
       updateDashboard();
     }
 
+    // ====== التحكم في الصفحات (Views) ======
     function setActiveView(view) {
-      const summary = document.getElementById("summaryView");
-      const userAzView = document.getElementById("userAzView");
-      const userReemView = document.getElementById("userReemView");
-      const requests = document.getElementById("requestsView");
-      const history = document.getElementById("historyView");
+      const views = {
+        summary: document.getElementById("summaryView"),
+        "user-az": document.getElementById("userAzView"),
+        "user-reem": document.getElementById("userReemView"),
+        requests: document.getElementById("requestsView"),
+        history: document.getElementById("historyView")
+      };
 
-      summary.style.display = view === "summary" ? "block" : "none";
-      userAzView.style.display = view === "user-az" ? "block" : "none";
-      userReemView.style.display = view === "user-reem" ? "block" : "none";
-      requests.style.display = view === "requests" ? "block" : "none";
-      history.style.display = view === "history" ? "block" : "none";
+      Object.keys(views).forEach((key) => {
+        if (!views[key]) return;
+        views[key].classList.toggle("active", key === view);
+      });
 
       document
         .querySelectorAll("#viewTabs .pill-tab")
+        .forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.view === view);
+        });
+
+      document
+        .querySelectorAll(".side-nav .nav-btn")
         .forEach((btn) => {
           btn.classList.toggle("active", btn.dataset.view === view);
         });
@@ -1988,6 +2195,7 @@
       if (view === "user-reem") renderUserHistory("reem");
     }
 
+    // ====== الدخول وتبديل المستخدم ======
     function attemptLogin(selectedId, pin) {
       const user = USERS[selectedId];
       const errorBox = document.getElementById("loginError");
@@ -2068,15 +2276,21 @@
           handleRequestAction(id, action);
         });
 
-      document
-        .getElementById("switchToAz")
-        .addEventListener("click", () => showLoginFor("abdulaziz"));
-      document
-        .getElementById("switchToReem")
-        .addEventListener("click", () => showLoginFor("reem"));
+      // أزرار القائمة الجانبية
+      document.querySelectorAll(".side-nav .nav-btn").forEach((btn) => {
+        btn.addEventListener("click", () => setActiveView(btn.dataset.view));
+      });
 
+      // التبويبات العلوية
       document.querySelectorAll("#viewTabs .pill-tab").forEach((btn) => {
         btn.addEventListener("click", () => setActiveView(btn.dataset.view));
+      });
+
+      // زر تبديل المستخدم (في الكارت الأيمن)
+      document.getElementById("switchUserBtn").addEventListener("click", () => {
+        const nextUserId =
+          currentUser && currentUser.id === "abdulaziz" ? "reem" : "abdulaziz";
+        showLoginFor(nextUserId);
       });
     });
   </script>
