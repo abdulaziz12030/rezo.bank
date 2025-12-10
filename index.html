@@ -8,18 +8,24 @@
 
   <style>
     :root {
-      --bg-gradient-1: #020617;
-      --bg-gradient-2: #0f172a;
-      --accent: #38bdf8;
-      --accent-soft: #0ea5e9;
-      --accent-strong: #22c55e;
-      --danger: #ef4444;
-      --card-bg: rgba(15,23,42,0.92);
-      --card-border: rgba(148,163,184,0.25);
-      --text-main: #e5e7eb;
-      --text-soft: #9ca3af;
-      --text-muted: #6b7280;
+      --bg: #f5f7fa;
+      --bg-soft: #e5edf6;
+      --bg-card: #ffffff;
+      --bg-login: #ffffff;
+      --border-soft: #e2e8f0;
+      --border-strong: #cbd5e1;
+      --primary: #004a9f;
+      --primary-soft: #0b75d1;
+      --primary-light: #e0efff;
+      --accent: #0b75d1;
+      --accent-soft: #eff6ff;
+      --success: #1baa54;
+      --danger: #e11d48;
+      --text-main: #0f172a;
+      --text-soft: #64748b;
+      --text-muted: #94a3b8;
       --radius-xl: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.12);
       --transition-fast: 0.15s ease-out;
     }
 
@@ -33,22 +39,26 @@
 
     body {
       min-height: 100vh;
-      color: var(--text-main);
       background:
-        radial-gradient(circle at 10% 20%, #0f172a 0, transparent 50%),
-        radial-gradient(circle at 80% 80%, #22c55e22 0, transparent 55%),
-        linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+        radial-gradient(circle at 0 0, #e0f2fe 0, transparent 55%),
+        radial-gradient(circle at 100% 100%, #e0f2fe 0, transparent 55%),
+        var(--bg);
+      color: var(--text-main);
       display: flex;
       align-items: center;
       justify-content: center;
       padding: 24px;
     }
 
-    /* خلفية متحركة خفيفة */
+    @media (max-width: 720px) {
+      body {
+        padding: 12px;
+      }
+    }
+
     .animated-orbit {
       position: fixed;
       inset: 0;
-      overflow: hidden;
       pointer-events: none;
       z-index: -1;
     }
@@ -56,20 +66,20 @@
     .animated-orbit span {
       position: absolute;
       border-radius: 999px;
-      background: radial-gradient(circle, #22c55e33, transparent 60%);
+      background: radial-gradient(circle, rgba(14, 116, 144, 0.16), transparent 60%);
       width: 220px;
       height: 220px;
-      filter: blur(2px);
-      animation: float 16s infinite alternate ease-in-out;
+      filter: blur(1px);
+      animation: float 18s infinite alternate ease-in-out;
     }
 
     .animated-orbit span:nth-child(1) {
-      top: -60px;
+      top: -80px;
       right: -40px;
     }
 
     .animated-orbit span:nth-child(2) {
-      bottom: -80px;
+      bottom: -90px;
       left: -40px;
       animation-delay: 4s;
     }
@@ -81,25 +91,18 @@
     }
 
     @keyframes float {
-      0% { transform: translate3d(0,0,0) scale(1); opacity: .45; }
-      100% { transform: translate3d(30px,-20px,0) scale(1.15); opacity: .8; }
+      0% { transform: translate3d(0,0,0) scale(1); opacity: .35; }
+      100% { transform: translate3d(40px,-24px,0) scale(1.15); opacity: .65; }
     }
 
     .app-shell {
       width: 100%;
       max-width: 1120px;
-      background: linear-gradient(
-          135deg,
-          rgba(15,23,42,0.98),
-          rgba(15,23,42,0.94)
-        );
+      background: rgba(255, 255, 255, 0.96);
       border-radius: 28px;
-      border: 1px solid rgba(148,163,184,0.35);
-      box-shadow:
-        0 24px 80px rgba(15,23,42,0.9),
-        0 0 0 1px rgba(15,23,42,0.9);
+      border: 1px solid var(--border-soft);
+      box-shadow: var(--shadow-soft);
       overflow: hidden;
-      backdrop-filter: blur(18px);
       position: relative;
     }
 
@@ -107,9 +110,13 @@
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 18px 26px;
-      border-bottom: 1px solid rgba(148,163,184,0.25);
-      background: radial-gradient(circle at 0 0, #0ea5e933, transparent 55%);
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--border-soft);
+      background: linear-gradient(
+        90deg,
+        #f1f5f9,
+        #ffffff
+      );
     }
 
     .brand {
@@ -119,33 +126,36 @@
     }
 
     .brand-logo {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #e5e7eb, #0f172a);
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-soft));
       display: flex;
       align-items: center;
       justify-content: center;
-      font-weight: 800;
-      font-size: 20px;
-      letter-spacing: 1px;
-      color: #0f172a;
-      border: 2px solid rgba(148,163,184,0.55);
-      box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
       overflow: hidden;
+      border: 1px solid rgba(15, 23, 42, 0.08);
+      box-shadow: 0 8px 22px rgba(15, 23, 42, 0.22);
+    }
+
+    .brand-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     .brand-text {
       display: flex;
       flex-direction: column;
-      gap: 1px;
+      gap: 2px;
     }
 
     .brand-title {
       font-size: 18px;
       font-weight: 700;
-      letter-spacing: 0.04em;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
+      color: var(--primary);
     }
 
     .brand-subtitle {
@@ -163,7 +173,8 @@
       padding: 5px 10px;
       border-radius: 999px;
       font-size: 11px;
-      border: 1px solid rgba(148,163,184,0.5);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       color: var(--text-soft);
       display: inline-flex;
       align-items: center;
@@ -175,13 +186,13 @@
       height: 7px;
       border-radius: 999px;
       background: #22c55e;
-      box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.45);
       animation: pulse 1.6s infinite;
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
-      100% { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.5); }
+      100% { box-shadow: 0 0 0 10px rgba(34,197,94,0); }
     }
 
     .user-indicator {
@@ -191,27 +202,29 @@
 
     .user-indicator span {
       font-weight: 600;
-      color: #e5e7eb;
+      color: var(--primary);
     }
 
     .main-layout {
       display: grid;
-      grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1.2fr);
+      grid-template-columns: minmax(0, 2.1fr) minmax(280px, 1.2fr);
       gap: 18px;
-      padding: 20px 22px 22px;
+      padding: 18px 20px 20px;
+      background: linear-gradient(180deg, #f8fafc, #ffffff);
     }
 
     @media (max-width: 900px) {
       .main-layout {
         grid-template-columns: minmax(0,1fr);
+        padding: 14px;
       }
     }
 
     .card {
-      background: var(--card-bg);
+      background: var(--bg-card);
       border-radius: var(--radius-xl);
-      border: 1px solid var(--card-border);
-      padding: 16px 16px 14px;
+      border: 1px solid var(--border-soft);
+      padding: 16px 16px 12px;
       position: relative;
       overflow: hidden;
     }
@@ -220,10 +233,10 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 0 -10%, #0ea5e91a, transparent 55%);
+      background: radial-gradient(circle at 0 0, rgba(14, 165, 233, 0.12), transparent 60%);
       opacity: 0;
-      pointer-events: none;
       transition: opacity var(--transition-fast);
+      pointer-events: none;
     }
 
     .card:hover::before {
@@ -234,7 +247,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 12px;
+      margin-bottom: 10px;
     }
 
     .card-title {
@@ -246,13 +259,13 @@
     }
 
     .card-title-accent {
-      padding: 4px 9px;
+      padding: 3px 8px;
       border-radius: 999px;
-      background: linear-gradient(135deg,#22c55e33,#22c55e11);
-      border: 1px solid rgba(34,197,94,0.55);
+      background: var(--accent-soft);
+      border: 1px solid var(--border-soft);
       font-size: 11px;
       font-weight: 600;
-      color: #bbf7d0;
+      color: var(--primary-soft);
     }
 
     .card-body {
@@ -261,18 +274,41 @@
       gap: 10px;
     }
 
+    .animated-title {
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--primary);
+    }
+
+    .animated-title span {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--primary-soft);
+    }
+
+    .muted-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 3px;
+    }
+
     .pill-tabs {
       display: inline-flex;
-      padding: 2px;
+      padding: 3px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(75,85,99,0.8);
-      gap: 4px;
+      background: #f8fafc;
+      border: 1px solid var(--border-soft);
+      gap: 3px;
     }
 
     .pill-tab {
       border-radius: 999px;
-      padding: 6px 10px;
+      padding: 5px 10px;
       font-size: 12px;
       border: none;
       background: transparent;
@@ -280,24 +316,26 @@
       cursor: pointer;
       transition: background var(--transition-fast), color var(--transition-fast),
         transform var(--transition-fast);
+      white-space: nowrap;
     }
 
     .pill-tab.active {
-      background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-      color: #0f172a;
+      background: #ffffff;
+      color: var(--primary);
       font-weight: 600;
-      transform: translateY(-1px);
+      box-shadow: 0 2px 6px rgba(148, 163, 184, 0.5);
+      transform: translateY(-0.5px);
     }
 
     .pill-tab:not(.active):hover {
-      background: rgba(31,41,55,0.85);
-      color: #e5e7eb;
+      background: #e2e8f0;
+      color: var(--text-main);
     }
 
     .hero-balance {
       display: grid;
       grid-template-columns: 1.4fr 1.4fr 1.2fr;
-      gap: 12px;
+      gap: 10px;
     }
 
     @media (max-width: 720px) {
@@ -308,14 +346,13 @@
 
     .metric {
       border-radius: 16px;
-      background: radial-gradient(circle at 0 0, #0ea5e933, transparent 60%);
-      border: 1px solid rgba(148,163,184,0.38);
-      padding: 10px 12px 9px;
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
+      padding: 10px 12px 8px;
       display: flex;
       flex-direction: column;
       gap: 6px;
       position: relative;
-      overflow: hidden;
     }
 
     .metric small {
@@ -327,6 +364,7 @@
       font-size: 20px;
       font-weight: 700;
       letter-spacing: 0.04em;
+      color: var(--primary);
     }
 
     .currency {
@@ -347,8 +385,10 @@
     .metric-tag {
       padding: 2px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.45);
+      border: 1px solid var(--border-soft);
       font-size: 10px;
+      background: #f8fafc;
+      color: var(--text-soft);
     }
 
     .metric-badge {
@@ -358,18 +398,19 @@
       font-size: 10px;
       padding: 3px 7px;
       border-radius: 999px;
-      background: rgba(15,23,42,0.9);
-      border: 1px solid rgba(148,163,184,0.5);
-      color: var(--accent-strong);
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+      color: var(--success);
     }
 
     .metric-icon {
       position: absolute;
-      inset-inline-start: -16px;
-      inset-block-end: -18px;
-      width: 80px;
-      height: 80px;
-      opacity: 0.08;
+      inset-inline-start: -10px;
+      inset-block-end: -6px;
+      width: 60px;
+      height: 60px;
+      opacity: 0.15;
+      color: var(--primary-soft);
     }
 
     .metric-icon svg {
@@ -377,43 +418,18 @@
       height: 100%;
     }
 
-    .metric--reem {
-      background: radial-gradient(circle at 100% 0,#22c55e33,transparent 60%);
-    }
-
     .metric--abdulaziz {
-      background: radial-gradient(circle at 0 0,#0ea5e93b,transparent 60%);
+      background: linear-gradient(135deg, #eff6ff, #ffffff);
     }
 
-    .animated-title {
-      font-size: 15px;
-      font-weight: 600;
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: linear-gradient(90deg,#e5e7eb,#38bdf8,#a855f7,#e5e7eb);
-      background-size: 250% 100%;
-      -webkit-background-clip: text;
-      color: transparent;
-      animation: shimmer 10s linear infinite;
-      margin-bottom: 4px;
-    }
-
-    @keyframes shimmer {
-      0% { background-position: 0 0; }
-      50% { background-position: 120% 0; }
-      100% { background-position: 0 0; }
-    }
-
-    .muted-caption {
-      font-size: 12px;
-      color: var(--text-muted);
+    .metric--reem {
+      background: linear-gradient(135deg, #ecfeff, #ffffff);
     }
 
     .forms-grid {
       display: grid;
-      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
-      gap: 12px;
+      grid-template-columns: minmax(0,1.05fr) minmax(0,1.05fr);
+      gap: 10px;
       margin-top: 10px;
     }
 
@@ -424,9 +440,9 @@
     }
 
     .form-card {
-      background: rgba(15,23,42,0.9);
+      background: #f8fafc;
       border-radius: 14px;
-      border: 1px solid rgba(55,65,81,0.9);
+      border: 1px solid var(--border-soft);
       padding: 10px 12px;
       display: flex;
       flex-direction: column;
@@ -436,7 +452,7 @@
     .form-title {
       font-size: 13px;
       font-weight: 600;
-      color: #e5e7eb;
+      color: var(--text-main);
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -457,12 +473,13 @@
 
     input[type="number"],
     input[type="password"],
+    input[type="text"],
     select {
       width: 100%;
       padding: 7px 9px;
       border-radius: 9px;
-      border: 1px solid rgba(75,85,99,0.9);
-      background: rgba(15,23,42,0.9);
+      border: 1px solid var(--border-strong);
+      background: #ffffff;
       color: var(--text-main);
       font-size: 13px;
       outline: none;
@@ -472,13 +489,13 @@
     }
 
     input::placeholder {
-      color: rgba(148,163,184,0.9);
+      color: var(--text-muted);
     }
 
     input:focus,
     select:focus {
-      border-color: var(--accent-soft);
-      box-shadow: 0 0 0 1px rgba(56,189,248,0.35);
+      border-color: var(--primary-soft);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.25);
       transform: translateY(-0.5px);
     }
 
@@ -501,30 +518,29 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg,var(--accent-soft),var(--accent));
-      color: #0f172a;
-      box-shadow: 0 8px 20px rgba(56,189,248,0.35);
+      background: linear-gradient(135deg,var(--primary-soft),var(--primary));
+      color: #ffffff;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.25);
     }
 
     .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(56,189,248,0.45);
+      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.28);
     }
 
     .btn-ghost {
-      background: rgba(15,23,42,0.9);
-      color: var(--text-soft);
-      border: 1px solid rgba(75,85,99,0.9);
+      background: #ffffff;
+      color: var(--primary);
+      border: 1px solid var(--border-soft);
     }
 
     .btn-ghost:hover {
-      background: rgba(31,41,55,0.9);
-      color: #e5e7eb;
+      background: var(--primary-light);
     }
 
     .btn-danger {
-      background: linear-gradient(135deg,#ef4444,#f97373);
-      color: #0f172a;
+      background: linear-gradient(135deg,#fb7185,#e11d48);
+      color: #ffffff;
     }
 
     .btn-sm {
@@ -539,7 +555,8 @@
 
     .inline-actions {
       display: flex;
-      gap: 8px;
+      flex-wrap: wrap;
+      gap: 6px;
       margin-top: 4px;
     }
 
@@ -564,17 +581,17 @@
     }
 
     .list::-webkit-scrollbar-thumb {
-      background: rgba(75,85,99,0.9);
+      background: #cbd5e1;
       border-radius: 99px;
     }
 
     .request-item {
       border-radius: 12px;
-      border: 1px solid rgba(55,65,81,0.95);
-      background: rgba(15,23,42,0.96);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       padding: 7px 9px;
       display: grid;
-      grid-template-columns: minmax(0,1.3fr) minmax(0,1.2fr);
+      grid-template-columns: minmax(0,1.3fr) minmax(0,1.1fr);
       gap: 6px;
       font-size: 11px;
     }
@@ -595,28 +612,34 @@
     .request-amount {
       font-weight: 600;
       font-size: 13px;
+      color: var(--primary);
     }
 
     .status-pill {
       padding: 2px 8px;
       border-radius: 999px;
       font-size: 10px;
-      border: 1px solid rgba(75,85,99,0.95);
+      border: 1px solid var(--border-soft);
+      background: #f8fafc;
+      color: var(--text-soft);
     }
 
     .status-pill.pending {
       border-color: #facc15;
-      color: #facc15;
+      background: #fefce8;
+      color: #92400e;
     }
 
     .status-pill.approved {
-      border-color: #22c55e;
-      color: #86efac;
+      border-color: #bbf7d0;
+      background: #ecfdf5;
+      color: #166534;
     }
 
     .status-pill.rejected {
-      border-color: #ef4444;
-      color: #fecaca;
+      border-color: #fecaca;
+      background: #fef2f2;
+      color: #991b1b;
     }
 
     .request-meta {
@@ -636,9 +659,7 @@
     .login-overlay {
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at 0 0,#0ea5e933,transparent 60%),
-        radial-gradient(circle at 100% 100%,#22c55e33,transparent 60%),
-        rgba(15,23,42,0.98);
+      background: linear-gradient(135deg,#e0f2fe,#f8fafc);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -648,12 +669,12 @@
     .login-card {
       width: 100%;
       max-width: 380px;
-      background: rgba(15,23,42,0.96);
+      background: var(--bg-login);
       border-radius: 22px;
-      border: 1px solid rgba(148,163,184,0.55);
+      border: 1px solid var(--border-soft);
       padding: 18px 18px 16px;
-      box-shadow: 0 20px 50px rgba(15,23,42,0.9);
-      animation: pop-in 0.4s ease-out;
+      box-shadow: var(--shadow-soft);
+      animation: pop-in 0.35s ease-out;
       position: relative;
       overflow: hidden;
     }
@@ -664,8 +685,7 @@
       inset-inline: -20%;
       inset-block-end: -40%;
       height: 110px;
-      background: radial-gradient(circle,#0ea5e922,transparent 70%);
-      opacity: 1;
+      background: radial-gradient(circle, rgba(59,130,246,0.16), transparent 70%);
       pointer-events: none;
     }
 
@@ -677,16 +697,17 @@
     .login-title {
       font-size: 16px;
       font-weight: 700;
-      margin-bottom: 6px;
+      margin-bottom: 4px;
       display: flex;
       align-items: center;
       gap: 8px;
+      color: var(--primary);
     }
 
     .login-sub {
       font-size: 12px;
-      color: var(--text-muted);
-      margin-bottom: 12px;
+      color: var(--text-soft);
+      margin-bottom: 10px;
     }
 
     .login-form-group {
@@ -701,32 +722,33 @@
       gap: 8px;
       font-size: 11px;
       color: var(--text-muted);
+      flex-wrap: wrap;
     }
 
     .login-footer code {
       font-size: 11px;
-      background: rgba(15,23,42,0.9);
+      background: #f8fafc;
       border-radius: 999px;
       padding: 3px 7px;
-      border: 1px solid rgba(55,65,81,0.9);
+      border: 1px solid var(--border-soft);
       direction: ltr;
     }
 
     .error-message {
       font-size: 11px;
-      color: #fecaca;
-      background: rgba(127,29,29,0.7);
+      color: #b91c1c;
+      background: #fee2e2;
       border-radius: 10px;
       padding: 6px 8px;
-      border: 1px solid rgba(248,113,113,0.8);
+      border: 1px solid #fecaca;
       margin-bottom: 6px;
       display: none;
     }
 
     .profile-widget {
       border-radius: 16px;
-      background: radial-gradient(circle at 0 0,#0ea5e933,transparent 60%);
-      border: 1px solid rgba(148,163,184,0.55);
+      background: #ffffff;
+      border: 1px solid var(--border-soft);
       padding: 12px 12px 10px;
       display: flex;
       flex-direction: column;
@@ -742,12 +764,14 @@
     }
 
     .avatar {
-      width: 44px;
-      height: 44px;
-      border-radius: 999px;
-      border: 2px solid rgba(148,163,184,0.7);
-      background: #020617 url("images/abdulaziz.jpg") center/cover no-repeat;
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      border: 1px solid var(--border-soft);
+      background: #e2e8f0 url("images/abdulaziz.jpg") center/cover no-repeat;
       flex-shrink: 0;
+      overflow: hidden;
+      position: relative;
     }
 
     .avatar--reem {
@@ -757,14 +781,13 @@
     .avatar-fallback {
       width: 100%;
       height: 100%;
-      border-radius: inherit;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: 700;
       font-size: 18px;
-      background: radial-gradient(circle at 30% 20%,#e5e7eb,#020617);
-      color: #020617;
+      background: linear-gradient(135deg,#0b75d1,#38bdf8);
+      color: #ffffff;
     }
 
     .profile-info-main {
@@ -774,6 +797,7 @@
     .profile-name {
       font-size: 14px;
       font-weight: 600;
+      color: var(--text-main);
     }
 
     .profile-role {
@@ -792,14 +816,15 @@
       font-size: 10px;
       padding: 3px 8px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.5);
+      border: 1px solid var(--border-soft);
       color: var(--text-soft);
+      background: #f8fafc;
     }
 
     .badge.accent {
-      border-color: rgba(56,189,248,0.7);
-      color: #bae6fd;
-      background: radial-gradient(circle at 0 0,#0ea5e922,transparent 70%);
+      border-color: #bfdbfe;
+      color: var(--primary-soft);
+      background: var(--accent-soft);
     }
 
     .profile-meta-row {
@@ -809,40 +834,43 @@
       gap: 8px;
       font-size: 11px;
       color: var(--text-soft);
+      flex-wrap: wrap;
     }
 
     .profile-meta-row span strong {
-      color: #e5e7eb;
+      color: var(--primary);
       font-weight: 600;
     }
 
     .tiny-pill {
       padding: 2px 7px;
       border-radius: 999px;
-      border: 1px solid rgba(148,163,184,0.6);
+      border: 1px solid var(--border-soft);
       font-size: 10px;
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      background: #f8fafc;
     }
 
     .mini-dot {
       width: 6px;
       height: 6px;
       border-radius: 999px;
-      background: #22c55e;
+      background: var(--success);
     }
 
     .section-title {
       font-size: 13px;
       font-weight: 600;
       margin-bottom: 6px;
+      color: var(--text-main);
     }
 
     .history-list {
       border-radius: 14px;
-      border: 1px solid rgba(55,65,81,0.96);
-      background: rgba(15,23,42,0.96);
+      border: 1px solid var(--border-soft);
+      background: #ffffff;
       padding: 7px 9px;
       max-height: 210px;
       overflow: auto;
@@ -857,7 +885,7 @@
       gap: 8px;
       font-size: 11px;
       padding: 4px 0;
-      border-bottom: 1px dashed rgba(55,65,81,0.95);
+      border-bottom: 1px dashed #e2e8f0;
     }
 
     .history-item:last-child {
@@ -865,7 +893,7 @@
     }
 
     .history-main {
-      color: #e5e7eb;
+      color: var(--text-main);
     }
 
     .history-meta {
@@ -875,7 +903,7 @@
     }
 
     .fade-in {
-      animation: fade-in 0.5s ease-out;
+      animation: fade-in 0.45s ease-out;
     }
 
     @keyframes fade-in {
@@ -885,11 +913,11 @@
 
     .success-message {
       font-size: 11px;
-      color: #bbf7d0;
-      background: rgba(22,101,52,0.6);
+      color: #166534;
+      background: #dcfce7;
       border-radius: 10px;
       padding: 5px 8px;
-      border: 1px solid rgba(74,222,128,0.8);
+      border: 1px solid #bbf7d0;
       margin-top: 4px;
       display: none;
     }
@@ -901,12 +929,11 @@
   </div>
 
   <div class="app-shell">
-    <!-- شاشة الدخول برقم سري -->
+    <!-- شاشة الدخول -->
     <div class="login-overlay" id="loginOverlay">
       <div class="login-card">
         <div class="login-title">
-          🔐 دخول آمن إلى
-          <span style="color:#38bdf8;">Rezo Bank</span>
+          🔐 دخول آمن إلى Rezo Bank
         </div>
         <div class="login-sub">
           اختر صاحب الحساب وأدخل الرقم السري للدخول إلى لوحة التحكم المشتركة.
@@ -938,8 +965,7 @@
         </button>
 
         <div class="login-footer">
-          <span>هذا الموقع تجريبي ومحلي فقط، بدون خادم.</span>
-          <!-- يمكنك تغيير الأكواد في الأسفل عند الحاجة -->
+          <span>هذا النموذج تجريبي ويعمل داخل المتصفح فقط.</span>
           <code>AZ: 1122 · Reem: 3344</code>
         </div>
       </div>
@@ -948,18 +974,21 @@
     <header class="app-header">
       <div class="brand">
         <div class="brand-logo" title="Rezo Bank">
-          RB
+          <!-- ضع هنا لوقو ريزو بالحجم 128×128 أو 256×256 -->
+          <img src="images/logo-rezo-icon.png" alt="Rezo Bank Logo" />
         </div>
         <div class="brand-text">
           <div class="brand-title">REZO.BANK</div>
-          <div class="brand-subtitle">بنك ادخاري مشترك بين عبدالعزيز وريم</div>
+          <div class="brand-subtitle">
+            بنك ادخاري مشترك بين عبدالعزيز وريم · موافقة مزدوجة
+          </div>
         </div>
       </div>
 
       <div class="header-right">
         <div class="tag">
           <span class="pulse-dot"></span>
-          ادخار مشترك · موافقة مزدوجة
+          حساب ادخار مشترك
         </div>
         <div class="user-indicator">
           المستخدم الحالي:
@@ -973,9 +1002,12 @@
       <section class="card fade-in">
         <div class="card-header">
           <div>
-            <div class="animated-title">لوحة التحكم الرئيسية · Rezo Bank</div>
+            <div class="animated-title">
+              لوحة التحكم الرئيسية
+              <span>Rezo Bank</span>
+            </div>
             <div class="muted-caption">
-              ادخروا معًا، واطلبوا السحب مع موافقة الطرف الآخر بكل شفافية.
+              ادخار مشترك، وسحوبات لا تتم إلا بموافقة الطرفين.
             </div>
           </div>
 
@@ -995,7 +1027,7 @@
         </div>
 
         <div class="card-body">
-          <!-- بطاقات الملخص -->
+          <!-- الملخص -->
           <div id="overviewView">
             <div class="hero-balance">
               <!-- إجمالي الرصيد -->
@@ -1006,14 +1038,14 @@
                   <span class="currency">ر.س</span>
                 </div>
                 <div class="metric-sub">
-                  <span>مجموع الإيداعات - السحوبات المعتمدة</span>
+                  <span>مجموع الإيداعات − السحوبات المعتمدة</span>
                   <span class="metric-tag">
                     آخر تحديث:
                     <span id="lastUpdatedLabel">—</span>
                   </span>
                 </div>
                 <div class="metric-badge">
-                  <span>حالة الحساب · نشط</span>
+                  حساب نشط
                 </div>
                 <div class="metric-icon">
                   <svg viewBox="0 0 64 64" fill="none">
@@ -1048,7 +1080,7 @@
                 </div>
                 <div class="metric-sub">
                   <span>
-                    مساهمته الحالية في الرصيد:
+                    مساهمته من الرصيد:
                     <strong id="azShare">0 ر.س</strong>
                   </span>
                   <span class="metric-tag">
@@ -1066,7 +1098,7 @@
                 </div>
                 <div class="metric-sub">
                   <span>
-                    مساهمتها الحالية في الرصيد:
+                    مساهمتها من الرصيد:
                     <strong id="reemShare">0 ر.س</strong>
                   </span>
                   <span class="metric-tag">
@@ -1076,9 +1108,9 @@
               </div>
             </div>
 
-            <!-- النماذج -->
+            <!-- نماذج الإيداع والسحب -->
             <div class="forms-grid">
-              <!-- نموذج الإيداع -->
+              <!-- الإيداع -->
               <div class="form-card">
                 <div class="form-title">
                   إيداع جديد
@@ -1105,7 +1137,7 @@
                 </div>
               </div>
 
-              <!-- نموذج طلب السحب -->
+              <!-- طلب السحب -->
               <div class="form-card">
                 <div class="form-title">
                   طلب سحب
@@ -1142,16 +1174,16 @@
             </div>
           </div>
 
-          <!-- تبويب طلبات السحب -->
+          <!-- طلبات السحب -->
           <div id="requestsView" style="display:none;">
-            <div class="section-title">طلبات السحب بانتظار الموافقة</div>
+            <div class="section-title">طلبات السحب بانتظار المعالجة</div>
             <div class="hint">
-              يمكنك هنا رؤية الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
+              تظهر هنا الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
             </div>
             <div class="list" id="requestsList"></div>
           </div>
 
-          <!-- تبويب سجل الحركات -->
+          <!-- السجل -->
           <div id="historyView" style="display:none;">
             <div class="section-title">سجل الإيداعات والسحوبات</div>
             <div class="history-list" id="historyList"></div>
@@ -1172,7 +1204,6 @@
           <div class="profile-widget" id="profileWidget">
             <div class="profile-main">
               <div class="avatar" id="avatar">
-                <!-- في حال عدم وجود صورة، يظهر الحرف الأول -->
                 <div class="avatar-fallback" id="avatarFallback">A</div>
               </div>
 
@@ -1183,7 +1214,7 @@
                 </div>
                 <div class="profile-badges">
                   <span class="badge accent">موافقة مزدوجة</span>
-                  <span class="badge">سجل مشترك واضح</span>
+                  <span class="badge">سجل واضح للطرفين</span>
                 </div>
               </div>
             </div>
@@ -1217,15 +1248,15 @@
             </div>
             <div class="hint">
               عند التبديل ستحتاج إدخال الرقم السري من جديد.  
-              ينصح باستخدام هذا الموقع على جهاز شخصي فقط.
+              ينصح باستخدام الموقع على أجهزة شخصية فقط.
             </div>
           </div>
 
           <div style="margin-top:12px;">
-            <div class="section-title">ملاحظات الأمان</div>
+            <div class="section-title">ملاحظات الأمان والمزامنة</div>
             <div class="hint">
-              • هذا الموقع يعمل محليًا فقط ويخزن البيانات في المتصفح (LocalStorage).  
-              • لا يُعتبر نظامًا بنكيًا حقيقيًا، بل أداة تنظيم ادخار شخصية بينكما.
+              • البيانات تُخزن محليًا في المتصفح، ويمكن ربطها لاحقًا بخادم للمزامنة بين الأجهزة.  
+              • إشعارات واتساب تحتاج ربط الموقع بواجهة WhatsApp Business أو خدمة تكامل (Webhook).
             </div>
           </div>
         </div>
@@ -1235,7 +1266,8 @@
 
   <script>
     /*
-      إعداد المستخدمين والـ PIN (تستطيع تعديلها كما تشاء)
+      إعداد المستخدمين والـ PIN
+      يمكنك تعديل الأرقام السرية هنا
     */
     const USERS = {
       abdulaziz: {
@@ -1243,7 +1275,7 @@
         name: "عبدالعزيز",
         pin: "1122",
         avatarFallback: "ع",
-        avatarClass: "" // صورة عبدالعزيز الافتراضية داخل avatar
+        avatarClass: "" // خلفية صورة abdulaziz.jpg
       },
       reem: {
         id: "reem",
@@ -1254,7 +1286,16 @@
       }
     };
 
-    const STORAGE_KEY = "rezoBankData_v1";
+    /*
+      أرقام واتساب (بتنسيق دولي بدون 0 في البداية)
+      هنا وضعتهما كما أرسلت (نفس الرقم)، ويمكنك التعديل لاحقًا
+    */
+    const WHATSAPP_NUMBERS = {
+      abdulaziz: "966558446008",
+      reem: "966558446008"
+    };
+
+    const STORAGE_KEY = "rezoBankData_v2_light";
     const STORAGE_USER_KEY = "rezoBankLastUser_v1";
 
     let state = {
@@ -1264,13 +1305,14 @@
         totalApprovedWithdrawals: 0,
         lastUpdated: null
       },
-      history: [], // [{type: 'deposit'|'withdraw-request'|'withdraw-approved', ...}]
-      requests: [] // [{id, from, to, amount, reason, status, createdAt, resolvedAt}]
+      history: [],
+      requests: []
     };
 
     let currentUser = null;
 
-    function loadState() {
+    // ====== التخزين المحلي ======
+    function loadStateLocal() {
       try {
         const raw = localStorage.getItem(STORAGE_KEY);
         if (raw) {
@@ -1294,7 +1336,7 @@
       }
     }
 
-    function saveState() {
+    function saveStateLocal() {
       try {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
       } catch (e) {
@@ -1314,6 +1356,70 @@
       return null;
     }
 
+    // ====== هوكات للمزامنة بين الأجهزة (تحتاج Backend / Firebase / Webhook) ======
+    async function syncStateFromServer() {
+      /*
+        هنا يمكنك لاحقًا:
+        - الاتصال بـ Firebase Realtime Database أو Firestore
+        - أو استدعاء API خاص بك يعيد بيانات Rezo Bank
+        - ثم تستبدل قيمة state بالبيانات القادمة من الخادم
+
+        مثال (وهمي):
+        const res = await fetch("https://your-api/rezo-bank");
+        const data = await res.json();
+        state = data;
+
+        الآن ترجع Promise فارغة حتى لا تكسر الموقع
+      */
+      return Promise.resolve();
+    }
+
+    async function syncStateToServer(eventType, payload) {
+      /*
+        يستدعى عند:
+        - إيداع جديد
+        - إنشاء طلب سحب
+        - الموافقة/الرفض على طلب
+
+        يمكنك هنا إرسال state أو التغيير فقط إلى Webhook مثل Make / Zapier
+        مثال (تعليق فقط):
+
+        await fetch("https://your-webhook-url", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ state, eventType, payload })
+        });
+      */
+      return Promise.resolve();
+    }
+
+    // ====== إشعارات واتساب (تحتاج Backend لإرسال حقيقي) ======
+    async function sendWhatsappNotification(type, payload) {
+      /*
+        هذه الدالة تُستدعى عند:
+        - إيداع: type = "deposit"
+        - طلب سحب: type = "withdraw-request"
+        - موافقة: type = "withdraw-approved"
+        - رفض: type = "withdraw-rejected"
+
+        لإرسال إشعارات حقيقية:
+        - اربط هذه الدالة بـ WhatsApp Business API من خلال Backend / Webhook.
+        - مثال: backend يستقبل الحدث ثم يرسل رسالة واتساب للطرفين.
+
+        هنا فقط سنسجل في الـ console كتنبيه، ويمكنك لاحقًا تعديلها.
+      */
+      console.log("WhatsApp notification:", type, payload);
+
+      // مثال (اختياري جدًا) لفتح واتساب ويب مع رسالة جاهزة (ليس إشعار تلقائي حقيقي)
+      // تحذير: سيُفتح في المتصفح للشخص الحالي فقط عند النقر
+      /*
+      const msg = encodeURIComponent(payload.message || "تحديث في حساب Rezo Bank");
+      const url = `https://wa.me/${WHATSAPP_NUMBERS.abdulaziz}?text=${msg}`;
+      window.open(url, "_blank");
+      */
+    }
+
+    // ====== أدوات العرض ======
     function formatAmount(num) {
       return Number(num || 0).toLocaleString("ar-EG", {
         maximumFractionDigits: 2
@@ -1408,7 +1514,6 @@
       }
 
       const currentId = currentUser ? currentUser.id : null;
-
       const sorted = [...state.requests].sort(
         (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
       );
@@ -1540,7 +1645,8 @@
       });
     }
 
-    function handleDeposit() {
+    // ====== المعاملات ======
+    async function handleDeposit() {
       if (!currentUser) return;
       const input = document.getElementById("depositAmount");
       const success = document.getElementById("depositSuccess");
@@ -1561,14 +1667,23 @@
 
       state.totals.lastUpdated = new Date().toISOString();
 
-      state.history.push({
+      const event = {
         type: "deposit",
         userId: currentUser.id,
         amount,
         createdAt: new Date().toISOString()
+      };
+
+      state.history.push(event);
+
+      saveStateLocal();
+      await syncStateToServer("deposit", event);
+      await sendWhatsappNotification("deposit", {
+        from: currentUser.id,
+        amount,
+        message: `تم تسجيل إيداع جديد في Rezo Bank بمبلغ ${amount} ر.س بواسطة ${currentUser.name}`
       });
 
-      saveState();
       updateDashboard();
 
       input.value = "";
@@ -1576,7 +1691,7 @@
       setTimeout(() => (success.style.display = "none"), 2200);
     }
 
-    function handleWithdrawRequest() {
+    async function handleWithdrawRequest() {
       if (!currentUser) return;
       const inputAmount = document.getElementById("withdrawAmount");
       const inputReason = document.getElementById("withdrawReason");
@@ -1617,17 +1732,28 @@
 
       state.requests.push(req);
 
-      state.history.push({
+      const historyEvent = {
         type: "withdraw-request",
         from: req.from,
         to: req.to,
         amount: req.amount,
         createdAt: req.createdAt
-      });
+      };
+      state.history.push(historyEvent);
 
       state.totals.lastUpdated = new Date().toISOString();
 
-      saveState();
+      saveStateLocal();
+      await syncStateToServer("withdraw-request", req);
+      await sendWhatsappNotification("withdraw-request", {
+        from: req.from,
+        to: req.to,
+        amount: req.amount,
+        message: `تم إنشاء طلب سحب جديد في Rezo Bank بمبلغ ${req.amount} ر.س من ${
+          req.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
+        }`
+      });
+
       updateDashboard();
 
       inputAmount.value = "";
@@ -1636,7 +1762,7 @@
       setTimeout(() => (success.style.display = "none"), 2200);
     }
 
-    function handleRequestAction(id, action) {
+    async function handleRequestAction(id, action) {
       const req = state.requests.find((r) => r.id === id);
       if (!req || req.status !== "pending") return;
 
@@ -1646,28 +1772,45 @@
       if (req.status === "approved") {
         state.totals.totalApprovedWithdrawals += req.amount;
 
-        state.history.push({
+        const ev = {
           type: "withdraw-approved",
           from: req.from,
           to: req.to,
           amount: req.amount,
           createdAt: req.createdAt,
           resolvedAt: req.resolvedAt
+        };
+        state.history.push(ev);
+
+        await sendWhatsappNotification("withdraw-approved", {
+          from: req.from,
+          to: req.to,
+          amount: req.amount,
+          message: `تمت الموافقة على طلب سحب بمبلغ ${req.amount} ر.س في Rezo Bank`
         });
       } else {
-        state.history.push({
+        const ev = {
           type: "withdraw-rejected",
           from: req.from,
           to: req.to,
           amount: req.amount,
           createdAt: req.createdAt,
           resolvedAt: req.resolvedAt
+        };
+        state.history.push(ev);
+
+        await sendWhatsappNotification("withdraw-rejected", {
+          from: req.from,
+          to: req.to,
+          amount: req.amount,
+          message: `تم رفض طلب سحب بمبلغ ${req.amount} ر.س في Rezo Bank`
         });
       }
 
       state.totals.lastUpdated = new Date().toISOString();
 
-      saveState();
+      saveStateLocal();
+      await syncStateToServer(req.status, req);
       updateDashboard();
     }
 
@@ -1728,14 +1871,15 @@
       loginPin.focus();
     }
 
-    document.addEventListener("DOMContentLoaded", () => {
-      loadState();
+    document.addEventListener("DOMContentLoaded", async () => {
+      loadStateLocal();
 
       const lastUser = loadLastUser();
       if (lastUser) {
         currentUser = lastUser;
       }
 
+      await syncStateFromServer();
       updateDashboard();
 
       const loginBtn = document.getElementById("loginBtn");
