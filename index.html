@@ -1,0 +1,1782 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <title>Rezo Bank | ريزو بنك</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Rezo Bank - بنك ادخاري مشترك بين عبدالعزيز وريم لإدارة الادخار والسحب بالموافقة المزدوجة." />
+
+  <style>
+    :root {
+      --bg-gradient-1: #020617;
+      --bg-gradient-2: #0f172a;
+      --accent: #38bdf8;
+      --accent-soft: #0ea5e9;
+      --accent-strong: #22c55e;
+      --danger: #ef4444;
+      --card-bg: rgba(15,23,42,0.92);
+      --card-border: rgba(148,163,184,0.25);
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --text-muted: #6b7280;
+      --radius-xl: 18px;
+      --transition-fast: 0.15s ease-out;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        sans-serif;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text-main);
+      background:
+        radial-gradient(circle at 10% 20%, #0f172a 0, transparent 50%),
+        radial-gradient(circle at 80% 80%, #22c55e22 0, transparent 55%),
+        linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    /* خلفية متحركة خفيفة */
+    .animated-orbit {
+      position: fixed;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .animated-orbit span {
+      position: absolute;
+      border-radius: 999px;
+      background: radial-gradient(circle, #22c55e33, transparent 60%);
+      width: 220px;
+      height: 220px;
+      filter: blur(2px);
+      animation: float 16s infinite alternate ease-in-out;
+    }
+
+    .animated-orbit span:nth-child(1) {
+      top: -60px;
+      right: -40px;
+    }
+
+    .animated-orbit span:nth-child(2) {
+      bottom: -80px;
+      left: -40px;
+      animation-delay: 4s;
+    }
+
+    .animated-orbit span:nth-child(3) {
+      top: 40%;
+      left: 10%;
+      animation-delay: 8s;
+    }
+
+    @keyframes float {
+      0% { transform: translate3d(0,0,0) scale(1); opacity: .45; }
+      100% { transform: translate3d(30px,-20px,0) scale(1.15); opacity: .8; }
+    }
+
+    .app-shell {
+      width: 100%;
+      max-width: 1120px;
+      background: linear-gradient(
+          135deg,
+          rgba(15,23,42,0.98),
+          rgba(15,23,42,0.94)
+        );
+      border-radius: 28px;
+      border: 1px solid rgba(148,163,184,0.35);
+      box-shadow:
+        0 24px 80px rgba(15,23,42,0.9),
+        0 0 0 1px rgba(15,23,42,0.9);
+      overflow: hidden;
+      backdrop-filter: blur(18px);
+      position: relative;
+    }
+
+    .app-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 26px;
+      border-bottom: 1px solid rgba(148,163,184,0.25);
+      background: radial-gradient(circle at 0 0, #0ea5e933, transparent 55%);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .brand-logo {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e5e7eb, #0f172a);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 20px;
+      letter-spacing: 1px;
+      color: #0f172a;
+      border: 2px solid rgba(148,163,184,0.55);
+      box-shadow: 0 0 0 1px rgba(15,23,42,0.9);
+      overflow: hidden;
+    }
+
+    .brand-text {
+      display: flex;
+      flex-direction: column;
+      gap: 1px;
+    }
+
+    .brand-title {
+      font-size: 18px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .brand-subtitle {
+      font-size: 12px;
+      color: var(--text-soft);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-soft);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 999px;
+      background: #22c55e;
+      box-shadow: 0 0 0 0 rgba(34,197,94,0.4);
+      animation: pulse 1.6s infinite;
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 0 0 rgba(34,197,94,0.6); }
+      100% { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+    }
+
+    .user-indicator {
+      font-size: 13px;
+      color: var(--text-soft);
+    }
+
+    .user-indicator span {
+      font-weight: 600;
+      color: #e5e7eb;
+    }
+
+    .main-layout {
+      display: grid;
+      grid-template-columns: minmax(0, 2.2fr) minmax(280px, 1.2fr);
+      gap: 18px;
+      padding: 20px 22px 22px;
+    }
+
+    @media (max-width: 900px) {
+      .main-layout {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-xl);
+      border: 1px solid var(--card-border);
+      padding: 16px 16px 14px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 -10%, #0ea5e91a, transparent 55%);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity var(--transition-fast);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+
+    .card-title {
+      font-size: 14px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card-title-accent {
+      padding: 4px 9px;
+      border-radius: 999px;
+      background: linear-gradient(135deg,#22c55e33,#22c55e11);
+      border: 1px solid rgba(34,197,94,0.55);
+      font-size: 11px;
+      font-weight: 600;
+      color: #bbf7d0;
+    }
+
+    .card-body {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .pill-tabs {
+      display: inline-flex;
+      padding: 2px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(75,85,99,0.8);
+      gap: 4px;
+    }
+
+    .pill-tab {
+      border-radius: 999px;
+      padding: 6px 10px;
+      font-size: 12px;
+      border: none;
+      background: transparent;
+      color: var(--text-soft);
+      cursor: pointer;
+      transition: background var(--transition-fast), color var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    .pill-tab.active {
+      background: linear-gradient(135deg, var(--accent-soft), var(--accent));
+      color: #0f172a;
+      font-weight: 600;
+      transform: translateY(-1px);
+    }
+
+    .pill-tab:not(.active):hover {
+      background: rgba(31,41,55,0.85);
+      color: #e5e7eb;
+    }
+
+    .hero-balance {
+      display: grid;
+      grid-template-columns: 1.4fr 1.4fr 1.2fr;
+      gap: 12px;
+    }
+
+    @media (max-width: 720px) {
+      .hero-balance {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .metric {
+      border-radius: 16px;
+      background: radial-gradient(circle at 0 0, #0ea5e933, transparent 60%);
+      border: 1px solid rgba(148,163,184,0.38);
+      padding: 10px 12px 9px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric small {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .metric-main-value {
+      font-size: 20px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .currency {
+      font-size: 12px;
+      color: var(--text-soft);
+      margin-right: 4px;
+    }
+
+    .metric-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .metric-tag {
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.45);
+      font-size: 10px;
+    }
+
+    .metric-badge {
+      position: absolute;
+      inset-inline-end: 8px;
+      inset-block-end: 8px;
+      font-size: 10px;
+      padding: 3px 7px;
+      border-radius: 999px;
+      background: rgba(15,23,42,0.9);
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--accent-strong);
+    }
+
+    .metric-icon {
+      position: absolute;
+      inset-inline-start: -16px;
+      inset-block-end: -18px;
+      width: 80px;
+      height: 80px;
+      opacity: 0.08;
+    }
+
+    .metric-icon svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .metric--reem {
+      background: radial-gradient(circle at 100% 0,#22c55e33,transparent 60%);
+    }
+
+    .metric--abdulaziz {
+      background: radial-gradient(circle at 0 0,#0ea5e93b,transparent 60%);
+    }
+
+    .animated-title {
+      font-size: 15px;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(90deg,#e5e7eb,#38bdf8,#a855f7,#e5e7eb);
+      background-size: 250% 100%;
+      -webkit-background-clip: text;
+      color: transparent;
+      animation: shimmer 10s linear infinite;
+      margin-bottom: 4px;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 0 0; }
+      50% { background-position: 120% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .muted-caption {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .forms-grid {
+      display: grid;
+      grid-template-columns: minmax(0,1.1fr) minmax(0,1.1fr);
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 900px) {
+      .forms-grid {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .form-card {
+      background: rgba(15,23,42,0.9);
+      border-radius: 14px;
+      border: 1px solid rgba(55,65,81,0.9);
+      padding: 10px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e7eb;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .form-title span {
+      font-size: 11px;
+      color: var(--text-soft);
+      font-weight: 400;
+    }
+
+    label {
+      font-size: 11px;
+      color: var(--text-soft);
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    input[type="number"],
+    input[type="password"],
+    select {
+      width: 100%;
+      padding: 7px 9px;
+      border-radius: 9px;
+      border: 1px solid rgba(75,85,99,0.9);
+      background: rgba(15,23,42,0.9);
+      color: var(--text-main);
+      font-size: 13px;
+      outline: none;
+      transition: border-color var(--transition-fast),
+        box-shadow var(--transition-fast),
+        transform var(--transition-fast);
+    }
+
+    input::placeholder {
+      color: rgba(148,163,184,0.9);
+    }
+
+    input:focus,
+    select:focus {
+      border-color: var(--accent-soft);
+      box-shadow: 0 0 0 1px rgba(56,189,248,0.35);
+      transform: translateY(-0.5px);
+    }
+
+    .btn {
+      border-radius: 999px;
+      border: none;
+      padding: 7px 10px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: transform var(--transition-fast),
+        box-shadow var(--transition-fast),
+        background var(--transition-fast),
+        opacity var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg,var(--accent-soft),var(--accent));
+      color: #0f172a;
+      box-shadow: 0 8px 20px rgba(56,189,248,0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(56,189,248,0.45);
+    }
+
+    .btn-ghost {
+      background: rgba(15,23,42,0.9);
+      color: var(--text-soft);
+      border: 1px solid rgba(75,85,99,0.9);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(31,41,55,0.9);
+      color: #e5e7eb;
+    }
+
+    .btn-danger {
+      background: linear-gradient(135deg,#ef4444,#f97373);
+      color: #0f172a;
+    }
+
+    .btn-sm {
+      padding: 4px 7px;
+      font-size: 11px;
+    }
+
+    .btn-full {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .inline-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    .hint {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .list {
+      margin-top: 8px;
+      max-height: 230px;
+      overflow: auto;
+      padding-right: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .list::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .list::-webkit-scrollbar-thumb {
+      background: rgba(75,85,99,0.9);
+      border-radius: 99px;
+    }
+
+    .request-item {
+      border-radius: 12px;
+      border: 1px solid rgba(55,65,81,0.95);
+      background: rgba(15,23,42,0.96);
+      padding: 7px 9px;
+      display: grid;
+      grid-template-columns: minmax(0,1.3fr) minmax(0,1.2fr);
+      gap: 6px;
+      font-size: 11px;
+    }
+
+    @media (max-width: 720px) {
+      .request-item {
+        grid-template-columns: minmax(0,1fr);
+      }
+    }
+
+    .request-main-line {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .request-amount {
+      font-weight: 600;
+      font-size: 13px;
+    }
+
+    .status-pill {
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 10px;
+      border: 1px solid rgba(75,85,99,0.95);
+    }
+
+    .status-pill.pending {
+      border-color: #facc15;
+      color: #facc15;
+    }
+
+    .status-pill.approved {
+      border-color: #22c55e;
+      color: #86efac;
+    }
+
+    .status-pill.rejected {
+      border-color: #ef4444;
+      color: #fecaca;
+    }
+
+    .request-meta {
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .no-data {
+      font-size: 11px;
+      color: var(--text-muted);
+      text-align: center;
+      padding: 12px 4px 2px;
+    }
+
+    .login-overlay {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 0 0,#0ea5e933,transparent 60%),
+        radial-gradient(circle at 100% 100%,#22c55e33,transparent 60%),
+        rgba(15,23,42,0.98);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 380px;
+      background: rgba(15,23,42,0.96);
+      border-radius: 22px;
+      border: 1px solid rgba(148,163,184,0.55);
+      padding: 18px 18px 16px;
+      box-shadow: 0 20px 50px rgba(15,23,42,0.9);
+      animation: pop-in 0.4s ease-out;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .login-card::before {
+      content: "";
+      position: absolute;
+      inset-inline: -20%;
+      inset-block-end: -40%;
+      height: 110px;
+      background: radial-gradient(circle,#0ea5e922,transparent 70%);
+      opacity: 1;
+      pointer-events: none;
+    }
+
+    @keyframes pop-in {
+      0% { transform: translateY(16px) scale(.96); opacity: 0; }
+      100% { transform: translateY(0) scale(1); opacity: 1; }
+    }
+
+    .login-title {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .login-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 12px;
+    }
+
+    .login-form-group {
+      margin-bottom: 10px;
+    }
+
+    .login-footer {
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    .login-footer code {
+      font-size: 11px;
+      background: rgba(15,23,42,0.9);
+      border-radius: 999px;
+      padding: 3px 7px;
+      border: 1px solid rgba(55,65,81,0.9);
+      direction: ltr;
+    }
+
+    .error-message {
+      font-size: 11px;
+      color: #fecaca;
+      background: rgba(127,29,29,0.7);
+      border-radius: 10px;
+      padding: 6px 8px;
+      border: 1px solid rgba(248,113,113,0.8);
+      margin-bottom: 6px;
+      display: none;
+    }
+
+    .profile-widget {
+      border-radius: 16px;
+      background: radial-gradient(circle at 0 0,#0ea5e933,transparent 60%);
+      border: 1px solid rgba(148,163,184,0.55);
+      padding: 12px 12px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .profile-main {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 999px;
+      border: 2px solid rgba(148,163,184,0.7);
+      background: #020617 url("images/abdulaziz.jpg") center/cover no-repeat;
+      flex-shrink: 0;
+    }
+
+    .avatar--reem {
+      background-image: url("images/reem.jpg");
+    }
+
+    .avatar-fallback {
+      width: 100%;
+      height: 100%;
+      border-radius: inherit;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 18px;
+      background: radial-gradient(circle at 30% 20%,#e5e7eb,#020617);
+      color: #020617;
+    }
+
+    .profile-info-main {
+      flex: 1;
+    }
+
+    .profile-name {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    .profile-role {
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .profile-badges {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .badge {
+      font-size: 10px;
+      padding: 3px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.5);
+      color: var(--text-soft);
+    }
+
+    .badge.accent {
+      border-color: rgba(56,189,248,0.7);
+      color: #bae6fd;
+      background: radial-gradient(circle at 0 0,#0ea5e922,transparent 70%);
+    }
+
+    .profile-meta-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      color: var(--text-soft);
+    }
+
+    .profile-meta-row span strong {
+      color: #e5e7eb;
+      font-weight: 600;
+    }
+
+    .tiny-pill {
+      padding: 2px 7px;
+      border-radius: 999px;
+      border: 1px solid rgba(148,163,184,0.6);
+      font-size: 10px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .mini-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: #22c55e;
+    }
+
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+
+    .history-list {
+      border-radius: 14px;
+      border: 1px solid rgba(55,65,81,0.96);
+      background: rgba(15,23,42,0.96);
+      padding: 7px 9px;
+      max-height: 210px;
+      overflow: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .history-item {
+      display: flex;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 11px;
+      padding: 4px 0;
+      border-bottom: 1px dashed rgba(55,65,81,0.95);
+    }
+
+    .history-item:last-child {
+      border-bottom: none;
+    }
+
+    .history-main {
+      color: #e5e7eb;
+    }
+
+    .history-meta {
+      color: var(--text-muted);
+      text-align: left;
+      direction: ltr;
+    }
+
+    .fade-in {
+      animation: fade-in 0.5s ease-out;
+    }
+
+    @keyframes fade-in {
+      0% { opacity: 0; transform: translateY(4px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .success-message {
+      font-size: 11px;
+      color: #bbf7d0;
+      background: rgba(22,101,52,0.6);
+      border-radius: 10px;
+      padding: 5px 8px;
+      border: 1px solid rgba(74,222,128,0.8);
+      margin-top: 4px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="animated-orbit">
+    <span></span><span></span><span></span>
+  </div>
+
+  <div class="app-shell">
+    <!-- شاشة الدخول برقم سري -->
+    <div class="login-overlay" id="loginOverlay">
+      <div class="login-card">
+        <div class="login-title">
+          🔐 دخول آمن إلى
+          <span style="color:#38bdf8;">Rezo Bank</span>
+        </div>
+        <div class="login-sub">
+          اختر صاحب الحساب وأدخل الرقم السري للدخول إلى لوحة التحكم المشتركة.
+        </div>
+
+        <div id="loginError" class="error-message"></div>
+
+        <div class="login-form-group">
+          <label for="loginUser">صاحب الدخول</label>
+          <select id="loginUser">
+            <option value="abdulaziz">عبدالعزيز</option>
+            <option value="reem">ريم</option>
+          </select>
+        </div>
+
+        <div class="login-form-group">
+          <label for="loginPin">الرقم السري (PIN)</label>
+          <input
+            type="password"
+            id="loginPin"
+            maxlength="6"
+            inputmode="numeric"
+            placeholder="أدخل الرقم السري المكوّن من 4 أرقام"
+          />
+        </div>
+
+        <button id="loginBtn" class="btn btn-primary btn-full">
+          دخول إلى ريزو بنك
+        </button>
+
+        <div class="login-footer">
+          <span>هذا الموقع تجريبي ومحلي فقط، بدون خادم.</span>
+          <!-- يمكنك تغيير الأكواد في الأسفل عند الحاجة -->
+          <code>AZ: 1122 · Reem: 3344</code>
+        </div>
+      </div>
+    </div>
+
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-logo" title="Rezo Bank">
+          RB
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">REZO.BANK</div>
+          <div class="brand-subtitle">بنك ادخاري مشترك بين عبدالعزيز وريم</div>
+        </div>
+      </div>
+
+      <div class="header-right">
+        <div class="tag">
+          <span class="pulse-dot"></span>
+          ادخار مشترك · موافقة مزدوجة
+        </div>
+        <div class="user-indicator">
+          المستخدم الحالي:
+          <span id="currentUserLabel">—</span>
+        </div>
+      </div>
+    </header>
+
+    <main class="main-layout">
+      <!-- العمود الرئيسي -->
+      <section class="card fade-in">
+        <div class="card-header">
+          <div>
+            <div class="animated-title">لوحة التحكم الرئيسية · Rezo Bank</div>
+            <div class="muted-caption">
+              ادخروا معًا، واطلبوا السحب مع موافقة الطرف الآخر بكل شفافية.
+            </div>
+          </div>
+
+          <div>
+            <div class="pill-tabs" id="viewTabs">
+              <button class="pill-tab active" data-view="overview">
+                الملخص
+              </button>
+              <button class="pill-tab" data-view="requests">
+                طلبات السحب
+              </button>
+              <button class="pill-tab" data-view="history">
+                السجل
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <!-- بطاقات الملخص -->
+          <div id="overviewView">
+            <div class="hero-balance">
+              <!-- إجمالي الرصيد -->
+              <div class="metric">
+                <small>إجمالي الرصيد المشترك الحالي</small>
+                <div class="metric-main-value">
+                  <span id="totalBalance">0</span>
+                  <span class="currency">ر.س</span>
+                </div>
+                <div class="metric-sub">
+                  <span>مجموع الإيداعات - السحوبات المعتمدة</span>
+                  <span class="metric-tag">
+                    آخر تحديث:
+                    <span id="lastUpdatedLabel">—</span>
+                  </span>
+                </div>
+                <div class="metric-badge">
+                  <span>حالة الحساب · نشط</span>
+                </div>
+                <div class="metric-icon">
+                  <svg viewBox="0 0 64 64" fill="none">
+                    <path
+                      d="M8 24L32 8l24 16v4H8v-4Z"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M14 28h36v20a2 2 0 0 1-2 2H16a2 2 0 0 1-2-2V28Z"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linejoin="round"
+                    />
+                    <path
+                      d="M24 36h16M24 42h10"
+                      stroke="currentColor"
+                      stroke-width="2.2"
+                      stroke-linecap="round"
+                    />
+                  </svg>
+                </div>
+              </div>
+
+              <!-- عبدالعزيز -->
+              <div class="metric metric--abdulaziz">
+                <small>إجمالي إيداع عبدالعزيز</small>
+                <div class="metric-main-value">
+                  <span id="azDeposits">0</span>
+                  <span class="currency">ر.س</span>
+                </div>
+                <div class="metric-sub">
+                  <span>
+                    مساهمته الحالية في الرصيد:
+                    <strong id="azShare">0 ر.س</strong>
+                  </span>
+                  <span class="metric-tag">
+                    نسبة: <span id="azPercent">0%</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- ريم -->
+              <div class="metric metric--reem">
+                <small>إجمالي إيداع ريم</small>
+                <div class="metric-main-value">
+                  <span id="reemDeposits">0</span>
+                  <span class="currency">ر.س</span>
+                </div>
+                <div class="metric-sub">
+                  <span>
+                    مساهمتها الحالية في الرصيد:
+                    <strong id="reemShare">0 ر.س</strong>
+                  </span>
+                  <span class="metric-tag">
+                    نسبة: <span id="reemPercent">0%</span>
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- النماذج -->
+            <div class="forms-grid">
+              <!-- نموذج الإيداع -->
+              <div class="form-card">
+                <div class="form-title">
+                  إيداع جديد
+                  <span>يُسجّل باسم المستخدم الحالي</span>
+                </div>
+                <div>
+                  <label for="depositAmount">المبلغ المراد إيداعه</label>
+                  <input
+                    type="number"
+                    id="depositAmount"
+                    min="1"
+                    step="1"
+                    placeholder="مثال: 500"
+                  />
+                  <div class="hint">
+                    يتم إضافة الإيداع إلى إجمالي مساهمة صاحب الحساب الحالي.
+                  </div>
+                </div>
+                <button id="depositBtn" class="btn btn-primary btn-full">
+                  💰 تأكيد الإيداع
+                </button>
+                <div id="depositSuccess" class="success-message">
+                  ✅ تم تسجيل الإيداع بنجاح.
+                </div>
+              </div>
+
+              <!-- نموذج طلب السحب -->
+              <div class="form-card">
+                <div class="form-title">
+                  طلب سحب
+                  <span>يتطلّب موافقة الطرف الآخر</span>
+                </div>
+                <div>
+                  <label for="withdrawAmount">المبلغ المراد سحبه</label>
+                  <input
+                    type="number"
+                    id="withdrawAmount"
+                    min="1"
+                    step="1"
+                    placeholder="مثال: 300"
+                  />
+                </div>
+                <div>
+                  <label for="withdrawReason">سبب السحب (اختياري)</label>
+                  <input
+                    type="text"
+                    id="withdrawReason"
+                    placeholder="مثال: رحلة عائلية، تسديد فاتورة..."
+                  />
+                </div>
+                <button id="withdrawBtn" class="btn btn-ghost btn-full">
+                  📤 إرسال طلب سحب للموافقة
+                </button>
+                <div class="hint">
+                  لن يُخصم المبلغ إلا بعد موافقة الطرف الآخر.
+                </div>
+                <div id="withdrawSuccess" class="success-message">
+                  ✅ تم إرسال طلب السحب للطرف الآخر.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- تبويب طلبات السحب -->
+          <div id="requestsView" style="display:none;">
+            <div class="section-title">طلبات السحب بانتظار الموافقة</div>
+            <div class="hint">
+              يمكنك هنا رؤية الطلبات التي تحتاج موافقتك أو الطلبات التي أرسلتها.
+            </div>
+            <div class="list" id="requestsList"></div>
+          </div>
+
+          <!-- تبويب سجل الحركات -->
+          <div id="historyView" style="display:none;">
+            <div class="section-title">سجل الإيداعات والسحوبات</div>
+            <div class="history-list" id="historyList"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- العمود الجانبي -->
+      <aside class="card fade-in" style="animation-delay:.05s;">
+        <div class="card-header">
+          <div class="card-title">
+            الملف الشخصي
+            <span class="card-title-accent">حسابات Rezo Bank</span>
+          </div>
+        </div>
+
+        <div class="card-body">
+          <div class="profile-widget" id="profileWidget">
+            <div class="profile-main">
+              <div class="avatar" id="avatar">
+                <!-- في حال عدم وجود صورة، يظهر الحرف الأول -->
+                <div class="avatar-fallback" id="avatarFallback">A</div>
+              </div>
+
+              <div class="profile-info-main">
+                <div class="profile-name" id="profileName">—</div>
+                <div class="profile-role">
+                  صاحب الحساب · بنك ادخاري مشترك
+                </div>
+                <div class="profile-badges">
+                  <span class="badge accent">موافقة مزدوجة</span>
+                  <span class="badge">سجل مشترك واضح</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="profile-meta-row">
+              <span>مجموع إيداعك:
+                <strong id="profileDeposits">0 ر.س</strong></span>
+              <span class="tiny-pill">
+                <span class="mini-dot"></span>
+                رصيدك الحالي:
+                <span id="profileShare">0 ر.س</span>
+              </span>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="section-title">تبديل المستخدم</div>
+            <div class="inline-actions">
+              <button
+                class="btn btn-sm btn-ghost"
+                id="switchToAz"
+              >
+                حساب عبدالعزيز
+              </button>
+              <button
+                class="btn btn-sm btn-ghost"
+                id="switchToReem"
+              >
+                حساب ريم
+              </button>
+            </div>
+            <div class="hint">
+              عند التبديل ستحتاج إدخال الرقم السري من جديد.  
+              ينصح باستخدام هذا الموقع على جهاز شخصي فقط.
+            </div>
+          </div>
+
+          <div style="margin-top:12px;">
+            <div class="section-title">ملاحظات الأمان</div>
+            <div class="hint">
+              • هذا الموقع يعمل محليًا فقط ويخزن البيانات في المتصفح (LocalStorage).  
+              • لا يُعتبر نظامًا بنكيًا حقيقيًا، بل أداة تنظيم ادخار شخصية بينكما.
+            </div>
+          </div>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    /*
+      إعداد المستخدمين والـ PIN (تستطيع تعديلها كما تشاء)
+    */
+    const USERS = {
+      abdulaziz: {
+        id: "abdulaziz",
+        name: "عبدالعزيز",
+        pin: "1122",
+        avatarFallback: "ع",
+        avatarClass: "" // صورة عبدالعزيز الافتراضية داخل avatar
+      },
+      reem: {
+        id: "reem",
+        name: "ريم",
+        pin: "3344",
+        avatarFallback: "ر",
+        avatarClass: "avatar--reem"
+      }
+    };
+
+    const STORAGE_KEY = "rezoBankData_v1";
+    const STORAGE_USER_KEY = "rezoBankLastUser_v1";
+
+    let state = {
+      totals: {
+        azDeposits: 0,
+        reemDeposits: 0,
+        totalApprovedWithdrawals: 0,
+        lastUpdated: null
+      },
+      history: [], // [{type: 'deposit'|'withdraw-request'|'withdraw-approved', ...}]
+      requests: [] // [{id, from, to, amount, reason, status, createdAt, resolvedAt}]
+    };
+
+    let currentUser = null;
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (raw) {
+          const parsed = JSON.parse(raw);
+          state = {
+            totals: Object.assign(
+              {
+                azDeposits: 0,
+                reemDeposits: 0,
+                totalApprovedWithdrawals: 0,
+                lastUpdated: null
+              },
+              parsed.totals || {}
+            ),
+            history: parsed.history || [],
+            requests: parsed.requests || []
+          };
+        }
+      } catch (e) {
+        console.error("Failed to load state", e);
+      }
+    }
+
+    function saveState() {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {
+        console.error("Failed to save state", e);
+      }
+    }
+
+    function saveCurrentUser() {
+      if (currentUser) {
+        localStorage.setItem(STORAGE_USER_KEY, currentUser.id);
+      }
+    }
+
+    function loadLastUser() {
+      const id = localStorage.getItem(STORAGE_USER_KEY);
+      if (id && USERS[id]) return USERS[id];
+      return null;
+    }
+
+    function formatAmount(num) {
+      return Number(num || 0).toLocaleString("ar-EG", {
+        maximumFractionDigits: 2
+      });
+    }
+
+    function formatDateTime(ts) {
+      if (!ts) return "—";
+      const d = new Date(ts);
+      return d.toLocaleString("ar-SA", {
+        dateStyle: "short",
+        timeStyle: "short"
+      });
+    }
+
+    function updateDashboard() {
+      const {
+        azDeposits,
+        reemDeposits,
+        totalApprovedWithdrawals,
+        lastUpdated
+      } = state.totals;
+
+      const totalDeposits = azDeposits + reemDeposits;
+      const totalBalance = Math.max(totalDeposits - totalApprovedWithdrawals, 0);
+
+      const azPercent = totalDeposits ? (azDeposits / totalDeposits) * 100 : 0;
+      const reemPercent = totalDeposits ? (reemDeposits / totalDeposits) * 100 : 0;
+
+      const azShare = (azPercent / 100) * totalBalance;
+      const reemShare = (reemPercent / 100) * totalBalance;
+
+      document.getElementById("totalBalance").textContent = formatAmount(totalBalance);
+      document.getElementById("azDeposits").textContent = formatAmount(azDeposits);
+      document.getElementById("reemDeposits").textContent = formatAmount(reemDeposits);
+      document.getElementById("azShare").textContent = formatAmount(azShare) + " ر.س";
+      document.getElementById("reemShare").textContent = formatAmount(reemShare) + " ر.س";
+      document.getElementById("azPercent").textContent = azPercent.toFixed(1) + "%";
+      document.getElementById("reemPercent").textContent = reemPercent.toFixed(1) + "%";
+      document.getElementById("lastUpdatedLabel").textContent = lastUpdated
+        ? formatDateTime(lastUpdated)
+        : "—";
+
+      updateProfileWidget(azShare, reemShare);
+      renderRequestsList();
+      renderHistoryList();
+    }
+
+    function updateProfileWidget(azShare, reemShare) {
+      if (!currentUser) return;
+
+      const profileNameEl = document.getElementById("profileName");
+      const profileDepositsEl = document.getElementById("profileDeposits");
+      const profileShareEl = document.getElementById("profileShare");
+      const avatar = document.getElementById("avatar");
+      const avatarFallback = document.getElementById("avatarFallback");
+
+      document.getElementById("currentUserLabel").textContent = currentUser.name;
+
+      profileNameEl.textContent =
+        currentUser.name + (currentUser.id === "abdulaziz" ? " (صاحب الحساب)" : "");
+
+      let deposits = 0;
+      let share = 0;
+      if (currentUser.id === "abdulaziz") {
+        deposits = state.totals.azDeposits;
+        share = azShare;
+      } else {
+        deposits = state.totals.reemDeposits;
+        share = reemShare;
+      }
+
+      profileDepositsEl.textContent = formatAmount(deposits) + " ر.س";
+      profileShareEl.textContent = formatAmount(share) + " ر.س";
+
+      avatar.classList.remove("avatar--reem");
+      if (currentUser.avatarClass) {
+        avatar.classList.add(currentUser.avatarClass);
+      }
+
+      avatarFallback.textContent = currentUser.avatarFallback || currentUser.name[0];
+    }
+
+    function renderRequestsList() {
+      const list = document.getElementById("requestsList");
+      list.innerHTML = "";
+
+      if (!state.requests.length) {
+        list.innerHTML =
+          '<div class="no-data">لا توجد طلبات سحب حتى الآن.</div>';
+        return;
+      }
+
+      const currentId = currentUser ? currentUser.id : null;
+
+      const sorted = [...state.requests].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      let hasAny = false;
+
+      sorted.forEach((req) => {
+        const isMine = req.from === currentId;
+        const isForMe = req.to === currentId;
+
+        const item = document.createElement("div");
+        item.className = "request-item";
+
+        const statusClass = req.status;
+        const statusLabel =
+          req.status === "pending"
+            ? "بانتظار الموافقة"
+            : req.status === "approved"
+            ? "تمت الموافقة"
+            : "تم الرفض";
+
+        item.innerHTML = `
+          <div>
+            <div class="request-main-line">
+              <span>
+                ${isMine ? "طلبك للسحب" : "طلب سحب منك"}
+                ·
+                <span class="request-amount">${formatAmount(
+                  req.amount
+                )} ر.س</span>
+              </span>
+              <span class="status-pill ${statusClass}">
+                ${statusLabel}
+              </span>
+            </div>
+            <div class="request-meta">
+              <span>من: ${
+                req.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
+              }</span>
+              <span>إلى: ${
+                req.to === "abdulaziz" ? "عبدالعزيز" : "ريم"
+              }</span>
+              <span>بتاريخ: ${formatDateTime(req.createdAt)}</span>
+            </div>
+            ${
+              req.reason
+                ? `<div class="hint">السبب: ${req.reason}</div>`
+                : ""
+            }
+          </div>
+          <div style="display:flex;align-items:flex-start;justify-content:flex-end;gap:6px;">
+            ${
+              req.status === "pending" && isForMe
+                ? `
+              <button class="btn btn-sm btn-primary" data-action="approve" data-id="${req.id}">
+                ✅ موافقة
+              </button>
+              <button class="btn btn-sm btn-danger" data-action="reject" data-id="${req.id}">
+                ❌ رفض
+              </button>
+              `
+                : ""
+            }
+          </div>
+        `;
+
+        list.appendChild(item);
+        hasAny = true;
+      });
+
+      if (!hasAny) {
+        list.innerHTML =
+          '<div class="no-data">لا توجد طلبات مرتبطة بالمستخدم الحالي.</div>';
+      }
+    }
+
+    function renderHistoryList() {
+      const list = document.getElementById("historyList");
+      list.innerHTML = "";
+
+      if (!state.history.length) {
+        list.innerHTML =
+          '<div class="no-data">لم يتم تسجيل أي حركات حتى الآن.</div>';
+        return;
+      }
+
+      const sorted = [...state.history].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+
+      sorted.forEach((ev) => {
+        const item = document.createElement("div");
+        item.className = "history-item";
+
+        let mainLabel = "";
+        let meta = "";
+
+        if (ev.type === "deposit") {
+          mainLabel = `إيداع بواسطة ${
+            ev.userId === "abdulaziz" ? "عبدالعزيز" : "ريم"
+          } · ${formatAmount(ev.amount)} ر.س`;
+          meta = `DEP · ${formatDateTime(ev.createdAt)}`;
+        } else if (ev.type === "withdraw-request") {
+          mainLabel = `طلب سحب من ${
+            ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
+          } إلى ${ev.to === "abdulaziz" ? "عبدالعزيز" : "ريم"} · ${formatAmount(
+            ev.amount
+          )} ر.س`;
+          meta = `REQ · ${formatDateTime(ev.createdAt)}`;
+        } else if (ev.type === "withdraw-approved") {
+          mainLabel = `سحب معتمد · ${formatAmount(ev.amount)} ر.س · طلب ${
+            ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
+          } وموافقة ${
+            ev.to === "abdulaziz" ? "عبدالعزيز" : "ريم"
+          }`;
+          meta = `OK · ${formatDateTime(ev.resolvedAt || ev.createdAt)}`;
+        } else if (ev.type === "withdraw-rejected") {
+          mainLabel = `رفض طلب سحب · ${formatAmount(ev.amount)} ر.س · طلب ${
+            ev.from === "abdulaziz" ? "عبدالعزيز" : "ريم"
+          }`;
+          meta = `X · ${formatDateTime(ev.resolvedAt || ev.createdAt)}`;
+        }
+
+        item.innerHTML = `
+          <div class="history-main">${mainLabel}</div>
+          <div class="history-meta">${meta}</div>
+        `;
+        list.appendChild(item);
+      });
+    }
+
+    function handleDeposit() {
+      if (!currentUser) return;
+      const input = document.getElementById("depositAmount");
+      const success = document.getElementById("depositSuccess");
+      const amount = Number(input.value);
+
+      success.style.display = "none";
+
+      if (!amount || amount <= 0) {
+        alert("الرجاء إدخال مبلغ إيداع صالح.");
+        return;
+      }
+
+      if (currentUser.id === "abdulaziz") {
+        state.totals.azDeposits += amount;
+      } else {
+        state.totals.reemDeposits += amount;
+      }
+
+      state.totals.lastUpdated = new Date().toISOString();
+
+      state.history.push({
+        type: "deposit",
+        userId: currentUser.id,
+        amount,
+        createdAt: new Date().toISOString()
+      });
+
+      saveState();
+      updateDashboard();
+
+      input.value = "";
+      success.style.display = "block";
+      setTimeout(() => (success.style.display = "none"), 2200);
+    }
+
+    function handleWithdrawRequest() {
+      if (!currentUser) return;
+      const inputAmount = document.getElementById("withdrawAmount");
+      const inputReason = document.getElementById("withdrawReason");
+      const success = document.getElementById("withdrawSuccess");
+
+      success.style.display = "none";
+
+      const amount = Number(inputAmount.value);
+      if (!amount || amount <= 0) {
+        alert("الرجاء إدخال مبلغ سحب صالح.");
+        return;
+      }
+
+      const totalDeposits =
+        state.totals.azDeposits + state.totals.reemDeposits;
+      const currentBalance = Math.max(
+        totalDeposits - state.totals.totalApprovedWithdrawals,
+        0
+      );
+
+      if (amount > currentBalance) {
+        alert("المبلغ المطلوب أكبر من الرصيد الحالي المشترك.");
+        return;
+      }
+
+      const to = currentUser.id === "abdulaziz" ? "reem" : "abdulaziz";
+
+      const req = {
+        id: "req_" + Date.now() + "_" + Math.floor(Math.random() * 9999),
+        from: currentUser.id,
+        to,
+        amount,
+        reason: inputReason.value.trim(),
+        status: "pending",
+        createdAt: new Date().toISOString(),
+        resolvedAt: null
+      };
+
+      state.requests.push(req);
+
+      state.history.push({
+        type: "withdraw-request",
+        from: req.from,
+        to: req.to,
+        amount: req.amount,
+        createdAt: req.createdAt
+      });
+
+      state.totals.lastUpdated = new Date().toISOString();
+
+      saveState();
+      updateDashboard();
+
+      inputAmount.value = "";
+      inputReason.value = "";
+      success.style.display = "block";
+      setTimeout(() => (success.style.display = "none"), 2200);
+    }
+
+    function handleRequestAction(id, action) {
+      const req = state.requests.find((r) => r.id === id);
+      if (!req || req.status !== "pending") return;
+
+      req.status = action === "approve" ? "approved" : "rejected";
+      req.resolvedAt = new Date().toISOString();
+
+      if (req.status === "approved") {
+        state.totals.totalApprovedWithdrawals += req.amount;
+
+        state.history.push({
+          type: "withdraw-approved",
+          from: req.from,
+          to: req.to,
+          amount: req.amount,
+          createdAt: req.createdAt,
+          resolvedAt: req.resolvedAt
+        });
+      } else {
+        state.history.push({
+          type: "withdraw-rejected",
+          from: req.from,
+          to: req.to,
+          amount: req.amount,
+          createdAt: req.createdAt,
+          resolvedAt: req.resolvedAt
+        });
+      }
+
+      state.totals.lastUpdated = new Date().toISOString();
+
+      saveState();
+      updateDashboard();
+    }
+
+    function setActiveView(view) {
+      const overview = document.getElementById("overviewView");
+      const requests = document.getElementById("requestsView");
+      const history = document.getElementById("historyView");
+
+      overview.style.display = view === "overview" ? "block" : "none";
+      requests.style.display = view === "requests" ? "block" : "none";
+      history.style.display = view === "history" ? "block" : "none";
+
+      document
+        .querySelectorAll("#viewTabs .pill-tab")
+        .forEach((btn) => {
+          btn.classList.toggle("active", btn.dataset.view === view);
+        });
+    }
+
+    function attemptLogin(selectedId, pin) {
+      const user = USERS[selectedId];
+      const errorBox = document.getElementById("loginError");
+
+      errorBox.style.display = "none";
+
+      if (!user) {
+        errorBox.textContent = "خطأ في اختيار المستخدم.";
+        errorBox.style.display = "block";
+        return null;
+      }
+
+      if (String(pin) !== String(user.pin)) {
+        errorBox.textContent = "الرقم السري غير صحيح. تأكد من إدخاله بشكل صحيح.";
+        errorBox.style.display = "block";
+        return null;
+      }
+
+      return user;
+    }
+
+    function onLoginSuccess(user) {
+      currentUser = user;
+      saveCurrentUser();
+      document.getElementById("loginOverlay").style.display = "none";
+      updateDashboard();
+    }
+
+    function showLoginFor(userId) {
+      const overlay = document.getElementById("loginOverlay");
+      const loginUserSelect = document.getElementById("loginUser");
+      const loginPin = document.getElementById("loginPin");
+      const errorBox = document.getElementById("loginError");
+
+      overlay.style.display = "flex";
+      errorBox.style.display = "none";
+      loginUserSelect.value = userId;
+      loginPin.value = "";
+      loginPin.focus();
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      loadState();
+
+      const lastUser = loadLastUser();
+      if (lastUser) {
+        currentUser = lastUser;
+      }
+
+      updateDashboard();
+
+      const loginBtn = document.getElementById("loginBtn");
+      const loginPin = document.getElementById("loginPin");
+      const loginUserSelect = document.getElementById("loginUser");
+
+      loginBtn.addEventListener("click", () => {
+        const selectedId = loginUserSelect.value;
+        const pin = loginPin.value;
+        const user = attemptLogin(selectedId, pin);
+        if (user) onLoginSuccess(user);
+      });
+
+      loginPin.addEventListener("keyup", (e) => {
+        if (e.key === "Enter") loginBtn.click();
+      });
+
+      document.getElementById("depositBtn").addEventListener("click", handleDeposit);
+      document.getElementById("withdrawBtn").addEventListener("click", handleWithdrawRequest);
+
+      document
+        .getElementById("requestsList")
+        .addEventListener("click", (e) => {
+          const button = e.target.closest("button[data-action]");
+          if (!button) return;
+          const id = button.getAttribute("data-id");
+          const action = button.getAttribute("data-action");
+          handleRequestAction(id, action);
+        });
+
+      document
+        .getElementById("switchToAz")
+        .addEventListener("click", () => showLoginFor("abdulaziz"));
+      document
+        .getElementById("switchToReem")
+        .addEventListener("click", () => showLoginFor("reem"));
+
+      document.querySelectorAll("#viewTabs .pill-tab").forEach((btn) => {
+        btn.addEventListener("click", () => setActiveView(btn.dataset.view));
+      });
+    });
+  </script>
+</body>
+</html>
