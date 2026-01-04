@@ -15,7 +15,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <title>قوافل الأخيار | رحلات العمرة الفاخرة من الرياض إلى مكة والمدينة بنقل VIP وإقامة راقية</title>
 <meta name="description" content="قوافل الأخيار شركة سعودية متخصصة في تنظيم رحلات العمرة من الرياض إلى مكة والمدينة. نقدم رحلات فاخرة تشمل النقل الحديث VIP والإقامة الفندقية المميزة بالقرب من الحرم، مع تنظيم متكامل لتيسير أداء مناسك العمرة براحة وأمان.">
 <meta name="keywords" content="قوافل الأخيار, رحلات العمرة, مناسك العمرة, رحلات الرياض مكة, رحلات مكة المدينة, نقل VIP, رحلات فاخرة, حجوزات فنادق, تنظيم رحلات, رحلات العمرة من الرياض, عمرة من الرياض, قوافل الأخيار للعمرة, رحلات دينية, رحلات مكة المكرمة, رحلات المدينة المنورة, قوافل الأخيار للرحلات">
-
 <meta name="author" content="قوافل الأخيار لتنظيم الرحلات">
 <meta name="robots" content="index,follow">
 <meta property="og:title" content="قوافل الأخيار لتنظيم الرحلات">
@@ -23,6 +22,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <meta property="og:image" content="images/hero1.webp">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
+
 <!-- Favicon -->
 <link rel="icon" type="image/png" href="images/favicon.png">
 <link rel="icon" type="image/x-icon" href="images/favicon.ico">
@@ -33,19 +33,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
 <style>
 :root{
-  /* لوحة الهوية (مقترحة من الصورة المرفقة) */
-  --primary:#3b3a90;      /* أزرق بنفسجي هادئ */
-  --forest:#1f271c;       /* أخضر داكن (للنصوص الثانوية لو لزم) */
-  --gray:#a9abad;         /* رمادي متوسط */
-  --gold:#E0B324;         /* ذهبي */
-  --gold2:#FFD46B;        /* ذهبي فاتح */
+  /* لوحة الهوية */
+  --primary:#3b3a90;
+  --forest:#1f271c;
+  --gray:#a9abad;
+  --gold:#E0B324;
+  --gold2:#FFD46B;
   --white:#ffffff;
 
   /* واجهة فاتحة */
-  --bg:#f6f7fb;           /* خلفية الموقع */
-  --card:#ffffff;         /* خلفيات البطاقات */
-  --text:#1d2125;         /* لون النص الرئيسي */
-  --muted:#5b6168;        /* نص ثانوي */
+  --bg:#f6f7fb;
+  --card:#ffffff;
+  --text:#1d2125;
+  --muted:#5b6168;
   --border:rgba(0,0,0,.08);
   --shadow:0 10px 30px rgba(0,0,0,.08);
 
@@ -68,7 +68,7 @@ header{
   backdrop-filter:blur(10px);box-shadow:0 6px 18px rgba(0,0,0,.06)
 }
 .header-wrap{
-  max-width:1200px;margin:auto;padding:1.1rem 1rem; /* ↑ تم زيادة الارتفاع */
+  max-width:1200px;margin:auto;padding:1.1rem 1rem;
   display:flex;justify-content:space-between;align-items:center
 }
 .brand{display:flex;align-items:center;gap:.9rem}
@@ -101,16 +101,15 @@ header{
   50%{transform:scale(1.09) translateY(-6px)}
   100%{transform:scale(1.06) translateY(0)}
 }
-/* طبقة خفيفة جداً للحفاظ على الوضوح دون تغميق */
 .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.15),rgba(255,255,255,.20));z-index:1}
 
-/* صندوق نصوص الهيرو: خلفية بيضاء شفافة + بلور لزيادة الوضوح */
+/* صندوق نصوص الهيرو */
 .hero-box{
   position:relative;z-index:2;text-align:center;padding:1rem;max-width:900px;width:min(92%,900px);
   display:flex;flex-direction:column;align-items:center;gap:.6rem
 }
 .hero-blur{
-  background:rgba(255,255,255,.40); /* خلفية شفافة مخففة */
+  background:rgba(255,255,255,.40);
   border:1px solid rgba(0,0,0,.06);box-shadow:var(--shadow);
   backdrop-filter:blur(6px);border-radius:14px;padding:1rem 1.2rem
 }
@@ -121,7 +120,7 @@ header{
 }
 .hero-title.entered{opacity:1;transform:none}
 .hero-line{
-  font-size:clamp(15px,2.1vw,20px);font-weight:700;color:#7a6a1a; /* ذهبي داكن للنص */
+  font-size:clamp(15px,2.1vw,20px);font-weight:700;color:#7a6a1a;
   min-height:30px;opacity:0;transition:opacity .45s ease
 }
 .hero-line.show{opacity:1}
@@ -143,6 +142,34 @@ header{
   to{transform:rotateY(360deg)}
 }
 @media(max-width:820px){.logo-spin{right:2vw;bottom:4vh;width:min(32vw,160px)}}
+
+/* === أزرار الهيرو (احجز الآن + المهرجان) === */
+.hero-actions{
+  display:flex;gap:.7rem;flex-wrap:wrap;justify-content:center;align-items:center;margin-top:.2rem
+}
+.btn-fest{
+  display:inline-flex;align-items:center;gap:.7rem;
+  padding:.8rem 1rem;border-radius:999px;border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.78);
+  backdrop-filter:blur(10px);
+  box-shadow:0 12px 28px rgba(0,0,0,.10);
+  cursor:pointer;
+  transition:.25s;
+  text-align:right;
+}
+.btn-fest:hover{transform:translateY(-3px);box-shadow:0 16px 34px rgba(0,0,0,.14)}
+.fest-ico{
+  width:44px;height:44px;border-radius:50%;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  font-size:22px;
+}
+.fest-txt strong{display:block;color:var(--primary);font-weight:900;line-height:1.2}
+.fest-txt small{display:block;color:var(--muted);font-weight:800;margin-top:2px;font-size:.85rem}
+@media(max-width:520px){
+  .btn-fest{width:100%;justify-content:center;text-align:center}
+  .fest-txt small{font-size:.8rem}
+}
 
 /* Sections */
 section.sec{max-width:1200px;margin:auto;padding:3rem 1rem;text-align:center}
@@ -203,25 +230,24 @@ section.sec{max-width:1200px;margin:auto;padding:3rem 1rem;text-align:center}
 @keyframes scrollLTR{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
 @media(max-width:820px){.track{animation-duration:9s}}
 
-/* Booking */
+/* Booking (تم تبسيطه: الاسم + عدد الأشخاص فقط) */
 .booking{
   background:var(--card);border:1px solid var(--border);padding:1.3rem;border-radius:14px;
   max-width:700px;margin:2rem auto;box-shadow:var(--shadow)
 }
-.booking form{display:grid;gap:.8rem;grid-template-columns:repeat(3,1fr)}
-.booking input,.booking select{
+.booking form{display:grid;gap:.8rem;grid-template-columns:1fr 1fr}
+.booking input{
   background:#fff;border:1px solid var(--border);color:var(--text);padding:.9rem;border-radius:10px
 }
 .booking button{
   grid-column:1/-1;padding:.95rem;border:none;border-radius:10px;font-weight:800;cursor:pointer;
   background:linear-gradient(90deg,var(--gold2),var(--gold));color:#111
 }
-@media(max-width:820px){.booking form{grid-template-columns:1fr 1fr}}
 @media(max-width:520px){.booking form{grid-template-columns:1fr}}
 
 /* تكبير أحجام الجوال */
 @media(max-width:600px){
-  .booking input,.booking select,.booking button{font-size:1rem;padding:1rem}
+  .booking input,.booking button{font-size:1rem;padding:1rem}
   .hero-box{gap:.5rem}
 }
 
@@ -244,7 +270,7 @@ footer .phones a{
 footer .phones a:hover{background:#eef0f3}
 footer img.mc{width:92px;height:auto;margin-top:.6rem}
 
-/* زر واتساب طافي */
+/* زر واتساب */
 .whatsapp{
   position:fixed;left:16px;bottom:16px;width:56px;height:56px;border-radius:50%;
   background:var(--whatsapp);display:grid;place-items:center;z-index:60;box-shadow:0 10px 26px rgba(0,0,0,.25);animation:pulse 2.2s infinite
@@ -268,8 +294,109 @@ footer img.mc{width:92px;height:auto;margin-top:.6rem}
 /* كشف عند التمرير */
 .reveal{opacity:0;transform:translateY(16px);transition:opacity .7s,transform .7s}
 .reveal.in{opacity:1;transform:none}
+
+/* ===== Festival Modal (صفحة هبوط داخلية) ===== */
+.fest-modal{
+  position:fixed;inset:0;z-index:9999;
+  background:rgba(0,0,0,.45);
+  display:none;align-items:center;justify-content:center;
+  padding:18px;
+}
+.fest-modal.show{display:flex}
+.fest-box{
+  width:min(980px,96%);
+  background:rgba(255,255,255,.88);
+  border:1px solid rgba(0,0,0,.10);
+  border-radius:18px;
+  box-shadow:0 25px 80px rgba(0,0,0,.22);
+  backdrop-filter:blur(14px);
+  overflow:hidden;
+}
+.fest-header{
+  position:relative;
+  min-height:240px;
+  display:flex;
+  align-items:flex-end;
+  padding:18px;
+  background:
+    radial-gradient(1200px 380px at 80% 20%, rgba(255,212,107,.55), transparent 55%),
+    radial-gradient(900px 360px at 15% 60%, rgba(224,179,36,.28), transparent 60%),
+    linear-gradient(135deg, rgba(255,255,255,.70), rgba(255,255,255,.85));
+}
+.fest-banner{
+  display:flex;gap:14px;align-items:center;flex-wrap:wrap;
+  background:rgba(255,255,255,.78);
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:14px 14px;
+  box-shadow:0 14px 34px rgba(0,0,0,.12);
+}
+.fest-mark{
+  width:54px;height:54px;border-radius:14px;
+  display:grid;place-items:center;
+  background:linear-gradient(135deg,var(--gold2),var(--gold));
+  font-size:26px;
+}
+.fest-title{
+  font-weight:1000;
+  color:var(--primary);
+  font-size:clamp(18px,2.3vw,26px);
+  line-height:1.25;
+}
+.fest-meta{
+  color:var(--muted);
+  font-weight:900;
+  margin-top:4px;
+  font-size:clamp(12px,1.8vw,14px);
+}
+.fest-close{
+  position:absolute;top:12px;left:12px;
+  width:44px;height:44px;border-radius:50%;
+  border:1px solid rgba(0,0,0,.10);
+  background:rgba(255,255,255,.85);
+  cursor:pointer;
+  display:grid;place-items:center;
+  font-size:20px;font-weight:900;
+}
+.fest-body{padding:16px 16px 18px}
+.fest-form{
+  background:#fff;
+  border:1px solid rgba(0,0,0,.08);
+  border-radius:16px;
+  padding:14px;
+  box-shadow:0 12px 28px rgba(0,0,0,.08);
+}
+.fest-form h3{
+  color:var(--primary);
+  font-weight:1000;
+  margin-bottom:10px;
+  font-size:18px;
+}
+.fest-grid{
+  display:grid;grid-template-columns:1fr 1fr;gap:10px;
+}
+@media(max-width:520px){.fest-grid{grid-template-columns:1fr}}
+.fest-grid input{
+  width:100%;
+  padding:14px;
+  border-radius:12px;
+  border:1px solid rgba(0,0,0,.12);
+  font-weight:900;
+}
+.fest-form button{
+  margin-top:10px;
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  font-weight:1000;
+  cursor:pointer;
+  background:linear-gradient(90deg,var(--gold2),var(--gold));
+  color:#111;
+}
 </style>
 </head>
+
 <body>
 <!-- Google Tag Manager (noscript) -->
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-T5BT2BT2"
@@ -305,7 +432,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <img src="images/hero4.webp" class="bg" alt="">
   <img src="images/hero5.webp" class="bg" alt="">
 
-  <!-- لوقو شفاف دوّار (اختياري) ضع الصورة التالية إن رغبت -->
   <img src="images/logo-light.png" alt="" class="logo-spin" onerror="this.style.display='none'">
 
   <div class="hero-box">
@@ -313,7 +439,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
       <h1 class="hero-title" id="heroTitle">نأخذك إلى وجهتك بطمأنينة</h1>
       <div id="typewriter" class="hero-line"></div>
     </div>
-    <button class="btn-primary" onclick="document.querySelector('#booking').scrollIntoView({behavior:'smooth'})">احجز الآن</button>
+
+    <!-- أزرار الهيرو -->
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="document.querySelector('#booking').scrollIntoView({behavior:'smooth'})">احجز الآن</button>
+
+      <button class="btn-fest" onclick="openFestivalModal()" aria-label="حجز مهرجان الحريق للحمضيات">
+        <span class="fest-ico">🍊</span>
+        <span class="fest-txt">
+          <strong>مهرجان الحريق للحمضيات 10</strong>
+          <small>11 يناير 2026 • باص سياحي • بدون</small>
+        </span>
+      </button>
+    </div>
   </div>
 </section>
 
@@ -352,7 +490,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div class="t-grid">
     <article class="t-card"><div class="t-head"><div class="avatar">أ</div><div><strong>أبو محمد</strong><div class="stars">★★★★★</div></div></div><p>تنظيم راقٍ ومواعيد دقيقة وتجربة سفر فاخرة من البداية حتى النهاية.</p></article>
     <article class="t-card"><div class="t-head"><div class="avatar">س</div><div><strong>سارة.م</strong><div class="stars">★★★★★</div></div></div><p>خدمة عملاء احترافية وخيارات فنادق ممتازة. أنصح بهم بشدة.</p></article>
-    <article class="t-card"><div class="t-head"><div class="avatar">ر</div><div><strong>مصطفى </strong><div class="stars">★★★★★</div></div></div><p>نقل VIP فعلاً وتجربة ضيافة فاخرة. شكراً لكم على رحلتنا المميزة.</p></article>
+    <article class="t-card"><div class="t-head"><div class="avatar">ر</div><div><strong>مصطفى</strong><div class="stars">★★★★★</div></div></div><p>نقل VIP فعلاً وتجربة ضيافة فاخرة. شكراً لكم على رحلتنا المميزة.</p></article>
   </div>
 </section>
 
@@ -375,34 +513,14 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- Booking -->
+<!-- Booking (مبسّط) -->
 <section id="booking" class="sec">
   <h2 class="gradient reveal">نموذج طلب الحجز</h2>
   <div class="booking reveal">
     <form id="bookForm">
       <input type="text" name="name" placeholder="الاسم الكامل" required>
-      <input type="text" name="date" placeholder="اختر التاريخ" required onfocus="this.type='date'" onblur="if(!this.value) this.type='text'">
       <input type="text" name="people" placeholder="عدد الأشخاص" inputmode="numeric" pattern="[0-9٠-٩]+" required>
-      <select name="service" required>
-        <option value="">الخدمة</option>
-        <option>الرياض - مكة - الرياض</option>
-        <option>الرياض - مكة - المدينة - الرياض</option>
-      </select>
-      <select name="transport" required>
-        <option value="">الناقل</option>
-        <option>باص سياحي</option>
-        <option>باص VIP</option>
-        <option>✈ طيران</option>
-      </select>
-      <select name="accommodation" required>
-        <option value="">الإقامة</option>
-        <option>غرفة خاصة</option>
-        <option>غرفة ثنائية</option>
-        <option>غرفة ثلاثية</option>
-        <option>غرفة رباعية</option>
-        <option>بدون</option>
-      </select>
-      <button type="submit">احجز الآن</button>
+      <button type="submit">إرسال الحجز عبر واتساب</button>
     </form>
   </div>
 </section>
@@ -416,14 +534,11 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <a href="https://x.com/QawafilAlakhyar" target="_blank" aria-label="X"><img src="images/social/x.svg" alt="X"></a>
   </div>
 
-  <!-- أرقام التواصل القابلة للنقر -->
   <div class="phones">
-    <a href="tel:0537367603" aria-label="0اتصال 0537367603">📞 537367603</a>
-    <a href="tel:00966114288884" aria-label="00اتصال 00966114288884">📞 966114288884</a>
-    <a href="tel:0500280668" aria-label="اتصال 0500280668">📞 0500280668</a>
-    <a href="tel:0506026619" aria-label="اتصال 0506026619">📞 0506026619</a>
-    <a href="tel:0547614011" aria-label="0اتصال 0547614011">📞 547614011</a>
-    <a href="tel:0557256526" aria-label="اتصال 0557256526">📞 0557256526 </a>
+    <a href="tel:0537367603">📞 0537367603</a>
+    <a href="tel:0114288884">📞 0114288884</a>
+    <a href="tel:0500280668">📞 0500280668</a>
+    <a href="tel:0506026619">📞 0506026619</a>
   </div>
 
   <p>© جميع الحقوق محفوظة لـ قوافل الأخيار لتنظيم الرحلات</p>
@@ -441,15 +556,57 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5l7 7-1.4 1.4L13 9.8V20h-2V9.8l-4.6 3.6L5 12z"/></svg>
 </button>
 
+<!-- Festival Modal (داخل نفس الصفحة) -->
+<div class="fest-modal" id="festivalModal" aria-hidden="true">
+  <div class="fest-box" role="dialog" aria-modal="true" aria-label="حجز مهرجان الحريق للحمضيات">
+    <button class="fest-close" onclick="closeFestivalModal()" aria-label="إغلاق">×</button>
+
+    <div class="fest-header">
+      <div class="fest-banner">
+        <div class="fest-mark">🍊</div>
+        <div>
+          <div class="fest-title">مهرجان الحريق للحمضيات 10</div>
+          <div class="fest-meta">📅 11 يناير 2026 • 🚍 باص سياحي • 🏨 بدون</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="fest-body">
+      <div class="fest-form">
+        <h3>نموذج الحجز (الاسم + عدد الأشخاص)</h3>
+        <form id="festivalForm">
+          <div class="fest-grid">
+            <input type="text" name="name" placeholder="الاسم الكامل" required>
+            <input type="text" name="people" placeholder="عدد الأشخاص" inputmode="numeric" pattern="[0-9٠-٩]+" required>
+          </div>
+
+          <!-- بيانات ثابتة (لا تظهر للمستخدم) -->
+          <input type="hidden" name="service" value="مهرجان الحريق للحمضيات 10">
+          <input type="hidden" name="date" value="2026-01-11">
+          <input type="hidden" name="transport" value="باص سياحي">
+          <input type="hidden" name="accommodation" value="بدون">
+
+          <button type="submit">إرسال الحجز عبر واتساب</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
-// تبديل خلفيات الهيرو (5 ثوانٍ) مع إعادة تحريك كل مرة
+// تبديل خلفيات الهيرو (5 ثوانٍ)
 const slides=[...document.querySelectorAll('.hero img.bg')];let si=0;
-setInterval(()=>{slides[si].classList.remove('active');slides[si].style.animation='none';void slides[si].offsetWidth;slides[si].style.animation=null;si=(si+1)%slides.length;slides[si].classList.add('active');},5000);
+setInterval(()=>{
+  slides[si].classList.remove('active');
+  slides[si].style.animation='none';void slides[si].offsetWidth;slides[si].style.animation=null;
+  si=(si+1)%slides.length;
+  slides[si].classList.add('active');
+},5000);
 
 // دخول عنوان الهيرو مرة واحدة
 window.addEventListener('load',()=>document.getElementById('heroTitle').classList.add('entered'));
 
-// كتابة أسطر الهيرو (بدون مؤشر وميض)
+// كتابة أسطر الهيرو
 const lines=[
   "رحلات فاخرة من الرياض إلى مكة والمدينة",
   "نقل مريح وآمن بأسطول حديث",
@@ -468,7 +625,7 @@ function showNextLine(){
 showNextLine();
 setInterval(showNextLine,intervalTime);
 
-// كشف العناصر عند التمرير (الأقسام + الشهادات)
+// كشف العناصر عند التمرير
 const revealEls=[...document.querySelectorAll('.reveal,.t-card')];
 const io=new IntersectionObserver(es=>{
   es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}})
@@ -495,26 +652,56 @@ new IntersectionObserver(es=>{
   });
 },{threshold:.35}).observe(document.querySelector('#impact'));
 
-// إرسال نموذج الحجز إلى واتساب
+// نموذج الحجز الأساسي (الاسم + عدد الأشخاص فقط)
 document.getElementById('bookForm').addEventListener('submit',e=>{
   e.preventDefault();
   const d=new FormData(e.target);
   const msg=`طلب حجز جديد:
 الاسم: ${d.get('name')}
-التاريخ: ${d.get('date')}
-عدد الأشخاص: ${d.get('people')}
-الخدمة: ${d.get('service')}
-الناقل: ${d.get('transport')}
-الإقامة: ${d.get('accommodation')}`;
+عدد الأشخاص: ${d.get('people')}`;
   window.open('https://wa.me/966547614011?text='+encodeURIComponent(msg),'_blank');
 });
 
-// زر الرجوع لأعلى الصفحة
+// زر الرجوع لأعلى
 const toTop=document.getElementById('toTop');
 window.addEventListener('scroll',()=>{
   if(window.scrollY>300){toTop.classList.add('show')}else{toTop.classList.remove('show')}
 });
 toTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
+
+// ===== مودال مهرجان الحريق =====
+function openFestivalModal(){
+  const m=document.getElementById('festivalModal');
+  m.classList.add('show');
+  m.setAttribute('aria-hidden','false');
+  document.body.style.overflow='hidden';
+}
+function closeFestivalModal(){
+  const m=document.getElementById('festivalModal');
+  m.classList.remove('show');
+  m.setAttribute('aria-hidden','true');
+  document.body.style.overflow='';
+}
+document.getElementById('festivalModal').addEventListener('click',(e)=>{
+  if(e.target.id==='festivalModal') closeFestivalModal();
+});
+
+// نموذج مهرجان الحريق (الاسم + عدد الأشخاص فقط + بيانات ثابتة)
+document.getElementById('festivalForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const d = new FormData(e.target);
+
+  const msg = `طلب حجز مهرجان الحريق للحمضيات:
+الاسم: ${d.get('name')}
+عدد الأشخاص: ${d.get('people')}
+الخدمة: ${d.get('service')}
+التاريخ: 11 يناير 2026
+الناقل: ${d.get('transport')}
+الإقامة: ${d.get('accommodation')}`;
+
+  window.open('https://wa.me/966547614011?text=' + encodeURIComponent(msg), '_blank');
+});
 </script>
+
 </body>
 </html>
