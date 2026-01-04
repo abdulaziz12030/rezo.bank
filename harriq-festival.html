@@ -13,12 +13,9 @@
 
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-
   <title>مهرجان الحريق للحمضيات 10 | قوافل الأخيار</title>
-  <meta name="description" content="احجز الآن لمهرجان الحريق للحمضيات 10 مع قوافل الأخيار. رحلة منظمة تشمل مرشد سياحي وإفطار مجاني في الحافلة." />
-  <meta name="keywords" content="مهرجان الحريق للحمضيات, قوافل الأخيار, رحلات, الحريق, الحمضيات, حجز رحلة" />
 
-  <meta name="author" content="قوافل الأخيار لتنظيم الرحلات">
+  <meta name="description" content="احجز الآن لمهرجان الحريق للحمضيات 10 مع قوافل الأخيار. رحلة منظمة تشمل مرشد سياحي وإفطار مجاني في الحافلة." />
   <meta name="robots" content="index,follow">
   <meta property="og:title" content="مهرجان الحريق للحمضيات 10 | قوافل الأخيار">
   <meta property="og:description" content="رحلة مهرجان الحريق للحمضيات 10 – تنظيم متكامل وحجز مباشر عبر واتساب.">
@@ -26,7 +23,6 @@
   <meta property="og:type" content="website">
   <meta property="og:locale" content="ar_SA">
 
-  <!-- Favicon -->
   <link rel="icon" type="image/png" href="images/favicon.png">
   <link rel="icon" type="image/x-icon" href="images/favicon.ico">
   <link rel="shortcut icon" href="images/favicon.ico">
@@ -35,34 +31,32 @@
 
   <style>
     :root{
+      /* هوية قوافل */
       --primary:#3b3a90;
-      --forest:#1f271c;
-      --gray:#a9abad;
       --gold:#E0B324;
       --gold2:#FFD46B;
-      --bg:#f6f7fb;
-      --card:#ffffff;
       --text:#1d2125;
       --muted:#5b6168;
       --border:rgba(0,0,0,.08);
-      --shadow:0 10px 30px rgba(0,0,0,.08);
+      --shadow:0 12px 34px rgba(0,0,0,.10);
       --whatsapp:#25D366;
 
-      --ease: cubic-bezier(.2,.8,.2,1);
-      --ease2: cubic-bezier(.16,1,.3,1);
+      /* هوية المهرجان */
+      --citrus:#ff8a2a;     /* برتقالي */
+      --citrus2:#ffb24a;    /* برتقالي فاتح */
+      --leaf:#1f8a3b;       /* أخضر */
+      --leaf2:#38b35a;      /* أخضر فاتح */
+      --bg:#f6f7fb;
+
+      --ease:cubic-bezier(.2,.8,.2,1);
+      --ease2:cubic-bezier(.16,1,.3,1);
     }
 
     *{margin:0;padding:0;box-sizing:border-box}
     html,body{overflow-x:hidden;scroll-behavior:smooth}
-    body{
-      font-family:'Cairo',system-ui,sans-serif;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.9;
-    }
-    .container{max-width:1200px;margin:auto;padding:0 1rem}
+    body{font-family:'Cairo',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.9}
 
-    /* Header (نفس تصميم الموقع) */
+    /* Header */
     header{
       position:sticky;top:0;z-index:50;
       background:rgba(255,255,255,.88);
@@ -70,299 +64,257 @@
       box-shadow:0 6px 18px rgba(0,0,0,.06);
     }
     .header-wrap{
-      max-width:1200px;margin:auto;
-      padding:1.1rem 1rem;
-      display:flex;justify-content:space-between;align-items:center;
-      gap:1rem;
+      max-width:1200px;margin:auto;padding:1.1rem 1rem;
+      display:flex;justify-content:space-between;align-items:center;gap:1rem;
     }
     .brand{display:flex;align-items:center;gap:.9rem;text-decoration:none}
     .brand img{
       width:72px;height:72px;border-radius:12px;border:1px solid var(--border);
-      background:#fff;object-fit:contain;
+      background:#fff;object-fit:contain
     }
-    .brand .title{font-weight:800;color:var(--primary);font-size:clamp(16px,1.8vw,20px)}
-    .brand small{display:block;color:var(--muted);font-weight:700}
+    .brand .title{font-weight:900;color:var(--primary);font-size:clamp(16px,1.8vw,20px)}
+    .brand small{display:block;color:var(--muted);font-weight:800}
     .nav{display:flex;gap:.6rem;flex-wrap:wrap}
     .nav a{
-      color:var(--text);text-decoration:none;
-      padding:.5rem .9rem;border-radius:999px;
-      transition:.2s;font-weight:800;
+      color:var(--text);text-decoration:none;padding:.5rem .9rem;border-radius:999px;
+      transition:.2s;font-weight:900;
     }
     .nav a:hover{background:rgba(0,0,0,.05)}
     @media(max-width:900px){.nav{display:none}}
 
-    /* Hero Landing */
-    .hero-landing{
+    /* HERO Landing */
+    .hero{
       position:relative;
       min-height:calc(100vh - 106px);
-      padding:2.2rem 0 3rem;
+      padding:2rem 0 2.2rem;
       overflow:hidden;
       isolation:isolate;
     }
 
-    /* خلفية خفيفة متدرجة + نقاط */
-    .hero-landing::before{
+    /* خلفية موشن ناعمة: حمضيات + أخضر */
+    .hero::before{
       content:"";
-      position:absolute;inset:-40px;
+      position:absolute;inset:-60px;
       background:
-        radial-gradient(1200px 600px at 15% 20%, rgba(224,179,36,.18), transparent 55%),
-        radial-gradient(900px 520px at 85% 30%, rgba(59,58,144,.16), transparent 55%),
-        radial-gradient(900px 480px at 50% 90%, rgba(224,179,36,.10), transparent 60%),
-        linear-gradient(180deg, rgba(255,255,255,.6), rgba(246,247,251,1));
-      z-index:-2;
+        radial-gradient(900px 480px at 15% 20%, rgba(255,138,42,.22), transparent 55%),
+        radial-gradient(900px 520px at 85% 20%, rgba(31,138,59,.20), transparent 55%),
+        radial-gradient(900px 520px at 50% 90%, rgba(255,178,74,.16), transparent 60%),
+        linear-gradient(180deg, rgba(255,255,255,.68), rgba(246,247,251,1));
+      z-index:-3;
+      animation:bgFloat 10s var(--ease2) infinite;
+    }
+    @keyframes bgFloat{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(-10px)}
     }
 
-    .dots{
-      position:absolute;inset:0;
-      background-image:radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
+    .grain{
+      position:absolute;inset:0;z-index:-2;opacity:.16;
+      background-image:radial-gradient(rgba(0,0,0,.12) 1px, transparent 1px);
       background-size:18px 18px;
-      opacity:.25;
-      z-index:-1;
-      mask-image:radial-gradient(closest-side, rgba(0,0,0,.75), transparent 85%);
+      mask-image:radial-gradient(closest-side, rgba(0,0,0,.8), transparent 82%);
+      pointer-events:none;
     }
 
-    .hero-grid{
-      display:grid;
-      grid-template-columns: 1.15fr .85fr;
-      gap:1.2rem;
-      align-items:stretch;
-      max-width:1200px;
-      margin:auto;
-      padding:0 1rem;
+    .wrap{
+      max-width:1200px;margin:auto;padding:0 1rem;
+      display:grid;grid-template-columns:1.1fr .9fr;gap:1.2rem;align-items:stretch;
     }
+    @media(max-width:980px){.wrap{grid-template-columns:1fr}}
 
-    @media(max-width:980px){
-      .hero-grid{grid-template-columns:1fr;gap:1rem}
-    }
-
-    /* بطاقة المحتوى */
-    .panel{
-      background:rgba(255,255,255,.78);
+    .card{
+      background:rgba(255,255,255,.82);
       border:1px solid var(--border);
+      border-radius:24px;
       box-shadow:var(--shadow);
-      border-radius:22px;
+      backdrop-filter:blur(10px);
       overflow:hidden;
       position:relative;
-      backdrop-filter: blur(10px);
     }
+    .pad{padding:1.2rem 1.2rem 1.3rem}
 
-    .panel.pad{padding:1.2rem 1.2rem 1.3rem}
-
+    /* شارة دعائية */
     .badge{
-      display:inline-flex;align-items:center;gap:.5rem;
-      padding:.4rem .7rem;
-      border-radius:999px;
-      border:1px solid rgba(224,179,36,.35);
-      background:linear-gradient(90deg, rgba(255,212,107,.35), rgba(224,179,36,.18));
-      font-weight:900;color:#4f4310;
-      transform:translateY(6px);
-      opacity:0;
-      animation:riseIn .8s var(--ease2) .1s forwards;
+      display:inline-flex;align-items:center;gap:.55rem;
+      padding:.45rem .8rem;border-radius:999px;
+      background:linear-gradient(90deg, rgba(31,138,59,.18), rgba(255,138,42,.18));
+      border:1px solid rgba(31,138,59,.25);
+      font-weight:1000;color:#145f2a;
+      opacity:0;transform:translateY(10px);
+      animation:riseIn .85s var(--ease2) .05s forwards;
     }
     .badge .dot{
       width:9px;height:9px;border-radius:50%;
-      background:var(--gold);
-      box-shadow:0 0 0 5px rgba(224,179,36,.18);
+      background:var(--leaf2);
+      box-shadow:0 0 0 6px rgba(56,179,90,.16);
     }
 
-    .h-title{
-      margin-top:.6rem;
-      font-size:clamp(26px,3.2vw,44px);
-      font-weight:900;
-      letter-spacing:.2px;
-      line-height:1.25;
-      color:var(--primary);
-      opacity:0;transform:translateY(10px);
-      animation:riseIn .9s var(--ease2) .18s forwards;
-    }
-    .h-sub{
-      margin-top:.4rem;
-      color:var(--muted);
-      font-weight:800;
-      opacity:0;transform:translateY(10px);
-      animation:riseIn .9s var(--ease2) .28s forwards;
-    }
-
-    .quick{
-      display:flex;flex-wrap:wrap;
-      gap:.55rem;
-      margin-top:.9rem;
-      opacity:0;transform:translateY(10px);
-      animation:riseIn .9s var(--ease2) .38s forwards;
-    }
-    .pill{
-      display:inline-flex;align-items:center;gap:.45rem;
-      padding:.45rem .75rem;
-      border-radius:999px;
-      background:#fff;
-      border:1px solid var(--border);
-      box-shadow:0 10px 22px rgba(0,0,0,.06);
-      font-weight:900;
-      color:#2b2f33;
-    }
-    .pill svg{width:18px;height:18px;fill:var(--primary);opacity:.9}
-
-    .split{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:.9rem;
-      margin-top:1rem;
-    }
-    @media(max-width:560px){.split{grid-template-columns:1fr}}
-
-    .infoCard{
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:.95rem .95rem;
-      box-shadow:0 14px 30px rgba(0,0,0,.07);
-      position:relative;
-      overflow:hidden;
+    .title{
+      margin-top:.7rem;
+      font-size:clamp(26px,3.2vw,46px);
+      font-weight:1000;
+      line-height:1.2;
+      background:linear-gradient(90deg,var(--leaf),var(--citrus));
+      -webkit-background-clip:text;-webkit-text-fill-color:transparent;
       opacity:0;transform:translateY(12px);
-      animation:riseIn .9s var(--ease2) .46s forwards;
+      animation:riseIn .95s var(--ease2) .14s forwards;
     }
-    .infoCard::before{
-      content:"";
-      position:absolute;inset:auto auto -40px -40px;
-      width:120px;height:120px;border-radius:50%;
-      background:radial-gradient(circle at 30% 30%, rgba(224,179,36,.35), transparent 60%);
-      filter:blur(1px);
+    .sub{
+      margin-top:.4rem;color:var(--muted);font-weight:900;
+      opacity:0;transform:translateY(12px);
+      animation:riseIn .95s var(--ease2) .22s forwards;
     }
-    .infoCard h3{
-      font-size:1.05rem;
-      color:var(--primary);
-      font-weight:900;
-      margin-bottom:.25rem;
+
+    .chips{
+      display:flex;flex-wrap:wrap;gap:.55rem;margin-top:1rem;
+      opacity:0;transform:translateY(12px);
+      animation:riseIn .95s var(--ease2) .30s forwards;
     }
-    .infoCard ul{margin:.3rem 0 0; padding-right:1.1rem}
-    .infoCard li{color:#2e3338;font-weight:800}
+    .chip{
+      display:inline-flex;align-items:center;gap:.45rem;
+      padding:.45rem .75rem;border-radius:999px;
+      background:#fff;border:1px solid var(--border);
+      box-shadow:0 12px 24px rgba(0,0,0,.06);
+      font-weight:1000;color:#222;
+    }
+    .chip svg{width:18px;height:18px;fill:var(--leaf);opacity:.95}
+
+    .cols{
+      display:grid;grid-template-columns:1fr 1fr;gap:.9rem;margin-top:1.05rem;
+    }
+    @media(max-width:560px){.cols{grid-template-columns:1fr}}
+
+    .info{
+      background:#fff;border:1px solid var(--border);
+      border-radius:18px;padding:1rem;
+      box-shadow:0 14px 30px rgba(0,0,0,.07);
+      opacity:0;transform:translateY(14px);
+      animation:riseIn .95s var(--ease2) .40s forwards;
+      position:relative;overflow:hidden;
+    }
+    .info::before{
+      content:"";position:absolute;inset:auto auto -50px -50px;
+      width:140px;height:140px;border-radius:50%;
+      background:radial-gradient(circle at 30% 30%, rgba(255,138,42,.28), transparent 62%);
+    }
+    .info h3{
+      font-size:1.05rem;font-weight:1000;margin-bottom:.25rem;
+      color:#115523;
+    }
+    .info ul{margin:.3rem 0 0;padding-right:1.1rem}
+    .info li{font-weight:900;color:#2c2f33}
 
     .prices{
-      display:flex;flex-wrap:wrap;gap:.6rem;
-      margin-top:.9rem;
-      opacity:0;transform:translateY(12px);
-      animation:riseIn .9s var(--ease2) .56s forwards;
+      display:flex;flex-wrap:wrap;gap:.6rem;margin-top:1rem;
+      opacity:0;transform:translateY(14px);
+      animation:riseIn .95s var(--ease2) .50s forwards;
     }
     .price{
-      flex:1 1 220px;
-      background:linear-gradient(180deg,#fff, #fbfbfe);
+      flex:1 1 240px;
+      background:linear-gradient(180deg,#fff,#fbfffb);
       border:1px solid var(--border);
       border-radius:18px;
-      padding:.9rem .9rem;
+      padding:.95rem;
       box-shadow:0 14px 28px rgba(0,0,0,.06);
       display:flex;align-items:center;justify-content:space-between;gap:.8rem;
     }
-    .price strong{font-weight:1000;color:#111;font-size:1.05rem}
-    .price .amt{
-      font-weight:1000;
-      background:linear-gradient(90deg,var(--primary),var(--gold));
+    .price strong{font-weight:1000}
+    .amt{
+      font-weight:1000;font-size:1.3rem;white-space:nowrap;
+      background:linear-gradient(90deg,var(--leaf),var(--citrus));
       -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-      font-size:1.25rem;
-      white-space:nowrap;
     }
 
-    .ctaRow{
-      margin-top:1rem;
-      display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;
-      opacity:0;transform:translateY(12px);
-      animation:riseIn .9s var(--ease2) .66s forwards;
+    .cta{
+      margin-top:1rem;display:flex;gap:.7rem;flex-wrap:wrap;align-items:center;
+      opacity:0;transform:translateY(14px);
+      animation:riseIn .95s var(--ease2) .60s forwards;
     }
     .btn{
       appearance:none;border:0;cursor:pointer;
-      padding:.95rem 1.25rem;border-radius:999px;
-      font-weight:1000;
+      padding:.95rem 1.2rem;border-radius:999px;
+      font-weight:1000;text-decoration:none;
       transition:transform .25s var(--ease), box-shadow .25s var(--ease);
       display:inline-flex;align-items:center;gap:.55rem;
-      text-decoration:none;
     }
-    .btn-primary{
-      background:linear-gradient(90deg,var(--gold2),var(--gold));
-      color:#111;
-      box-shadow:0 16px 30px rgba(224,179,36,.22);
+    .btn-main{
+      background:linear-gradient(90deg,var(--leaf2),var(--leaf));
+      color:#fff;
+      box-shadow:0 18px 36px rgba(31,138,59,.22);
     }
-    .btn-primary:hover{transform:translateY(-3px);box-shadow:0 18px 34px rgba(224,179,36,.28)}
-    .btn-ghost{
+    .btn-main:hover{transform:translateY(-3px);box-shadow:0 22px 44px rgba(31,138,59,.25)}
+    .btn-alt{
       background:#fff;border:1px solid var(--border);
       color:var(--primary);
       box-shadow:0 14px 26px rgba(0,0,0,.06);
     }
-    .btn-ghost:hover{transform:translateY(-3px)}
+    .btn-alt:hover{transform:translateY(-3px)}
 
-    /* صورة اليمين */
-    .photo-frame{
-      height:100%;
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-      padding:0;
-      position:relative;
+    /* يمين: صورة + نموذج */
+    .right{
+      display:flex;flex-direction:column;justify-content:space-between;
     }
-    .photoWrap{
+    .photoBox{
       position:relative;
-      height:100%;
       padding:12px;
+      height:100%;
+      min-height:420px;
     }
     .hero-photo{
-      width:100%;
-      height:100%;
+      width:100%;height:100%;
       object-fit:cover;
-      border-radius:22px;
-      box-shadow:0 18px 42px rgba(0,0,0,.18);
-      filter:saturate(1.05) contrast(1.03);
-      transform:translateY(10px) scale(1.02);
+      border-radius:24px;
+      box-shadow:0 20px 46px rgba(0,0,0,.20);
+      transform:translateY(14px) scale(1.02);
       opacity:0;
-      animation:photoIn .9s var(--ease2) .25s forwards, photoFloat 6.8s var(--ease2) 1.4s infinite;
+      animation:photoIn .95s var(--ease2) .18s forwards, floaty 7s var(--ease2) 1.3s infinite;
+      filter:saturate(1.06) contrast(1.05);
+      background:#eaeaea; /* لو ما حملت تبان خلفية */
     }
-    @keyframes photoIn{
-      to{opacity:1;transform:translateY(0) scale(1.02)}
-    }
-    @keyframes photoFloat{
+    @keyframes photoIn{to{opacity:1;transform:translateY(0) scale(1.02)}}
+    @keyframes floaty{
       0%,100%{transform:translateY(0) scale(1.02)}
       50%{transform:translateY(-10px) scale(1.03)}
     }
 
-    /* لمسة موشن (لمّاعة) */
-    .shine{
-      position:absolute;inset:12px;
-      border-radius:22px;
-      pointer-events:none;
-      overflow:hidden;
-    }
+    /* لمعان */
+    .shine{position:absolute;inset:12px;border-radius:24px;overflow:hidden;pointer-events:none}
     .shine::before{
-      content:"";
-      position:absolute;top:-40%;left:-60%;
-      width:60%;height:180%;
+      content:"";position:absolute;top:-45%;left:-70%;
+      width:65%;height:200%;
       background:linear-gradient(90deg, transparent, rgba(255,255,255,.35), transparent);
       transform:rotate(16deg);
-      animation:shineMove 4.8s var(--ease2) infinite;
-      opacity:.55;
+      animation:shineMove 4.6s var(--ease2) infinite;
+      opacity:.6;
     }
     @keyframes shineMove{
-      0%{left:-70%}
-      55%{left:120%}
-      100%{left:120%}
+      0%{left:-75%}
+      55%{left:130%}
+      100%{left:130%}
     }
 
-    /* نموذج الحجز */
+    /* نموذج */
     .formBox{
-      padding:1.1rem 1.1rem 1.2rem;
       border-top:1px solid rgba(0,0,0,.06);
-      background:rgba(255,255,255,.88);
+      padding:1.1rem 1.1rem 1.2rem;
+      background:rgba(255,255,255,.90);
       backdrop-filter:blur(10px);
     }
     .formTitle{
-      font-weight:1000;
-      color:var(--primary);
       display:flex;align-items:center;gap:.55rem;
+      font-weight:1000;color:#115523;
       margin-bottom:.65rem;
-      font-size:1.05rem;
     }
-    .form{
-      display:grid;
-      grid-template-columns:1fr 1fr;
+    .formTitle .seed{
+      width:10px;height:10px;border-radius:50%;
+      background:var(--citrus);
+      box-shadow:0 0 0 6px rgba(255,138,42,.16);
+    }
+    form{
+      display:grid;grid-template-columns:1fr 1fr;
       gap:.75rem;
     }
-    @media(max-width:520px){.form{grid-template-columns:1fr}}
+    @media(max-width:520px){form{grid-template-columns:1fr}}
     .input{
       width:100%;
       padding:1rem .95rem;
@@ -375,33 +327,32 @@
       transition: box-shadow .25s var(--ease), border-color .25s var(--ease);
     }
     .input:focus{
-      border-color:rgba(59,58,144,.35);
-      box-shadow:0 0 0 6px rgba(59,58,144,.10);
+      border-color:rgba(31,138,59,.35);
+      box-shadow:0 0 0 6px rgba(31,138,59,.10);
     }
     .submit{
-      grid-column:1 / -1;
+      grid-column:1/-1;
       padding:1.05rem 1rem;
       border-radius:14px;
       border:0;
-      background:linear-gradient(90deg,var(--primary), #2f2e78);
-      color:#fff;
+      background:linear-gradient(90deg,var(--citrus),var(--citrus2));
+      color:#111;
       font-weight:1000;
       cursor:pointer;
       transition:transform .25s var(--ease), box-shadow .25s var(--ease);
-      box-shadow:0 18px 34px rgba(59,58,144,.22);
+      box-shadow:0 18px 34px rgba(255,138,42,.22);
     }
-    .submit:hover{transform:translateY(-3px);box-shadow:0 22px 38px rgba(59,58,144,.26)}
+    .submit:hover{transform:translateY(-3px);box-shadow:0 22px 38px rgba(255,138,42,.26)}
 
-    .hint{
+    .fixed{
       margin-top:.65rem;
       color:var(--muted);
-      font-weight:800;
+      font-weight:900;
       font-size:.95rem;
       display:flex;flex-wrap:wrap;gap:.55rem;
     }
-    .hint span{
-      background:#fff;
-      border:1px solid var(--border);
+    .fixed span{
+      background:#fff;border:1px solid var(--border);
       border-radius:999px;
       padding:.35rem .65rem;
       box-shadow:0 10px 18px rgba(0,0,0,.05);
@@ -409,11 +360,10 @@
 
     /* Footer mini */
     .foot{
-      margin-top:1.1rem;
       text-align:center;
       color:var(--muted);
-      font-weight:800;
-      padding:0 1rem 1.5rem;
+      font-weight:900;
+      padding:0 1rem 1.4rem;
     }
     .phones{
       margin-top:.55rem;
@@ -421,22 +371,14 @@
       justify-content:center;
     }
     .phones a{
-      text-decoration:none;
-      color:#2b2f33;
-      font-weight:1000;
-      background:#fff;
-      border:1px solid var(--border);
-      border-radius:999px;
-      padding:.45rem .75rem;
+      text-decoration:none;color:#2b2f33;font-weight:1000;
+      background:#fff;border:1px solid var(--border);
+      border-radius:999px;padding:.45rem .75rem;
       box-shadow:0 12px 24px rgba(0,0,0,.06);
       transition:transform .25s var(--ease);
     }
     .phones a:hover{transform:translateY(-2px)}
-    .address{
-      margin-top:.7rem;
-      color:#2b2f33;
-      font-weight:1000;
-    }
+    .address{margin-top:.7rem;color:#2b2f33;font-weight:1000}
 
     /* WhatsApp Floating */
     .whatsapp{
@@ -454,10 +396,7 @@
       100%{box-shadow:0 0 0 0 rgba(37,211,102,0)}
     }
 
-    /* Animations */
-    @keyframes riseIn{
-      to{opacity:1;transform:none}
-    }
+    @keyframes riseIn{to{opacity:1;transform:none}}
   </style>
 </head>
 
@@ -467,7 +406,6 @@
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
 
-  <!-- Header -->
   <header>
     <div class="header-wrap">
       <a class="brand" href="index.html" aria-label="العودة للصفحة الرئيسية">
@@ -486,44 +424,38 @@
     </div>
   </header>
 
-  <!-- Landing Hero -->
-  <main class="hero-landing" aria-label="Landing">
-    <div class="dots" aria-hidden="true"></div>
+  <main class="hero">
+    <div class="grain" aria-hidden="true"></div>
 
-    <section class="hero-grid">
-      <!-- LEFT: Content -->
-      <div class="panel pad">
-        <!-- (تم حذف الشارة/اللوغو اللي باليسار حسب طلبك) -->
+    <section class="wrap">
+      <!-- Left -->
+      <div class="card pad">
+        <div class="badge"><span class="dot"></span> عرض دعائي — التسجيل متاح الآن</div>
 
-        <div class="badge">
-          <span class="dot"></span>
-          عرض خاص — مقاعد محدودة
-        </div>
+        <h1 class="title">مهرجان الحريق للحمضيات 10</h1>
+        <p class="sub">رحلة منظمة (باص سياحي) تشمل: مرشد سياحي في الرحلة + إفطار مجاني في الحافلة</p>
 
-        <h1 class="h-title">مهرجان الحريق للحمضيات <span style="white-space:nowrap">10</span></h1>
-        <div class="h-sub">رحلة يوم واحد بتنظيم كامل + مرشد سياحي + إفطار مجاني في الحافلة</div>
-
-        <div class="quick" aria-label="Quick info">
-          <span class="pill" title="الموقع">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
+        <div class="chips">
+          <span class="chip">
+            <svg viewBox="0 0 24 24"><path d="M12 2a7 7 0 0 0-7 7c0 5.25 7 13 7 13s7-7.75 7-13a7 7 0 0 0-7-7zm0 9.5A2.5 2.5 0 1 1 12 6a2.5 2.5 0 0 1 0 5.5z"/></svg>
             محافظة الحريق
           </span>
-          <span class="pill" title="التاريخ">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2zm15 8H2v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V10z"/></svg>
+          <span class="chip">
+            <svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h3V2zm15 8H2v10a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1V10z"/></svg>
             الأحد 11/1/2026
           </span>
-          <span class="pill" title="التجمع">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8zm9 13-4.35-4.35a7.5 7.5 0 1 0-1.41 1.41L20 22l1-1z"/></svg>
+          <span class="chip">
+            <svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.27V6h-2v7l6 3.5 1-1.73z"/></svg>
             الحضور 9:30 ص — الانطلاق 10:00 ص
           </span>
-          <span class="pill" title="العودة">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.27V6h-2v7l6 3.5 1-1.73z"/></svg>
+          <span class="chip">
+            <svg viewBox="0 0 24 24"><path d="M12 1a11 11 0 1 0 11 11A11 11 0 0 0 12 1zm1 11.27V6h-2v7l6 3.5 1-1.73z"/></svg>
             العودة 9:00 م
           </span>
         </div>
 
-        <div class="split">
-          <div class="infoCard">
+        <div class="cols">
+          <div class="info">
             <h3>مسار الزيارة</h3>
             <ul>
               <li>مهرجان الحريق</li>
@@ -532,7 +464,7 @@
             </ul>
           </div>
 
-          <div class="infoCard">
+          <div class="info">
             <h3>يشمل العرض</h3>
             <ul>
               <li>مرشد سياحي في الرحلة</li>
@@ -543,49 +475,41 @@
           </div>
         </div>
 
-        <div class="prices" aria-label="Prices">
+        <div class="prices">
           <div class="price">
             <strong>السعر للبالغين</strong>
-            <div class="amt">150 ر.س</div>
+            <span class="amt">150 ر.س</span>
           </div>
           <div class="price">
             <strong>دون 6 سنوات</strong>
-            <div class="amt">75 ر.س</div>
+            <span class="amt">75 ر.س</span>
           </div>
         </div>
 
-        <div class="ctaRow">
-          <a class="btn btn-primary" href="#harigForm" aria-label="الانتقال لنموذج الحجز">
-            احجز الآن للمهرجان
-            <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="#111" d="M12 4l1.4 1.4-5.6 5.6H20v2H7.8l5.6 5.6L12 20l-8-8z"/></svg>
-          </a>
-
-          <a class="btn btn-ghost" href="index.html" aria-label="العودة لموقع قوافل الأخيار">
-            العودة للموقع الرئيسي
-          </a>
+        <div class="cta">
+          <a class="btn btn-main" href="#festivalForm">احجز الآن للمهرجان</a>
+          <a class="btn btn-alt" href="index.html">العودة للموقع الرئيسي</a>
         </div>
       </div>
 
-      <!-- RIGHT: Photo + Form -->
-      <aside class="panel photo-frame" aria-label="Photo and booking form">
-        <div class="photoWrap">
-          <img class="hero-photo" src="images/IMG-20230111-WA0315.jpg" alt="مهرجان الحريق للحمضيات - صورة" />
+      <!-- Right -->
+      <aside class="card right">
+        <div class="photoBox">
+          <!-- تأكد أن هذا المسار صحيح داخل مشروعك -->
+          <img class="hero-photo" src="images/IMG-20230111-WA0315.jpg" alt="صورة المهرجان">
           <div class="shine" aria-hidden="true"></div>
         </div>
 
-        <div class="formBox" id="harigForm">
-          <div class="formTitle">
-            <span style="width:10px;height:10px;border-radius:50%;background:var(--gold);display:inline-block;box-shadow:0 0 0 6px rgba(224,179,36,.18)"></span>
-            نموذج حجز مهرجان الحريق للحمضيات 10
-          </div>
+        <div class="formBox" id="festivalForm">
+          <div class="formTitle"><span class="seed"></span> نموذج حجز مهرجان الحريق للحمضيات 10</div>
 
-          <form class="form" id="festivalForm">
+          <form id="harigForm">
             <input class="input" type="text" name="name" placeholder="الاسم الكامل" required>
             <input class="input" type="text" name="people" placeholder="عدد الأشخاص" inputmode="numeric" pattern="[0-9٠-٩]+" required>
             <button class="submit" type="submit">تأكيد الحجز عبر واتساب</button>
           </form>
 
-          <div class="hint" aria-label="Fixed info">
+          <div class="fixed">
             <span>التاريخ ثابت: 11/1/2026</span>
             <span>الخدمة: مهرجان الحريق للحمضيات 10</span>
             <span>الناقل: سياحي</span>
@@ -605,28 +529,24 @@
         <a href="tel:0557256526">0557256526</a>
         <a href="tel:0547614011">0547614011</a>
       </div>
-
-      <div class="address">
-        الرياض - شارع عائشة بنت أبي بكر - مخرج 25 - مقابل بنك الجزيرة
-      </div>
+      <div class="address">الرياض - شارع عائشة بنت أبي بكر - مخرج 25 - مقابل بنك الجزيرة</div>
     </div>
   </main>
 
-  <!-- WhatsApp Floating -->
   <a href="https://wa.me/966547614011" class="whatsapp" target="_blank" aria-label="WhatsApp">
     <img src="images/social/whatsapp.svg" alt="WhatsApp">
   </a>
 
   <script>
-    // إرسال نموذج المهرجان إلى واتساب برسالة ثابتة + مدخلات العميل
-    document.getElementById('festivalForm').addEventListener('submit', function(e){
+    // إرسال نموذج المهرجان إلى واتساب
+    document.getElementById('harigForm').addEventListener('submit', function(e){
       e.preventDefault();
       const d = new FormData(this);
 
       const fixed = {
         service: "مهرجان الحريق للحمضيات 10",
         date: "11/01/2026",
-        transport: "سياحي",
+        transport: "باص سياحي",
         accommodation: "بدون",
         attendance: "9:30 صباحًا",
         departure: "10:00 صباحًا",
@@ -639,7 +559,7 @@
       };
 
       const msg =
-`طلب حجز جديد (صفحة مهرجان الحريق):
+`طلب حجز جديد (مهرجان الحريق):
 الاسم: ${d.get('name')}
 عدد الأشخاص: ${d.get('people')}
 
